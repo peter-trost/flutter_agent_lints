@@ -48,3 +48,6 @@ jobs:
 
       - name: Analyze
         run: dart analyze --fatal-infos
+
+      - name: Publish dry run
+        run: dart pub publish --dry-run

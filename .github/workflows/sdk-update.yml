@@ -51,7 +51,7 @@ jobs:
       - name: Is there anything to decide?
         id: gate
         run: |
-          dart pub get
+          dart pub get --no-example
           needs=false
           dart run tool/check_rules.dart || needs=true
           dart analyze --fatal-infos || needs=true
@@ -93,7 +93,7 @@ jobs:
                principles to `false`.
             3. Set the `analyzer` dev dependency in pubspec.yaml to exactly
                ${{ steps.sdk.outputs.analyzer }}, the version bundled with the
-               SDK, then run `dart pub get`.
+               SDK, then run `dart pub get --no-example`.
             4. Run `dart run tool/generate.dart`, then `dart analyze
                --fatal-infos`, `dart test`, `dart run tool/check_rules.dart`
                and `dart run tool/generate.dart --check`. All must pass.

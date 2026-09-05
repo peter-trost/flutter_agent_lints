@@ -71,7 +71,7 @@ jobs:
           # not credentials. The rule matches only pull_request runs of this
           # repository and is scoped to the flutter_agent_lints workspace,
           # which carries its own monthly spend limit.
-          anthropic_federation_rule_id: fdrl_01HtdjTgVJEdHDon88GzCQpK
+          anthropic_federation_rule_id: fdrl_01Lvvt4Hu1n5vGv6K7piqVVh
           anthropic_organization_id: aa1949cc-2369-449f-a0cd-44a8bfe66071
           anthropic_service_account_id: svac_015USko5mSJt8tv82gAKXEQ2
           anthropic_workspace_id: wrkspc_01YW4WKT8QjcKq3EcfBLboAd

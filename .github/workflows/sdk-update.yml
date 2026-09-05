@@ -78,8 +78,9 @@ jobs:
           allowed_bots: renovate[bot]
           prompt: |
             This repository is the flutter_agent_lints package. Read README.md
-            and the header comment of lib/analysis_options.yaml first; they
-            state the principles every decision must follow.
+            first; its Principles section is what every decision must follow.
+            Then read .claude/skills/versioning/SKILL.md; it decides the
+            version bump and the changelog entry.
 
             Renovate has bumped the Dart SDK lower bound in pubspec.yaml to
             ${{ steps.sdk.outputs.version }} on this PR branch. Bring the
@@ -90,7 +91,7 @@ jobs:
                lib/analysis_options.yaml (stable rules) or
                lib/experimental.yaml (experimental rules) as `true` or
                `false` with a one-line reason in the same style as the
-               neighbouring lines. Decide by the principles in the header, in
+               neighbouring lines. Decide by the README's principles, in
                order: robustness, one way to write it, token efficiency. A
                rule is `false` only for a reason of the kinds already in the
                file: it is the losing side of an incompatible pair, it is
@@ -107,11 +108,8 @@ jobs:
             4. Run `dart run tool/generate.dart`, then `dart analyze
                --fatal-infos`, `dart test`, `dart run tool/check_rules.dart`
                and `dart run tool/generate.dart --check`. All must pass.
-            5. If the effective rule set changed, bump the major version in
-               pubspec.yaml and add a CHANGELOG.md entry under the new version
-               that lists every added rule with its decision, every removed
-               rule with why, and the new SDK lower bound. If nothing in the
-               rule set changed, bump the minor version and say so.
+            5. Bump the version and write the changelog entry exactly as the
+               versioning skill says.
             6. Commit with a message that explains the decisions, and push to
                this PR branch. Then post one comment on the PR summarising
                each decision in a table so the reviewer can approve or ask

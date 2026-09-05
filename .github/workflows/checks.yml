@@ -48,7 +48,9 @@ jobs:
 
       - run: dart --version
 
-      - run: dart pub get
+      # --no-example: pub also resolves example/ by default, which needs the
+      # Flutter SDK this job does not have. The example job handles it.
+      - run: dart pub get --no-example
 
       - name: Format
         run: dart format --output=none --set-exit-if-changed .

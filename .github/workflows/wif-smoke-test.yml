@@ -1,0 +1,32 @@
+# TEMPORARY: verifies the workload identity federation rule end to end.
+# Removed once the exchange has been seen succeeding.
+name: anthropic-wif-test
+on: pull_request
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  call-claude:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch GitHub OIDC token
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const token = await core.getIDToken('https://api.anthropic.com');
+            core.setSecret(token);
+            core.exportVariable('JWT', token);
+      - name: Exchange for an Anthropic access token
+        run: |
+          curl -sS https://api.anthropic.com/v1/oauth/token \
+            -H "content-type: application/json" \
+            --data @- <<JSON | jq 'with_entries(if (.key | test("token$")) then .value = "<redacted>" else . end)'
+          {
+            "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+            "assertion": "$JWT",
+            "federation_rule_id": "fdrl_01HtdjTgVJEdHDon88GzCQpK",
+            "organization_id": "aa1949cc-2369-449f-a0cd-44a8bfe66071",
+            "service_account_id": "svac_015USko5mSJt8tv82gAKXEQ2",
+            "workspace_id": "wrkspc_01YW4WKT8QjcKq3EcfBLboAd"
+          }
+          JSON

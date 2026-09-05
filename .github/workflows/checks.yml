@@ -49,5 +49,14 @@ jobs:
       - name: Analyze
         run: dart analyze --fatal-infos
 
+      - name: Test
+        run: dart test
+
+      - name: Generated errors block is current
+        run: dart run tool/generate.dart --check
+
+      - name: Every SDK rule is decided
+        run: dart run tool/check_rules.dart
+
       - name: Publish dry run
         run: dart pub publish --dry-run

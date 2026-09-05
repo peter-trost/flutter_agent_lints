@@ -14,3 +14,12 @@ topics:
 
 environment:
   sdk: ^3.13.0
+
+dev_dependencies:
+  # Pinned to the analyzer version bundled with the SDK in environment.sdk
+  # (pkg/analyzer/pubspec.yaml at that SDK tag). A newer analyzer knows
+  # diagnostic codes the SDK's analyzer does not, and the generated block
+  # would then contain codes consumers' analyzers reject.
+  analyzer: 14.1.0
+  test: ^1.32.0
+  yaml: ^3.1.4

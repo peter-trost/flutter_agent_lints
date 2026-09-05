@@ -64,5 +64,9 @@ single source of truth; nothing here repeats it.
 
 ## Contributing
 
-To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`
-and state the new reason in the comment.
+To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`,
+state the new reason in the comment, and regenerate the errors block:
+
+```bash
+dart run tool/generate.dart
+```

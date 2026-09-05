@@ -1,14 +1,7 @@
-# flutter_agent_lints, experimental variant
-#
-# Everything in analysis_options.yaml plus the rules the Dart SDK still marks
-# experimental. Experimental rules can be renamed or removed between SDK
-# releases, which would break analysis for every consumer on upgrade, so they
-# are opt-in:
-#
-#   include: package:flutter_agent_lints/experimental.yaml
-#
-# Same contract as the main file: every experimental rule of the targeted SDK
-# appears here exactly once, as `true` or `false`, with a reason.
+# flutter_agent_lints, experimental variant: analysis_options.yaml plus the
+# rules the targeted Dart SDK still marks experimental. Same contract: every
+# experimental rule appears under `linter.rules` exactly once, as `true` or
+# `false`, with a reason. Opt-in; see README.md.
 
 include: analysis_options.yaml
 

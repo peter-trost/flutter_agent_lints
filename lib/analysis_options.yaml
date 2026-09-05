@@ -1,28 +1,10 @@
-# flutter_agent_lints
+# flutter_agent_lints. Installation and principles: README.md.
 #
-# Strict analysis options for Dart and Flutter codebases that are written
-# mostly by coding agents. Design principles, in priority order:
-#
-#   1. Robustness. Anything that prevents a class of bugs is on.
-#   2. One way to write it. Where the linter offers a choice, exactly one
-#      side is on. Style is decided here, not in review.
-#   3. Token efficiency. Types, keywords, and comments are required only
-#      where they carry information the compiler cannot derive itself.
-#
-# Every stable, non-deprecated lint rule of the targeted Dart SDK appears
-# below exactly once, as `true` or `false`, with a one-line reason. A rule
-# that is missing is a bug; CI checks completeness against the SDK.
-#
-# Every enabled lint is promoted to `error` in the generated block under
-# `analyzer.errors`, together with every analyzer diagnostic whose default
-# severity is warning or info. Agents ignore warnings; they cannot ignore
-# errors. Do not edit the generated block by hand; run `dart run tool/generate.dart`.
-#
-# Usage in a consuming project:
-#
-#   include: package:flutter_agent_lints/analysis_options.yaml
-#
-# For the opt-in experimental rules use `experimental.yaml` instead.
+# Contract: every stable, non-deprecated lint rule of the targeted Dart SDK
+# appears under `linter.rules` exactly once, as `true` or `false`, with a
+# one-line reason. Decisions follow the README's principles in order:
+# robustness, one way to write it, token efficiency. Everything enabled is
+# promoted to error in the `analyzer.errors` block below.
 
 analyzer:
   language:

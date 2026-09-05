@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "The SDK lower bound is a caret range; move the range itself, not a lockfile.",
+      "matchDepNames": ["dart"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "description": "A new Dart or Flutter minor arrives as one PR labelled sdk-update. The sdk-update workflow adds every new rule with a decision to that PR.",
+      "matchDepNames": ["dart", "flutter"],
+      "matchUpdateTypes": ["major", "minor"],
+      "groupName": "Dart and Flutter SDK",
+      "addLabels": ["sdk-update"]
+    },
+    {
+      "description": "Dart patch releases do not change rules; raising the lower bound for them would only lock consumers out.",
+      "matchDepNames": ["dart"],
+      "matchUpdateTypes": ["patch"],
+      "enabled": false
+    },
+    {
+      "description": "Flutter patch releases only move the exact pin the example app is tested with.",
+      "matchDepNames": ["flutter"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "Flutter patch release"
+    },
+    {
+      "description": "analyzer is pinned to the version bundled with the SDK and moved by the sdk-update workflow, never to latest.",
+      "matchManagers": ["pub"],
+      "matchPackageNames": ["analyzer"],
+      "enabled": false
+    }
+  ]
+}

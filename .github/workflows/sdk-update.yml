@@ -1,0 +1,115 @@
+# Runs on the Renovate PR that bumps the Dart SDK lower bound (label
+# sdk-update). If the new SDK brings rules or diagnostics the option files have
+# not decided on, Claude adds each one with a decision and a reason, moves the
+# analyzer pin, regenerates the errors block, bumps the major version, writes
+# the changelog entry, and pushes to the PR branch. The push re-triggers CI so
+# the PR shows green checks on its final commit.
+#
+# Setup, once per repository:
+#   1. Install the Renovate app (https://github.com/apps/renovate).
+#   2. Install the Claude app (https://github.com/apps/claude).
+#   3. Add the ANTHROPIC_API_KEY repository secret.
+name: SDK update
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: sdk-update-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  decide:
+    if: >-
+      github.event.pull_request.user.login == 'renovate[bot]' &&
+      contains(github.event.pull_request.labels.*.name, 'sdk-update')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Resolve the new Dart SDK version from pubspec.yaml
+        id: sdk
+        run: |
+          version="$(yq -r '.environment.sdk' pubspec.yaml | sed 's/[^0-9.]//g')"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          bundled="$(curl -fsSL "https://raw.githubusercontent.com/dart-lang/sdk/$version/pkg/analyzer/pubspec.yaml" | yq -r '.version' | sed 's/-dev$//')"
+          echo "analyzer=$bundled" >> "$GITHUB_OUTPUT"
+
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
+        with:
+          sdk: ${{ steps.sdk.outputs.version }}
+
+      - name: Is there anything to decide?
+        id: gate
+        run: |
+          dart pub get
+          needs=false
+          dart run tool/check_rules.dart || needs=true
+          dart analyze --fatal-infos || needs=true
+          dart run tool/generate.dart --check || needs=true
+          pinned="$(yq -r '.dev_dependencies.analyzer' pubspec.yaml)"
+          [ "$pinned" = "${{ steps.sdk.outputs.analyzer }}" ] || needs=true
+          echo "needs_agent=$needs" >> "$GITHUB_OUTPUT"
+
+      - name: Add decisions for the new SDK
+        if: steps.gate.outputs.needs_agent == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_bots: renovate[bot]
+          prompt: |
+            This repository is the flutter_agent_lints package. Read README.md
+            and the header comment of lib/analysis_options.yaml first; they
+            state the principles every decision must follow.
+
+            Renovate has bumped the Dart SDK lower bound in pubspec.yaml to
+            ${{ steps.sdk.outputs.version }} on this PR branch. Bring the
+            package up to date with that SDK:
+
+            1. Run `dart run tool/check_rules.dart`. For every undecided rule
+               it lists, add a line at the alphabetical position in
+               lib/analysis_options.yaml (stable rules) or
+               lib/experimental.yaml (experimental rules) as `true` or
+               `false` with a one-line reason in the same style as the
+               neighbouring lines. Decide by the principles in the header, in
+               order: robustness, one way to write it, token efficiency. A
+               rule is `false` only for a reason of the kinds already in the
+               file: it is the losing side of an incompatible pair, it is
+               redundant with a stricter setting, it demands work that adds
+               no correctness, or the language makes it moot. Read the rule's
+               documentation before deciding.
+            2. Run `dart analyze --fatal-infos`. Remove any rule it reports as
+               deprecated or removed, and resolve any incompatible pair it
+               reports by turning the side that contradicts the file's
+               principles to `false`.
+            3. Set the `analyzer` dev dependency in pubspec.yaml to exactly
+               ${{ steps.sdk.outputs.analyzer }}, the version bundled with the
+               SDK, then run `dart pub get`.
+            4. Run `dart run tool/generate.dart`, then `dart analyze
+               --fatal-infos`, `dart test`, `dart run tool/check_rules.dart`
+               and `dart run tool/generate.dart --check`. All must pass.
+            5. If the effective rule set changed, bump the major version in
+               pubspec.yaml and add a CHANGELOG.md entry under the new version
+               that lists every added rule with its decision, every removed
+               rule with why, and the new SDK lower bound. If nothing in the
+               rule set changed, bump the minor version and say so.
+            6. Commit with a message that explains the decisions, and push to
+               this PR branch. Then post one comment on the PR summarising
+               each decision in a table so the reviewer can approve or ask
+               for a change.
+
+            Never add `// ignore` comments, never edit the generated block by
+            hand, and never leave a rule undecided.
+          claude_args: |
+            --model claude-fable-5-1
+            --max-turns 60
+            --allowedTools "Read,Edit,Write,Bash(dart:*),Bash(git:*),Bash(gh pr comment:*),Bash(curl:*),WebFetch"

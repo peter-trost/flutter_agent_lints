@@ -1,5 +1,7 @@
-# Reusable check suite. Called by ci.yml (pinned SDK, on every PR) and by
-# nightly.yml (latest stable SDK, catches drift caused by new Dart releases).
+# Reusable check suite, called by ci.yml on every pull request and on pushes
+# to main. Every external input that can change (Dart and Flutter releases,
+# dependencies, action digests) arrives as a Renovate pull request, so there is
+# no scheduled run: nothing drifts without a PR to run these checks on.
 name: Checks
 
 on:

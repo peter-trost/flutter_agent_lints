@@ -1,0 +1,21 @@
+# Runs on every pull request (including stacked PRs whose base is another
+# branch) and on pushes to main, against the SDK declared in pubspec.yaml.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+    with:
+      dart-sdk: pubspec

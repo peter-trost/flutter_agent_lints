@@ -19,3 +19,4 @@ jobs:
     uses: ./.github/workflows/checks.yml
     with:
       dart-sdk: pubspec
+      flutter: pubspec

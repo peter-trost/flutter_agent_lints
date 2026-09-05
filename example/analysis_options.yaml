@@ -1,0 +1,4 @@
+analyzer:
+  exclude:
+    - build/**
+include: package:flutter_agent_lints/analysis_options.yaml

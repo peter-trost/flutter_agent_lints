@@ -1,0 +1,10 @@
+name: pure_dart
+description: Pure Dart fixture proving the experimental variant loads without Flutter.
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+dev_dependencies:
+  flutter_agent_lints:
+    path: ../../

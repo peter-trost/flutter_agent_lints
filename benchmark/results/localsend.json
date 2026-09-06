@@ -1,0 +1,924 @@
+{
+  "repo": "localsend",
+  "url": "https://github.com/localsend/localsend.git",
+  "path": "app",
+  "since": "2025-09-01",
+  "commits": [
+    {
+      "sha": "28db7eaa0716f429b102ba5528263f42038c8615",
+      "subject": "fix: only load fallback directory if needed",
+      "files": [
+        "lib/util/shared_preferences/shared_preferences_portable.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 47,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 7,
+          "totalLines": 47,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 5,
+            "prefer_expression_function_bodies": 1,
+            "avoid_catches_without_on_clauses": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1ed9909fb444ebf9b94ddd0a0afea2c25885134b",
+      "subject": "fix: do not crash at startup when the executable path cannot be resolved (#3333)",
+      "files": [
+        "lib/util/shared_preferences/shared_preferences_portable.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 18,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 18,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "c1b9fa9c33b56e76038be5a44a92a804416db78f",
+      "subject": "fix: keep sending list scrollable when Advanced is open (#3309)",
+      "files": [
+        "lib/pages/progress_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 612,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 72,
+          "totalLines": 612,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "use_key_in_widget_constructors": 1,
+            "omit_obvious_property_types": 3,
+            "lines_longer_than_80_chars": 54,
+            "avoid_catches_without_on_clauses": 3,
+            "avoid_void_async": 1,
+            "omit_local_variable_types": 4,
+            "inference_failure_on_function_invocation": 2,
+            "document_ignores": 4,
+            "async_return_with_no_await": 1,
+            "avoid_redundant_argument_values": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "9fea48e75f6839d0aa5ad66a23b9b219b43a2f50",
+      "subject": "fix: drag and drop mix of folder and files",
+      "files": [
+        "lib/pages/home_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 182,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 13,
+          "totalLines": 182,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "omit_obvious_property_types": 1,
+            "lines_longer_than_80_chars": 8,
+            "prefer_expression_function_bodies": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "c4e1edb2b83f36873e933cebabaa04bffb0472c7",
+      "subject": "fix: ignore unknown or invalid mtime reading files on Android",
+      "files": [
+        "lib/provider/selection/selected_sending_files_provider.dart",
+        "lib/util/native/channel/android_channel.dart",
+        "lib/util/native/channel/android_channel.mapper.dart",
+        "lib/util/native/cross_file_converters.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 893,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 8,
+          "hitLines": 2,
+          "diagnosticLines": 57,
+          "totalLines": 893,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 2
+          },
+          "linesByRule": {
+            "lines_longer_than_80_chars": 29,
+            "prefer_expression_function_bodies": 6,
+            "sort_constructors_first": 10,
+            "use_raw_strings": 1,
+            "document_ignores": 2,
+            "omit_local_variable_types": 4,
+            "no_dynamic_casts": 2,
+            "no_raw_types": 2,
+            "strict_raw_type": 2,
+            "avoid_catches_without_on_clauses": 3,
+            "avoid_classes_with_only_static_members": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "f8690383144799ff99494b3ddf9f3f88e373b5db",
+      "subject": "fix: await for provider override",
+      "files": [
+        "lib/config/init.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 356,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 41,
+          "totalLines": 356,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 21,
+            "avoid_catches_without_on_clauses": 5,
+            "omit_local_variable_types": 3,
+            "todo": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "inference_failure_on_function_invocation": 2,
+            "document_ignores": 6,
+            "unnecessary_ignore": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "prefer_final_locals": 1,
+            "sort_constructors_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "b7da2bab23949620ecf1b876ecd02e1c08100478",
+      "subject": "fix: overflow when receiving links due to 3rd button in row",
+      "files": [
+        "lib/pages/receive_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 26,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 370,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 26,
+          "hitLines": 0,
+          "diagnosticLines": 61,
+          "totalLines": 370,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "use_key_in_widget_constructors": 1,
+            "document_ignores": 2,
+            "lines_longer_than_80_chars": 51,
+            "prefer_expression_function_bodies": 1,
+            "avoid_redundant_argument_values": 1,
+            "prefer_const_constructors": 4,
+            "inference_failure_on_function_invocation": 1,
+            "unnecessary_lambdas": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "aef032c88b29a378393a7faf71b6e969daa48a1c",
+      "subject": "fix: sending text that is immediately accepted by receiver (e.g. CLI) creates a ghost device list tile",
+      "files": [
+        "lib/provider/network/send_provider.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 846,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 2,
+          "diagnosticLines": 68,
+          "totalLines": 846,
+          "hitsByRule": {
+            "document_ignores": 1,
+            "inference_failure_on_function_invocation": 1
+          },
+          "linesByRule": {
+            "comment_references": 1,
+            "lines_longer_than_80_chars": 44,
+            "prefer_expression_function_bodies": 3,
+            "document_ignores": 5,
+            "unnecessary_ignore": 1,
+            "inference_failure_on_function_invocation": 3,
+            "avoid_catches_without_on_clauses": 5,
+            "omit_local_variable_types": 3,
+            "avoid_redundant_argument_values": 1,
+            "unnecessary_breaks": 1,
+            "cascade_invocations": 1,
+            "no_literal_bool_comparisons": 1,
+            "prefer_foreach": 1,
+            "avoid_positional_boolean_parameters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "15b6ffd4bdf7974e8a058a138ea04415123efdcc",
+      "subject": "fix: disable delay when animations are disabled",
+      "files": [
+        "lib/widget/animations/initial_fade_transition.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 45,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 45,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "2733c962d3e89cfca261c08b2cf6426f5e486914",
+      "subject": "fix: receive tab jumps at the beginning",
+      "files": [
+        "lib/pages/tabs/receive_tab.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 250,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 16,
+          "totalLines": 250,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "omit_obvious_property_types": 2,
+            "lines_longer_than_80_chars": 6,
+            "inference_failure_on_function_invocation": 2,
+            "prefer_const_constructors": 1,
+            "sort_constructors_first": 2,
+            "prefer_expression_function_bodies": 2,
+            "unnecessary_lambdas": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "ff2995c9523c5fae407f7d444d0986b2c6ae568e",
+      "subject": "fix: read file metadata in nanosecs",
+      "files": [
+        "lib/model/cross_file.dart",
+        "lib/model/cross_file.mapper.dart",
+        "lib/provider/network/webrtc/webrtc_receiver.dart",
+        "lib/provider/selection/selected_sending_files_provider.dart",
+        "lib/util/native/cross_file_converters.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 943,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 68,
+          "totalLines": 943,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 13,
+            "prefer_expression_function_bodies": 13,
+            "lines_longer_than_80_chars": 29,
+            "avoid_unused_constructor_parameters": 2,
+            "document_ignores": 5,
+            "cast_nullable_to_non_nullable": 1,
+            "inference_failure_on_function_invocation": 1,
+            "flutter_style_todos": 1,
+            "todo": 1,
+            "use_raw_strings": 1,
+            "omit_local_variable_types": 4,
+            "no_dynamic_casts": 1,
+            "avoid_classes_with_only_static_members": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "b63f074b5d7cdbb70c3c416ab499904164c34394",
+      "subject": "fix: use read",
+      "files": [
+        "lib/pages/verify_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 120,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 11,
+          "totalLines": 120,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 4,
+            "lines_longer_than_80_chars": 5,
+            "use_key_in_widget_constructors": 2,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "ae0d2c868c5635b726622256c18c6157e18f9056",
+      "subject": "fix(app): repair the single-instance show handover (#3246)",
+      "files": [
+        "lib/config/init.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 32,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 360,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 32,
+          "hitLines": 3,
+          "diagnosticLines": 39,
+          "totalLines": 360,
+          "hitsByRule": {
+            "cascade_invocations": 1,
+            "lines_longer_than_80_chars": 1,
+            "avoid_catches_without_on_clauses": 1
+          },
+          "linesByRule": {
+            "lines_longer_than_80_chars": 18,
+            "avoid_catches_without_on_clauses": 6,
+            "omit_local_variable_types": 3,
+            "cascade_invocations": 1,
+            "todo": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "document_ignores": 6,
+            "unnecessary_ignore": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "prefer_final_locals": 1,
+            "inference_failure_on_function_invocation": 1,
+            "sort_constructors_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "44f19f4e70a286ced40fe7eaab7d80c965d98efd",
+      "subject": "fix: text overflow on color button",
+      "files": [
+        "lib/pages/tabs/settings_tab.dart",
+        "lib/widget/custom_dropdown_button.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 814,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 68,
+          "totalLines": 814,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2,
+            "prefer_expression_function_bodies": 9,
+            "lines_longer_than_80_chars": 45,
+            "omit_local_variable_types": 1,
+            "avoid_redundant_argument_values": 2,
+            "inference_failure_on_function_invocation": 4,
+            "use_named_constants": 1,
+            "unnecessary_lambdas": 1,
+            "sort_constructors_first": 5
+          }
+        }
+      }
+    },
+    {
+      "sha": "039a08383ac65f578d7739ef07989391a7fdeee7",
+      "subject": "fix: correctly initialize selectedReceivingFilesProvider",
+      "files": [
+        "lib/pages/receive_page.dart",
+        "lib/provider/network/server/controller/receive_controller.dart",
+        "lib/provider/network/webrtc/webrtc_receiver.dart",
+        "lib/provider/selection/selected_receiving_files_provider.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 1372,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 152,
+          "totalLines": 1372,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 8,
+            "use_key_in_widget_constructors": 1,
+            "omit_obvious_property_types": 1,
+            "document_ignores": 11,
+            "lines_longer_than_80_chars": 100,
+            "prefer_expression_function_bodies": 10,
+            "avoid_redundant_argument_values": 1,
+            "prefer_final_locals": 2,
+            "inference_failure_on_function_invocation": 10,
+            "unnecessary_lambdas": 1,
+            "cascade_invocations": 1,
+            "omit_local_variable_types": 7,
+            "inference_failure_on_untyped_parameter": 1,
+            "unnecessary_ignore": 1,
+            "avoid_catches_without_on_clauses": 2,
+            "use_raw_strings": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_void_async": 1,
+            "avoid_unused_constructor_parameters": 2,
+            "cast_nullable_to_non_nullable": 1,
+            "flutter_style_todos": 1,
+            "todo": 1,
+            "comment_references": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "276bd39b1c27c844e598fb3f77e540f59457484e",
+      "subject": "fix: correctly set the background flag",
+      "files": [
+        "lib/pages/tabs/send_tab_vm.dart",
+        "lib/provider/network/send_provider.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 1045,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 85,
+          "totalLines": 1045,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 51,
+            "sort_constructors_first": 2,
+            "inference_failure_on_function_invocation": 12,
+            "comment_references": 1,
+            "prefer_expression_function_bodies": 3,
+            "document_ignores": 5,
+            "unnecessary_ignore": 1,
+            "avoid_catches_without_on_clauses": 5,
+            "omit_local_variable_types": 3,
+            "avoid_redundant_argument_values": 1,
+            "unnecessary_breaks": 1,
+            "cascade_invocations": 1,
+            "no_literal_bool_comparisons": 1,
+            "prefer_foreach": 1,
+            "avoid_positional_boolean_parameters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "d9bf06896e8b3c211f829e36f8e1f837298753bb",
+      "subject": "fix: accept button short freeze",
+      "files": [
+        "lib/provider/network/server/controller/receive_controller.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 24,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 730,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 24,
+          "hitLines": 3,
+          "diagnosticLines": 74,
+          "totalLines": 730,
+          "hitsByRule": {
+            "document_ignores": 1,
+            "inference_failure_on_function_invocation": 1,
+            "avoid_catches_without_on_clauses": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "lines_longer_than_80_chars": 50,
+            "cascade_invocations": 1,
+            "omit_local_variable_types": 6,
+            "document_ignores": 9,
+            "inference_failure_on_function_invocation": 4,
+            "inference_failure_on_untyped_parameter": 1,
+            "unnecessary_ignore": 1,
+            "avoid_catches_without_on_clauses": 3,
+            "prefer_expression_function_bodies": 2,
+            "use_raw_strings": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_void_async": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "49b23c9b6d93a7366e022433117590b18e7fa2fe",
+      "subject": "fix: get correct downloads directory",
+      "files": [
+        "lib/util/native/channel/android_channel.dart",
+        "lib/util/native/directories.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 123,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 11,
+          "totalLines": 123,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 4,
+            "strict_raw_type": 2,
+            "no_raw_types": 2,
+            "prefer_expression_function_bodies": 1,
+            "no_dynamic_casts": 1,
+            "sort_constructors_first": 2,
+            "use_raw_strings": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "f24dcbd9491f24fffe2a5d3a551f0f6f5e507fd2",
+      "subject": "fix: always set whats new flag",
+      "files": [
+        "lib/config/init.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 360,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 39,
+          "totalLines": 360,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 18,
+            "avoid_catches_without_on_clauses": 6,
+            "omit_local_variable_types": 3,
+            "cascade_invocations": 1,
+            "todo": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "document_ignores": 6,
+            "unnecessary_ignore": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "prefer_final_locals": 1,
+            "inference_failure_on_function_invocation": 1,
+            "sort_constructors_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "c021834b39c41cf7c6b4d9450453e5dc42696314",
+      "subject": "fix: share text via link",
+      "files": [
+        "lib/util/native/directories.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 37,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 37,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_raw_strings": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "8b51680c3cb336e96eb149aab529a10a8a404826",
+      "subject": "fix(linux): stop accumulating ScreenSaver inhibit locks during transfer (#3210)",
+      "files": [
+        "lib/pages/progress_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 603,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 1,
+          "diagnosticLines": 74,
+          "totalLines": 603,
+          "hitsByRule": {
+            "avoid_catches_without_on_clauses": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "use_key_in_widget_constructors": 1,
+            "omit_obvious_property_types": 3,
+            "lines_longer_than_80_chars": 52,
+            "avoid_catches_without_on_clauses": 4,
+            "avoid_void_async": 1,
+            "omit_local_variable_types": 4,
+            "document_ignores": 5,
+            "unnecessary_ignore": 1,
+            "inference_failure_on_function_invocation": 2,
+            "async_return_with_no_await": 1,
+            "avoid_redundant_argument_values": 1,
+            "prefer_expression_function_bodies": 1,
+            "prefer_if_elements_to_conditional_expressions": 1,
+            "prefer_const_constructors": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "ed0478466b99e10b2ecf98964745fb71b1064768",
+      "subject": "fix: infer fingerprint based on cert",
+      "files": [
+        "lib/provider/network/server/controller/receive_controller.dart",
+        "lib/provider/network/server/controller/send_controller.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 915,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 86,
+          "totalLines": 915,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 2,
+            "lines_longer_than_80_chars": 58,
+            "cascade_invocations": 1,
+            "omit_local_variable_types": 6,
+            "document_ignores": 9,
+            "inference_failure_on_function_invocation": 4,
+            "avoid_catches_without_on_clauses": 5,
+            "inference_failure_on_untyped_parameter": 1,
+            "unnecessary_ignore": 1,
+            "use_raw_strings": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_void_async": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "sha": "63efbe6be27475a7bd4ec5f322d85c1944c8beed",
+      "reason": "only additions"
+    },
+    {
+      "sha": "89303dcf6044ee0cad2a33e4bad4cacb602b69ea",
+      "reason": "only additions"
+    },
+    {
+      "sha": "af3aad33c965defc39ecff8d9a4396a851ce3cc1",
+      "reason": "only additions"
+    },
+    {
+      "sha": "5e13745774ea1d59c64232f00a58734a0ca51d2b",
+      "reason": "only additions"
+    },
+    {
+      "sha": "154213c1df87ae5a1a3acc817b6f38bd63df1d0a",
+      "reason": "only additions"
+    },
+    {
+      "sha": "60d4fbb6de158b22d87acf3fbd1548d99c5337aa",
+      "reason": "only additions"
+    },
+    {
+      "sha": "afd7663432433ab13fa2aa9068eb28ab26d60670",
+      "reason": "only additions"
+    },
+    {
+      "sha": "b43b79504953001156f5c1728f7ab7df565dda4a",
+      "reason": "18 files"
+    },
+    {
+      "sha": "80d710461ceb819b0a71abf0a97acbd5a2a8040d",
+      "reason": "22 files"
+    },
+    {
+      "sha": "9e4a5985b5fd1377f7c4c1fa9127a00b8fc9abff",
+      "reason": "pub get failed at 9e4a598"
+    },
+    {
+      "sha": "d27cdcc14003238967b2f29cc83ec7b60b13c3c5",
+      "reason": "only generated files"
+    },
+    {
+      "sha": "da6d18da4317b29fa44468bfdd42c6dd2cadebcf",
+      "reason": "pub get failed at da6d18d"
+    },
+    {
+      "sha": "22d41c88ffaf6f5d05bcf132c0233a53178029eb",
+      "reason": "pub get failed at 22d41c8"
+    },
+    {
+      "sha": "a9e01b078a3bc7677dbd3ff906dfa6b758617a0e",
+      "reason": "pub get failed at a9e01b0"
+    },
+    {
+      "sha": "6dea005c534ae706654c8bc40ec6fb9f59240262",
+      "reason": "only additions"
+    },
+    {
+      "sha": "a6588717db5075e0398b27601eb1e00dbdac621d",
+      "reason": "pub get failed at a658871"
+    },
+    {
+      "sha": "076fba40ac4026b6ff50d4bf5ea1e9676addf2e5",
+      "reason": "pub get failed at 076fba4"
+    },
+    {
+      "sha": "77ae5c3782f537d66726427c8c51af00153edbb7",
+      "reason": "pub get failed at 77ae5c3"
+    },
+    {
+      "sha": "5ce851b60408ea42956a752998b9fa3d7938ca05",
+      "reason": "only additions"
+    },
+    {
+      "sha": "8bd9a1d8435d5097cad27ac419096e2ebecdc891",
+      "reason": "only additions"
+    }
+  ]
+}

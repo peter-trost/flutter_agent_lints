@@ -1,0 +1,2874 @@
+{
+  "repo": "saber",
+  "url": "https://github.com/saber-notes/saber.git",
+  "path": ".",
+  "since": "2025-09-01",
+  "commits": [
+    {
+      "sha": "13daf5d9aa6a2280f133a2bafd71bfa25370c02e",
+      "subject": "fix: sort directories as well as files",
+      "files": [
+        "lib/data/file_manager/file_manager.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 969,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 121,
+          "totalLines": 969,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 3,
+            "todo": 1,
+            "always_put_control_body_on_new_line": 34,
+            "avoid_bool_literals_in_conditional_expressions": 2,
+            "avoid_escaping_inner_quotes": 2,
+            "omit_local_variable_types": 18,
+            "use_raw_strings": 1,
+            "avoid_void_async": 1,
+            "parameter_assignments": 23,
+            "inference_failure_on_instance_creation": 1,
+            "async_return_with_no_await": 1,
+            "comment_references": 2,
+            "strict_raw_type": 12,
+            "no_raw_types": 12,
+            "discarded_futures": 2,
+            "always_put_required_named_parameters_first": 1,
+            "cast_nullable_to_non_nullable": 1,
+            "unawaited_futures": 7,
+            "literal_only_boolean_expressions": 3,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "avoid_types_on_closure_parameters": 4,
+            "prefer_asserts_with_message": 4,
+            "curly_braces_in_flow_control_structures": 2,
+            "sort_constructors_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "4f2d2ea84b50faa018077257c4f20fc38712a314",
+      "subject": "fix: handle uncapped nextcloud storage quota",
+      "files": [
+        "lib/components/nextcloud/done_login_step.dart",
+        "lib/components/settings/nextcloud_profile.dart",
+        "lib/data/nextcloud/readable_bytes.dart",
+        "lib/data/prefs.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 18,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 769,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 18,
+          "hitLines": 1,
+          "diagnosticLines": 18,
+          "totalLines": 769,
+          "hitsByRule": {
+            "always_put_control_body_on_new_line": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 1,
+            "discarded_futures": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1,
+            "prefer_foreach": 1,
+            "unawaited_futures": 1,
+            "always_put_control_body_on_new_line": 3,
+            "avoid_multiple_declarations_per_line": 3,
+            "lines_longer_than_80_chars": 1,
+            "avoid_bool_literals_in_conditional_expressions": 1,
+            "sort_constructors_first": 1,
+            "avoid_annotating_with_dynamic": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "fdb47ecdab5f79c5a29ae6d4e0b9df197bd6c841",
+      "subject": "fix: don't use two columns if portrait",
+      "files": [
+        "lib/components/nextcloud/nc_login_step.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 412,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 10,
+          "totalLines": 412,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 1,
+            "discarded_futures": 5,
+            "inference_failure_on_function_invocation": 1,
+            "unawaited_futures": 1,
+            "always_put_control_body_on_new_line": 2,
+            "unnecessary_raw_strings": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "eafaf264b19a35cbf8e8831daa4118e1446fe16d",
+      "subject": "fix: remove uses of `YaruVariant.theme`",
+      "files": [
+        "lib/components/theming/dynamic_material_app.dart",
+        "lib/components/theming/saber_theme.dart",
+        "lib/components/theming/yaru_builder.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 125,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 589,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 125,
+          "hitLines": 0,
+          "diagnosticLines": 31,
+          "totalLines": 589,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 9,
+            "avoid_positional_boolean_parameters": 2,
+            "always_put_control_body_on_new_line": 4,
+            "discarded_futures": 4,
+            "curly_braces_in_flow_control_structures": 1,
+            "prefer_expression_function_bodies": 5,
+            "avoid_types_on_closure_parameters": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "avoid_classes_with_only_static_members": 2,
+            "parameter_assignments": 1,
+            "unnecessary_null_checks": 1,
+            "document_ignores": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "f776d2370f81e4b67bdaa4b862e4eef47eaf0225",
+      "subject": "tweak: reduce friction coefficient",
+      "files": [
+        "lib/components/canvas/canvas_gesture_detector.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 705,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 52,
+          "totalLines": 705,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 16,
+            "comment_references": 1,
+            "always_put_control_body_on_new_line": 13,
+            "omit_local_variable_types": 7,
+            "lines_longer_than_80_chars": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 2,
+            "curly_braces_in_flow_control_structures": 1,
+            "avoid_types_on_closure_parameters": 5,
+            "prefer_expression_function_bodies": 1,
+            "cascade_invocations": 1,
+            "sort_constructors_first": 2,
+            "avoid_catching_errors": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "be6df2b2b5baffbd41330673bb12014604869a1f",
+      "subject": "fix(a11y): remove redundant Semantics node",
+      "files": [
+        "lib/components/navbar/vertical_navbar.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 36,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 161,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 36,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 161,
+          "hitsByRule": {},
+          "linesByRule": {
+            "cascade_invocations": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "65f133e73a39d930738f67fae34adce067b04160",
+      "subject": "perf: fix redundant calls to HomeRoutes.routes getter",
+      "files": [
+        "lib/components/navbar/vertical_navbar.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 150,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 150,
+          "hitsByRule": {},
+          "linesByRule": {}
+        }
+      }
+    },
+    {
+      "sha": "f97cebfc68f89e8fd326dac97b4f14bbf78a80bd",
+      "subject": "fix(a11y): add back Semantics to navbar",
+      "files": [
+        "lib/components/navbar/vertical_navbar.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 73,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 127,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 73,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 127,
+          "hitsByRule": {},
+          "linesByRule": {}
+        }
+      }
+    },
+    {
+      "sha": "e0dbed90e135a4398d9a3814d0d9b6bddc1ec7ef",
+      "subject": "fix: pass font family to DynamicYaru",
+      "files": [
+        "lib/components/theming/yaru_builder.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 142,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 6,
+          "totalLines": 142,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "always_put_control_body_on_new_line": 3,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "c2617c2452c9ee5366dd7d3a63d73eb9400462fd",
+      "subject": "fix: migrate to new FilePicker.saveFile api",
+      "files": [
+        "lib/components/canvas/canvas_image_dialog.dart",
+        "lib/data/file_manager/file_manager.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 3273,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 3,
+            "deprecated_member_use": 6
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 290,
+          "totalLines": 3273,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 9,
+            "avoid_positional_boolean_parameters": 3,
+            "lines_longer_than_80_chars": 11,
+            "cast_nullable_to_non_nullable": 3,
+            "always_put_control_body_on_new_line": 104,
+            "unawaited_futures": 8,
+            "document_ignores": 1,
+            "todo": 2,
+            "avoid_bool_literals_in_conditional_expressions": 2,
+            "avoid_escaping_inner_quotes": 2,
+            "omit_local_variable_types": 36,
+            "use_raw_strings": 1,
+            "avoid_void_async": 3,
+            "parameter_assignments": 25,
+            "inference_failure_on_instance_creation": 2,
+            "async_return_with_no_await": 2,
+            "comment_references": 4,
+            "strict_raw_type": 17,
+            "no_raw_types": 17,
+            "discarded_futures": 9,
+            "literal_only_boolean_expressions": 3,
+            "avoid_multiple_declarations_per_line": 2,
+            "avoid_types_on_closure_parameters": 10,
+            "prefer_asserts_with_message": 9,
+            "curly_braces_in_flow_control_structures": 3,
+            "sort_constructors_first": 2,
+            "avoid_redundant_argument_values": 2,
+            "prefer_expression_function_bodies": 6,
+            "cascade_invocations": 5,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "deprecated_member_use": 6,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "65c18c3c4c42fd76bd84c707769d4fd984f861ab",
+      "subject": "fix: timeout image loading before export",
+      "files": [
+        "lib/data/editor/editor_exporter.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 249,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 14,
+          "totalLines": 249,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 1,
+            "prefer_expression_function_bodies": 3,
+            "parameter_assignments": 2,
+            "avoid_redundant_argument_values": 1,
+            "omit_local_variable_types": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "cascade_invocations": 2,
+            "always_put_control_body_on_new_line": 1,
+            "curly_braces_in_flow_control_structures": 1,
+            "always_put_required_named_parameters_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "4c995b0b202584e8a5604a0699a0e9e5c52bfd0f",
+      "subject": "fix: cancel loadOut sooner",
+      "files": [
+        "lib/components/canvas/image/editor_image.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 271,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 17,
+          "totalLines": 271,
+          "hitsByRule": {},
+          "linesByRule": {
+            "comment_references": 1,
+            "sort_constructors_first": 2,
+            "always_put_required_named_parameters_first": 5,
+            "prefer_asserts_with_message": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "unawaited_futures": 2,
+            "always_put_control_body_on_new_line": 3,
+            "inference_failure_on_instance_creation": 1,
+            "omit_local_variable_types": 1,
+            "avoid_multiple_declarations_per_line": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "0aa3a39bcadf5384c67a5310a59a2d15f0229536",
+      "subject": "fix: workaround flutter Completer weirdness",
+      "files": [
+        "lib/components/canvas/image/editor_image.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 266,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 16,
+          "totalLines": 266,
+          "hitsByRule": {},
+          "linesByRule": {
+            "comment_references": 1,
+            "sort_constructors_first": 2,
+            "always_put_required_named_parameters_first": 5,
+            "prefer_asserts_with_message": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "always_put_control_body_on_new_line": 3,
+            "inference_failure_on_instance_creation": 1,
+            "unawaited_futures": 1,
+            "omit_local_variable_types": 1,
+            "avoid_multiple_declarations_per_line": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "4c5d8d5e7ca2102c0ca9f9fe106b7987d9874500",
+      "subject": "fix: throttle screenshots in exports",
+      "files": [
+        "lib/data/editor/editor_exporter.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 243,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 14,
+          "totalLines": 243,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 1,
+            "prefer_expression_function_bodies": 3,
+            "parameter_assignments": 2,
+            "avoid_redundant_argument_values": 1,
+            "omit_local_variable_types": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "cascade_invocations": 2,
+            "always_put_control_body_on_new_line": 1,
+            "curly_braces_in_flow_control_structures": 1,
+            "always_put_required_named_parameters_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "6ca6e2b081442750953c658c891ab2eb9394b849",
+      "subject": "fix: load images before screenshot",
+      "files": [
+        "lib/data/editor/editor_exporter.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 237,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 13,
+          "totalLines": 237,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 1,
+            "prefer_expression_function_bodies": 3,
+            "parameter_assignments": 2,
+            "avoid_redundant_argument_values": 1,
+            "omit_local_variable_types": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "cascade_invocations": 2,
+            "always_put_required_named_parameters_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "afb7032b5aa58a432503a497779c16b5da66c323",
+      "subject": "fix: watch server for changes feature",
+      "files": [
+        "lib/data/nextcloud/saber_syncer.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 19,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 2698,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 9
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 19,
+          "hitLines": 1,
+          "diagnosticLines": 191,
+          "totalLines": 2698,
+          "hitsByRule": {
+            "avoid_catching_errors": 1
+          },
+          "linesByRule": {
+            "inference_failure_on_instance_creation": 2,
+            "always_put_control_body_on_new_line": 83,
+            "omit_local_variable_types": 20,
+            "avoid_catches_without_on_clauses": 3,
+            "prefer_asserts_with_message": 6,
+            "unnecessary_null_checks": 1,
+            "curly_braces_in_flow_control_structures": 9,
+            "unawaited_futures": 1,
+            "document_ignores": 2,
+            "unnecessary_ignore": 2,
+            "lines_longer_than_80_chars": 8,
+            "unnecessary_lambdas": 3,
+            "avoid_catching_errors": 1,
+            "comment_references": 3,
+            "sort_constructors_first": 1,
+            "always_put_required_named_parameters_first": 1,
+            "avoid_equals_and_hash_code_on_mutable_classes": 2,
+            "async_return_with_no_await": 2,
+            "avoid_redundant_argument_values": 3,
+            "prefer_expression_function_bodies": 6,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "cascade_invocations": 5,
+            "avoid_multiple_declarations_per_line": 1,
+            "parameter_assignments": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 7,
+            "todo": 1,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "f38d128d950ed253bd4c5e2f6529691ec96a230e",
+      "subject": "fix: normalize pressure value",
+      "files": [
+        "lib/components/canvas/canvas_gesture_detector.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 693,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 57,
+          "totalLines": 693,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 21,
+            "always_put_control_body_on_new_line": 13,
+            "omit_local_variable_types": 7,
+            "lines_longer_than_80_chars": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 2,
+            "curly_braces_in_flow_control_structures": 1,
+            "avoid_types_on_closure_parameters": 5,
+            "prefer_expression_function_bodies": 1,
+            "document_ignores": 1,
+            "cascade_invocations": 1,
+            "sort_constructors_first": 2,
+            "avoid_catching_errors": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1c68fe5cde9c5f4629b036cca53e8c3304b4827e",
+      "subject": "fix: stylus button when no hover event",
+      "files": [
+        "lib/components/canvas/canvas_gesture_detector.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 685,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 57,
+          "totalLines": 685,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 21,
+            "always_put_control_body_on_new_line": 13,
+            "omit_local_variable_types": 7,
+            "lines_longer_than_80_chars": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 2,
+            "curly_braces_in_flow_control_structures": 1,
+            "avoid_types_on_closure_parameters": 5,
+            "prefer_expression_function_bodies": 1,
+            "document_ignores": 1,
+            "cascade_invocations": 1,
+            "sort_constructors_first": 2,
+            "avoid_catching_errors": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "16d5e6c9b8aee08587f8940f25a0de40b89b351c",
+      "subject": "fix: erase with inverse stylus",
+      "files": [
+        "lib/components/canvas/canvas_gesture_detector.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 2773,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 207,
+          "totalLines": 2773,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 21,
+            "always_put_control_body_on_new_line": 82,
+            "omit_local_variable_types": 26,
+            "lines_longer_than_80_chars": 9,
+            "avoid_positional_boolean_parameters": 2,
+            "avoid_multiple_declarations_per_line": 3,
+            "curly_braces_in_flow_control_structures": 2,
+            "avoid_types_on_closure_parameters": 11,
+            "prefer_expression_function_bodies": 7,
+            "document_ignores": 1,
+            "cascade_invocations": 6,
+            "sort_constructors_first": 2,
+            "avoid_catching_errors": 1,
+            "avoid_redundant_argument_values": 3,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "prefer_asserts_with_message": 5,
+            "parameter_assignments": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "discarded_futures": 7,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "comment_references": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "2861010ce6b56c5192a58642b6933e0013a719cd",
+      "subject": "fix: update pageIndex of background image when drag'n'dropped",
+      "files": [
+        "lib/components/toolbar/editor_page_manager.dart",
+        "lib/data/editor/page.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 2637,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 182,
+          "totalLines": 2637,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 8,
+            "always_put_control_body_on_new_line": 75,
+            "omit_local_variable_types": 23,
+            "prefer_expression_function_bodies": 8,
+            "prefer_asserts_with_message": 7,
+            "sort_constructors_first": 3,
+            "no_dynamic_casts": 6,
+            "avoid_types_on_closure_parameters": 8,
+            "avoid_annotating_with_dynamic": 1,
+            "avoid_dynamic_calls": 3,
+            "comment_references": 2,
+            "no_raw_types": 6,
+            "strict_raw_type": 6,
+            "discarded_futures": 8,
+            "avoid_redundant_argument_values": 3,
+            "lines_longer_than_80_chars": 7,
+            "avoid_void_async": 2,
+            "cascade_invocations": 3,
+            "avoid_multiple_declarations_per_line": 1,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 1,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_function_invocation": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "9250f9cee3feb6e877f7926fef26b020d4eceb42",
+      "subject": "fix: don't call onStylusButtonChanged if unchanged",
+      "files": [
+        "lib/components/canvas/canvas_gesture_detector.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 2784,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 1,
+          "diagnosticLines": 206,
+          "totalLines": 2784,
+          "hitsByRule": {
+            "always_put_control_body_on_new_line": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 21,
+            "always_put_control_body_on_new_line": 83,
+            "omit_local_variable_types": 26,
+            "lines_longer_than_80_chars": 9,
+            "avoid_positional_boolean_parameters": 2,
+            "avoid_multiple_declarations_per_line": 3,
+            "curly_braces_in_flow_control_structures": 2,
+            "avoid_types_on_closure_parameters": 11,
+            "prefer_expression_function_bodies": 7,
+            "document_ignores": 1,
+            "cascade_invocations": 4,
+            "sort_constructors_first": 2,
+            "avoid_catching_errors": 1,
+            "avoid_redundant_argument_values": 3,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "prefer_asserts_with_message": 5,
+            "parameter_assignments": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "discarded_futures": 7,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "comment_references": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "77e9a5035fa2591bb2ec16078bec5b4db9a000ac",
+      "subject": "fix: be more intentional with _lastNonEraserTool",
+      "files": [
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 41,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 2109,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 41,
+          "hitLines": 0,
+          "diagnosticLines": 145,
+          "totalLines": 2109,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_redundant_argument_values": 3,
+            "prefer_expression_function_bodies": 6,
+            "lines_longer_than_80_chars": 7,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "omit_local_variable_types": 19,
+            "cascade_invocations": 3,
+            "prefer_asserts_with_message": 5,
+            "avoid_multiple_declarations_per_line": 1,
+            "always_put_control_body_on_new_line": 66,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 1,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 7,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "comment_references": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "c5897d3b8d8feb2d44a1956589da7c291a0f8f21",
+      "subject": "perf: fix memory leak on every pan/scale gesture",
+      "files": [
+        "lib/components/canvas/interactive_canvas.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 1297,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 126,
+          "totalLines": 1297,
+          "hitsByRule": {},
+          "linesByRule": {
+            "document_ignores": 1,
+            "always_put_required_named_parameters_first": 2,
+            "prefer_asserts_with_message": 25,
+            "lines_longer_than_80_chars": 11,
+            "omit_local_variable_types": 78,
+            "prefer_expression_function_bodies": 4,
+            "cascade_invocations": 2,
+            "always_put_control_body_on_new_line": 2,
+            "avoid_types_on_closure_parameters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "3549818f4b8c5b3923410bcbc3501bf5586e2aa9",
+      "subject": "fix: be extra extra sure that old loginFlow gets disposed",
+      "files": [
+        "lib/components/nextcloud/nc_login_step.dart",
+        "lib/data/nextcloud/login_flow.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 420,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 1,
+          "diagnosticLines": 24,
+          "totalLines": 420,
+          "hitsByRule": {
+            "prefer_expression_function_bodies": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 3,
+            "discarded_futures": 5,
+            "inference_failure_on_function_invocation": 1,
+            "unawaited_futures": 3,
+            "unnecessary_raw_strings": 1,
+            "prefer_expression_function_bodies": 2,
+            "document_ignores": 2,
+            "always_put_control_body_on_new_line": 7,
+            "curly_braces_in_flow_control_structures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "45adf304db5da450fbb704e76e7545ff96586145",
+      "subject": "fix: initial hud opacity should be 0",
+      "files": [
+        "lib/components/canvas/hud/canvas_hud.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 116,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 116,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 8,
+            "prefer_int_literals": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "d4c0b24389f2e3fa69c06a75b20d48bb6dcf24b3",
+      "subject": "feat: add PNG export feature (#1699)",
+      "files": [
+        "lib/components/toolbar/export_bar.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 2154,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 155,
+          "totalLines": 2154,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 5,
+            "strict_raw_type": 10,
+            "no_raw_types": 10,
+            "always_put_control_body_on_new_line": 66,
+            "discarded_futures": 8,
+            "prefer_expression_function_bodies": 9,
+            "avoid_redundant_argument_values": 3,
+            "lines_longer_than_80_chars": 5,
+            "avoid_void_async": 2,
+            "omit_local_variable_types": 18,
+            "cascade_invocations": 3,
+            "prefer_asserts_with_message": 5,
+            "avoid_multiple_declarations_per_line": 1,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 1,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a4531475c4b2cd0c28ed2ad7ccca2478b98248ef",
+      "subject": "fix: stop yaru forcing bold Ubuntu font on list tiles",
+      "files": [
+        "lib/components/theming/adaptive_switch_list_tile.dart",
+        "lib/components/theming/saber_theme.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 251,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 1,
+          "diagnosticLines": 12,
+          "totalLines": 251,
+          "hitsByRule": {
+            "prefer_expression_function_bodies": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "prefer_expression_function_bodies": 4,
+            "avoid_classes_with_only_static_members": 2,
+            "parameter_assignments": 1,
+            "unnecessary_null_checks": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "document_ignores": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "2bc292803c5bf51a58ad746576e479be5c991e9f",
+      "subject": "fix: hyperlegible font not working with kde theme",
+      "files": [
+        "lib/components/theming/yaru_builder.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 142,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 1,
+          "diagnosticLines": 7,
+          "totalLines": 142,
+          "hitsByRule": {
+            "omit_local_variable_types": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "always_put_control_body_on_new_line": 3,
+            "omit_local_variable_types": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "8b3fe0866b1cdbcc83b63cdbf16ffbc18ad1a43b",
+      "subject": "fix: invalid semantics value for syncing button",
+      "files": [
+        "lib/components/home/syncing_button.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 176,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 13,
+          "totalLines": 176,
+          "hitsByRule": {},
+          "linesByRule": {
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "always_put_control_body_on_new_line": 6,
+            "prefer_asserts_with_message": 1,
+            "discarded_futures": 3,
+            "avoid_annotating_with_dynamic": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "b442440ae71c5b71971bf970638e49dcedf17bcd",
+      "subject": "fix: add missing comma in invert matrix",
+      "files": [
+        "lib/components/canvas/invert_widget.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 30,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 30,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 1,
+            "always_put_control_body_on_new_line": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1d500823e12ca519f3315066ce10ae82f2185f89",
+      "subject": "fix: off-by-one pdf index in first load",
+      "files": [
+        "lib/components/canvas/image/pdf_editor_image.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 210,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 30,
+          "totalLines": 210,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 2,
+            "always_put_required_named_parameters_first": 6,
+            "prefer_asserts_with_message": 5,
+            "no_dynamic_casts": 9,
+            "avoid_redundant_argument_values": 2,
+            "cascade_invocations": 1,
+            "always_put_control_body_on_new_line": 3,
+            "async_return_with_no_await": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "4d5ab540aa2464370978b90c54421b72a85e16c6",
+      "subject": "fix: file name parsing when importing shared file",
+      "files": [
+        "lib/main.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 346,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 30,
+          "totalLines": 346,
+          "hitsByRule": {},
+          "linesByRule": {
+            "document_ignores": 1,
+            "unawaited_futures": 5,
+            "avoid_void_async": 2,
+            "inference_failure_on_instance_creation": 2,
+            "discarded_futures": 8,
+            "always_put_control_body_on_new_line": 5,
+            "curly_braces_in_flow_control_structures": 2,
+            "async_return_with_no_await": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "prefer_foreach": 2,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "ded1e44dd2568d274104b86732f231f5e47c40be",
+      "subject": "fix: validate forbidden characters in note names",
+      "files": [
+        "lib/components/home/rename_note_button.dart",
+        "lib/data/file_manager/file_manager.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 6,
+          "totalLines": 3122,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 4,
+            "use_null_aware_elements": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 10,
+          "hitLines": 3,
+          "diagnosticLines": 271,
+          "totalLines": 3122,
+          "hitsByRule": {
+            "use_raw_strings": 1,
+            "always_put_control_body_on_new_line": 2
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 5,
+            "prefer_expression_function_bodies": 9,
+            "discarded_futures": 10,
+            "inference_failure_on_function_invocation": 4,
+            "avoid_types_on_closure_parameters": 11,
+            "document_ignores": 1,
+            "use_raw_strings": 2,
+            "strict_raw_type": 18,
+            "no_raw_types": 18,
+            "always_put_control_body_on_new_line": 96,
+            "lines_longer_than_80_chars": 8,
+            "todo": 2,
+            "avoid_bool_literals_in_conditional_expressions": 2,
+            "avoid_escaping_inner_quotes": 2,
+            "omit_local_variable_types": 36,
+            "avoid_void_async": 3,
+            "parameter_assignments": 25,
+            "inference_failure_on_instance_creation": 2,
+            "async_return_with_no_await": 2,
+            "comment_references": 2,
+            "cast_nullable_to_non_nullable": 1,
+            "unawaited_futures": 6,
+            "literal_only_boolean_expressions": 3,
+            "avoid_positional_boolean_parameters": 2,
+            "avoid_multiple_declarations_per_line": 2,
+            "prefer_asserts_with_message": 8,
+            "curly_braces_in_flow_control_structures": 4,
+            "sort_constructors_first": 2,
+            "avoid_redundant_argument_values": 3,
+            "cascade_invocations": 3,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "use_null_aware_elements": 2,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "684312aeb5e96b3237d457f07fab81aa94656e7c",
+      "subject": "fix: hide text selection cursor in exports",
+      "files": [
+        "lib/data/editor/editor_exporter.dart",
+        "lib/data/editor/page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 563,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 35,
+          "totalLines": 563,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 1,
+            "prefer_expression_function_bodies": 4,
+            "parameter_assignments": 1,
+            "omit_local_variable_types": 4,
+            "avoid_types_on_closure_parameters": 4,
+            "cascade_invocations": 2,
+            "avoid_redundant_argument_values": 1,
+            "always_put_required_named_parameters_first": 2,
+            "always_put_control_body_on_new_line": 5,
+            "prefer_asserts_with_message": 2,
+            "sort_constructors_first": 3,
+            "no_dynamic_casts": 5,
+            "avoid_annotating_with_dynamic": 1,
+            "avoid_dynamic_calls": 2,
+            "comment_references": 1,
+            "no_raw_types": 1,
+            "strict_raw_type": 1,
+            "discarded_futures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "d00cebb156e7eaca1207884ad23cf0146fdda489",
+      "subject": "fix: actually fix page background overflowing rounded corners",
+      "files": [
+        "lib/components/home/preview_card.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 295,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 295,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_positional_boolean_parameters": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "always_put_control_body_on_new_line": 1,
+            "discarded_futures": 3,
+            "unnecessary_null_checks": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "0e7e7b6930cf2ba1a0bc5e56fc8174d5fb3a9e73",
+      "subject": "fix: page background overflowing rounded corners",
+      "files": [
+        "lib/components/home/preview_card.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 283,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 283,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_positional_boolean_parameters": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "always_put_control_body_on_new_line": 1,
+            "discarded_futures": 3,
+            "unnecessary_null_checks": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "4b6e1928674de39fff6aeb5ae46a7515abd6559b",
+      "subject": "fix: inner border radius of note previews",
+      "files": [
+        "lib/components/home/preview_card.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 279,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 279,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_positional_boolean_parameters": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "always_put_control_body_on_new_line": 1,
+            "discarded_futures": 3,
+            "unnecessary_null_checks": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "49d4d358368ab3f1f1f4ea175d33c88c5f3ebc71",
+      "subject": "fix: text editor bugginess caused by thumbnail gen",
+      "files": [
+        "lib/data/editor/page.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 21,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 2416,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2,
+            "use_null_aware_elements": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 21,
+          "hitLines": 0,
+          "diagnosticLines": 164,
+          "totalLines": 2416,
+          "hitsByRule": {},
+          "linesByRule": {
+            "prefer_expression_function_bodies": 7,
+            "always_put_control_body_on_new_line": 69,
+            "prefer_asserts_with_message": 6,
+            "omit_local_variable_types": 21,
+            "sort_constructors_first": 3,
+            "no_dynamic_casts": 6,
+            "avoid_types_on_closure_parameters": 8,
+            "avoid_annotating_with_dynamic": 1,
+            "avoid_dynamic_calls": 3,
+            "comment_references": 1,
+            "no_raw_types": 6,
+            "strict_raw_type": 6,
+            "discarded_futures": 8,
+            "avoid_redundant_argument_values": 3,
+            "lines_longer_than_80_chars": 5,
+            "avoid_void_async": 2,
+            "cascade_invocations": 3,
+            "avoid_multiple_declarations_per_line": 1,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "use_null_aware_elements": 2,
+            "inference_failure_on_function_invocation": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "5ec887f17b5d4d1d0f2107d91e64c0389249a474",
+      "subject": "fix: prepend https:// to nc url",
+      "files": [
+        "lib/components/nextcloud/nc_login_step.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 323,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 17,
+          "totalLines": 323,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 3,
+            "discarded_futures": 5,
+            "inference_failure_on_function_invocation": 1,
+            "unawaited_futures": 1,
+            "prefer_expression_function_bodies": 2,
+            "unnecessary_raw_strings": 1,
+            "document_ignores": 2,
+            "always_put_control_body_on_new_line": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "396f7e5e83c20a1729abe5096772f5da6b6d9973",
+      "subject": "fix: disable autocorrect on nc url field",
+      "files": [
+        "lib/components/nextcloud/nc_login_step.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 321,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 17,
+          "totalLines": 321,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 3,
+            "discarded_futures": 5,
+            "inference_failure_on_function_invocation": 1,
+            "unawaited_futures": 1,
+            "prefer_expression_function_bodies": 2,
+            "unnecessary_raw_strings": 1,
+            "document_ignores": 2,
+            "always_put_control_body_on_new_line": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "12d77e6005f23040138e40d47e3a4f5df2d1d0f9",
+      "subject": "feat: add different tools for onyx, plus various improvements (#1452)",
+      "files": [
+        "lib/components/canvas/canvas.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 2179,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2,
+            "use_null_aware_elements": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 153,
+          "totalLines": 2179,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 11,
+            "prefer_expression_function_bodies": 7,
+            "avoid_redundant_argument_values": 3,
+            "lines_longer_than_80_chars": 5,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "omit_local_variable_types": 18,
+            "cascade_invocations": 3,
+            "prefer_asserts_with_message": 4,
+            "avoid_multiple_declarations_per_line": 1,
+            "always_put_control_body_on_new_line": 64,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 7,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "use_null_aware_elements": 2,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "426ffe67ebaaad5b544d027eeebd5b791efba0ee",
+      "subject": "fix: stylus button wrong tool when coming close again (#1457)",
+      "files": [
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 2092,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2,
+            "use_null_aware_elements": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 141,
+          "totalLines": 2092,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_redundant_argument_values": 3,
+            "prefer_expression_function_bodies": 6,
+            "lines_longer_than_80_chars": 5,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "omit_local_variable_types": 18,
+            "cascade_invocations": 3,
+            "prefer_asserts_with_message": 4,
+            "avoid_multiple_declarations_per_line": 1,
+            "always_put_control_body_on_new_line": 64,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 7,
+            "async_return_with_no_await": 1,
+            "todo": 1,
+            "inference_failure_on_instance_creation": 1,
+            "use_null_aware_elements": 2,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "827e83c0cd7e05be461eaa745f5038fcf2e698d0",
+      "subject": "fix: saving pdf from dialog",
+      "files": [
+        "lib/components/canvas/canvas_image_dialog.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 197,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 1,
+          "diagnosticLines": 16,
+          "totalLines": 197,
+          "hitsByRule": {
+            "always_put_control_body_on_new_line": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 8,
+            "avoid_positional_boolean_parameters": 1,
+            "lines_longer_than_80_chars": 1,
+            "always_put_control_body_on_new_line": 2,
+            "cast_nullable_to_non_nullable": 2,
+            "unawaited_futures": 1,
+            "document_ignores": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "e0f9e8964b48dead3671d7297162668ab758fff4",
+      "subject": "fix: remove smoothing on shapes",
+      "files": [
+        "lib/components/canvas/_stroke.dart",
+        "lib/data/tools/pen.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 520,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 38,
+          "totalLines": 520,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_multiple_declarations_per_line": 3,
+            "always_put_control_body_on_new_line": 9,
+            "sort_constructors_first": 2,
+            "prefer_asserts_with_message": 3,
+            "no_dynamic_casts": 5,
+            "document_ignores": 1,
+            "prefer_expression_function_bodies": 3,
+            "lines_longer_than_80_chars": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "parameter_assignments": 2,
+            "prefer_foreach": 1,
+            "comment_references": 2,
+            "omit_local_variable_types": 2,
+            "cascade_invocations": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "1a53c4ded4d69fbba80c03d9a7614fe08f1a2f4e",
+      "subject": "fix: preserve thumbnail until transition done",
+      "files": [
+        "lib/components/home/preview_card.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 260,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 260,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_positional_boolean_parameters": 1,
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "always_put_control_body_on_new_line": 1,
+            "discarded_futures": 3,
+            "unnecessary_null_checks": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "b0f7c25832c122a0a218d93f54ce56bc819e98d6",
+      "subject": "fix: broken back-folder button",
+      "files": [
+        "lib/pages/home/browse.dart",
+        "lib/pages/home/home.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 346,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 28,
+          "totalLines": 346,
+          "hitsByRule": {},
+          "linesByRule": {
+            "discarded_futures": 5,
+            "strict_raw_type": 2,
+            "no_raw_types": 2,
+            "always_put_control_body_on_new_line": 6,
+            "parameter_assignments": 1,
+            "unawaited_futures": 5,
+            "inference_failure_on_instance_creation": 1,
+            "avoid_types_on_closure_parameters": 4,
+            "prefer_expression_function_bodies": 2,
+            "no_dynamic_casts": 1,
+            "always_put_required_named_parameters_first": 1,
+            "avoid_void_async": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a00a994adb9ba8694984d1b99b1d757bf98ea3d7",
+      "subject": "fix: dark flash when transitioning pages on mobile",
+      "files": [
+        "lib/components/navbar/responsive_navbar.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 135,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 135,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 1,
+            "always_put_control_body_on_new_line": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "201332b8f3b08b872eb63afc4a05357f02947d59",
+      "subject": "fix: back button showing after returning to root",
+      "files": [
+        "lib/data/routes.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 93,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 1,
+          "diagnosticLines": 7,
+          "totalLines": 93,
+          "hitsByRule": {
+            "prefer_expression_function_bodies": 1
+          },
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 2,
+            "prefer_expression_function_bodies": 4,
+            "sort_constructors_first": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "5776b203250858f919826bfdc4f95249cfac0cbc",
+      "subject": "fix: home page transitions",
+      "files": [
+        "lib/pages/home/home.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 84,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 7,
+          "totalLines": 84,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 1,
+            "avoid_void_async": 1,
+            "always_put_control_body_on_new_line": 2,
+            "unawaited_futures": 2,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "9de331f0f2c64772835a7adb6e03eaeb0cd56bdc",
+      "subject": "fix: selected navbar color on linux light mode",
+      "files": [
+        "lib/components/navbar/horizontal_navbar.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 230,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 230,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "always_put_control_body_on_new_line": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a85d951ae819c8d1f886e226058397fc31cd302c",
+      "subject": "fix: only dispose coreInfo after saving",
+      "files": [
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 2098,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2,
+            "use_null_aware_elements": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 10,
+          "hitLines": 1,
+          "diagnosticLines": 142,
+          "totalLines": 2098,
+          "hitsByRule": {
+            "discarded_futures": 1
+          },
+          "linesByRule": {
+            "avoid_redundant_argument_values": 3,
+            "prefer_expression_function_bodies": 6,
+            "lines_longer_than_80_chars": 5,
+            "avoid_void_async": 2,
+            "strict_raw_type": 5,
+            "no_raw_types": 5,
+            "omit_local_variable_types": 19,
+            "cascade_invocations": 4,
+            "prefer_asserts_with_message": 5,
+            "avoid_multiple_declarations_per_line": 1,
+            "always_put_control_body_on_new_line": 61,
+            "parameter_assignments": 2,
+            "curly_braces_in_flow_control_structures": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 8,
+            "async_return_with_no_await": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_instance_creation": 1,
+            "use_null_aware_elements": 2,
+            "inference_failure_on_function_invocation": 3,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "3f9b06c9428f5dcdb694eefa9347f073d8e1bd8f",
+      "subject": "fix: remove decimals from bytes",
+      "files": [
+        "lib/data/nextcloud/readable_bytes.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 26,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 26,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_control_body_on_new_line": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "10eedbdded89be0c2385dbf32e383a144069d59e",
+      "subject": "Revert \"perf: persist navigation destination list\"",
+      "files": [
+        "lib/data/routes.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 93,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 7,
+          "totalLines": 93,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 2,
+            "prefer_expression_function_bodies": 4,
+            "sort_constructors_first": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "0e8b275e288cf7386314bcda1b5a272ff41330db",
+      "subject": "fix: fallback to english if using esperanto",
+      "files": [
+        "lib/components/theming/dynamic_material_app.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 313,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 21,
+          "totalLines": 313,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 7,
+            "avoid_positional_boolean_parameters": 1,
+            "always_put_control_body_on_new_line": 3,
+            "discarded_futures": 5,
+            "curly_braces_in_flow_control_structures": 1,
+            "prefer_expression_function_bodies": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "avoid_multiple_declarations_per_line": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "cff084680920a22dd9e4479340df6189327bb087",
+      "subject": "fix: round quota percent to 1dp",
+      "files": [
+        "lib/components/nextcloud/done_login_step.dart",
+        "lib/data/extensions/quota_extension.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 167,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 5,
+          "totalLines": 167,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 1,
+            "discarded_futures": 2,
+            "no_dynamic_casts": 1,
+            "avoid_dynamic_calls": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a0f8b0deca8af65194208ca6d4060df967c00bf8",
+      "subject": "fix: aspect ratio of sync button",
+      "files": [
+        "lib/components/home/syncing_button.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 163,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 13,
+          "totalLines": 163,
+          "hitsByRule": {},
+          "linesByRule": {
+            "strict_raw_type": 1,
+            "no_raw_types": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "always_put_control_body_on_new_line": 6,
+            "prefer_asserts_with_message": 1,
+            "discarded_futures": 3,
+            "avoid_annotating_with_dynamic": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "e4c05af7395b517ea0b3933c28aefcd6167df859",
+      "subject": "fix: never use yaru titlebar on mobile",
+      "files": [
+        "lib/components/theming/dynamic_material_app.dart",
+        "lib/data/prefs.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 707,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 29,
+          "totalLines": 707,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 8,
+            "avoid_positional_boolean_parameters": 1,
+            "always_put_control_body_on_new_line": 2,
+            "discarded_futures": 5,
+            "curly_braces_in_flow_control_structures": 1,
+            "prefer_expression_function_bodies": 3,
+            "avoid_types_on_closure_parameters": 1,
+            "avoid_multiple_declarations_per_line": 5,
+            "lines_longer_than_80_chars": 1,
+            "avoid_bool_literals_in_conditional_expressions": 1,
+            "sort_constructors_first": 1,
+            "avoid_annotating_with_dynamic": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "8c256a098b8cca5685f8c344c981cfd31b878d63",
+      "subject": "fix: button colors in yaru theme",
+      "files": [
+        "lib/components/toolbar/toolbar_button.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 13,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 46,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 13,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 46,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 3,
+            "unnecessary_parenthesis": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "b42ec9b2d8017f0a999179d3305df33094d24b3b",
+      "subject": "chore: remove workaround for fixed quill bug",
+      "files": [
+        "lib/data/editor/quill_styles.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 248,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 8,
+          "totalLines": 248,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_classes_with_only_static_members": 1,
+            "omit_local_variable_types": 1,
+            "unnecessary_null_checks": 6
+          }
+        }
+      }
+    },
+    {
+      "sha": "76fe2eb7fc71c5644a5a71df5a48ddaea91b3f5f",
+      "subject": "ci: fix test timeout by reducing font fallbacks",
+      "files": [
+        "lib/components/theming/font_fallbacks.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 122,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 122,
+          "hitsByRule": {},
+          "linesByRule": {}
+        }
+      }
+    },
+    {
+      "sha": "ad841c71f219d9a3398d7d347d07912bf0cfadef",
+      "subject": "ci: fix test timeout by isolating theme code",
+      "files": [
+        "lib/components/theming/dynamic_material_app.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 58,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 292,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 58,
+          "hitLines": 0,
+          "diagnosticLines": 22,
+          "totalLines": 292,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 7,
+            "avoid_positional_boolean_parameters": 1,
+            "always_put_control_body_on_new_line": 1,
+            "discarded_futures": 4,
+            "curly_braces_in_flow_control_structures": 1,
+            "prefer_expression_function_bodies": 1,
+            "avoid_redundant_argument_values": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "parameter_assignments": 2,
+            "avoid_multiple_declarations_per_line": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "d4f17a4cd3f6962f9223481a95f24ed666164a4a",
+      "subject": "fix: pfp aspect ratio on linux",
+      "files": [
+        "lib/components/settings/nextcloud_profile.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 192,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 192,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_control_body_on_new_line": 2,
+            "prefer_final_locals": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "prefer_expression_function_bodies": 1,
+            "omit_local_variable_types": 1,
+            "prefer_foreach": 1,
+            "unawaited_futures": 1,
+            "curly_braces_in_flow_control_structures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "38392ab6356b07f3c046dfbfd70f49bdc5ec24aa",
+      "subject": "fix: Correct migration procedure (#1519)",
+      "files": [
+        "lib/data/file_manager/file_manager.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 855,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 142,
+          "totalLines": 855,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 6,
+            "omit_obvious_property_types": 3,
+            "todo": 1,
+            "always_put_control_body_on_new_line": 31,
+            "avoid_bool_literals_in_conditional_expressions": 2,
+            "avoid_escaping_inner_quotes": 2,
+            "prefer_final_locals": 5,
+            "omit_local_variable_types": 35,
+            "avoid_types_on_closure_parameters": 5,
+            "use_raw_strings": 1,
+            "avoid_void_async": 1,
+            "parameter_assignments": 23,
+            "inference_failure_on_instance_creation": 1,
+            "async_return_with_no_await": 1,
+            "comment_references": 2,
+            "strict_raw_type": 12,
+            "no_raw_types": 12,
+            "discarded_futures": 2,
+            "always_put_required_named_parameters_first": 1,
+            "cast_nullable_to_non_nullable": 1,
+            "unawaited_futures": 6,
+            "literal_only_boolean_expressions": 3,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "prefer_asserts_with_message": 4,
+            "curly_braces_in_flow_control_structures": 2,
+            "prefer_final_in_for_each": 1,
+            "sort_constructors_first": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "fdd312f5184e3f40251b941e2843e2a95912a6d1",
+      "subject": "fix: only dispose pencil shader if it was created already",
+      "files": [
+        "lib/data/editor/page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 323,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 29,
+          "totalLines": 323,
+          "hitsByRule": {},
+          "linesByRule": {
+            "omit_obvious_property_types": 2,
+            "prefer_expression_function_bodies": 1,
+            "always_put_control_body_on_new_line": 5,
+            "prefer_asserts_with_message": 2,
+            "prefer_final_locals": 5,
+            "omit_local_variable_types": 7,
+            "sort_constructors_first": 3,
+            "no_dynamic_casts": 5,
+            "avoid_types_on_closure_parameters": 2,
+            "avoid_annotating_with_dynamic": 1,
+            "avoid_dynamic_calls": 2,
+            "comment_references": 1,
+            "no_raw_types": 1,
+            "strict_raw_type": 1,
+            "discarded_futures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "62127412e7d0f6b18d90107fd0974625b80a68f8",
+      "subject": "fix: remove handling of single point strokes",
+      "files": [
+        "lib/components/canvas/_canvas_painter.dart",
+        "lib/data/editor/editor_exporter.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 30,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 515,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 30,
+          "hitLines": 0,
+          "diagnosticLines": 43,
+          "totalLines": 515,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 10,
+            "prefer_final_locals": 4,
+            "omit_local_variable_types": 7,
+            "always_put_control_body_on_new_line": 9,
+            "curly_braces_in_flow_control_structures": 1,
+            "prefer_expression_function_bodies": 3,
+            "prefer_final_in_for_each": 1,
+            "cascade_invocations": 9,
+            "cast_nullable_to_non_nullable": 1,
+            "avoid_classes_with_only_static_members": 1,
+            "parameter_assignments": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "avoid_redundant_argument_values": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "0580e1f4c3b8f1731eb2c04422e744c9834f50da",
+      "subject": "fix: discard nulls in Pen.onDragEnd",
+      "files": [
+        "lib/data/tools/laser_pointer.dart",
+        "lib/data/tools/pen.dart",
+        "lib/data/tools/shape_pen.dart",
+        "lib/pages/editor/editor.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 2469,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 11,
+          "hitLines": 2,
+          "diagnosticLines": 205,
+          "totalLines": 2469,
+          "hitsByRule": {
+            "omit_local_variable_types": 2,
+            "prefer_final_locals": 1
+          },
+          "linesByRule": {
+            "omit_obvious_property_types": 13,
+            "no_runtimetype_tostring": 2,
+            "always_put_control_body_on_new_line": 67,
+            "avoid_void_async": 3,
+            "inference_failure_on_instance_creation": 5,
+            "curly_braces_in_flow_control_structures": 4,
+            "avoid_multiple_declarations_per_line": 2,
+            "omit_local_variable_types": 62,
+            "prefer_asserts_with_message": 7,
+            "no_literal_bool_comparisons": 1,
+            "avoid_redundant_argument_values": 3,
+            "prefer_expression_function_bodies": 6,
+            "lines_longer_than_80_chars": 5,
+            "no_raw_types": 5,
+            "strict_raw_type": 5,
+            "prefer_final_in_for_each": 23,
+            "cascade_invocations": 4,
+            "prefer_final_locals": 16,
+            "parameter_assignments": 2,
+            "no_self_assignments": 1,
+            "prefer_foreach": 5,
+            "unnecessary_lambdas": 2,
+            "avoid_types_on_closure_parameters": 6,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 8,
+            "async_return_with_no_await": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "inference_failure_on_function_invocation": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "c6638f2dfa58af32fb7c49730e031a61bdbc6b92",
+      "subject": "fix: sba note import on Windows (#1505)",
+      "files": [
+        "lib/components/home/path_components.dart",
+        "lib/data/file_manager/file_manager.dart",
+        "lib/main.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 1258,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 1,
+          "diagnosticLines": 176,
+          "totalLines": 1258,
+          "hitsByRule": {
+            "use_raw_strings": 1
+          },
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "prefer_const_constructors": 1,
+            "prefer_expression_function_bodies": 2,
+            "lines_longer_than_80_chars": 6,
+            "omit_obvious_property_types": 4,
+            "todo": 1,
+            "always_put_control_body_on_new_line": 36,
+            "avoid_bool_literals_in_conditional_expressions": 2,
+            "avoid_escaping_inner_quotes": 2,
+            "prefer_final_locals": 5,
+            "omit_local_variable_types": 36,
+            "avoid_types_on_closure_parameters": 7,
+            "use_raw_strings": 2,
+            "avoid_void_async": 3,
+            "parameter_assignments": 23,
+            "inference_failure_on_instance_creation": 3,
+            "async_return_with_no_await": 2,
+            "comment_references": 2,
+            "strict_raw_type": 13,
+            "no_raw_types": 13,
+            "discarded_futures": 10,
+            "cast_nullable_to_non_nullable": 1,
+            "unawaited_futures": 10,
+            "literal_only_boolean_expressions": 3,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "prefer_asserts_with_message": 4,
+            "curly_braces_in_flow_control_structures": 4,
+            "prefer_final_in_for_each": 1,
+            "sort_constructors_first": 2,
+            "document_ignores": 1,
+            "prefer_foreach": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "e99dab69d1f24d3ea6711baca797aac80aea4bd2",
+      "subject": "fix: allow importing files with uppercase extensions (#1510)",
+      "files": [
+        "lib/components/home/new_note_button.dart",
+        "lib/data/file_manager/file_manager.dart",
+        "lib/main.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 1309,
+          "hitsByRule": {},
+          "linesByRule": {
+            "curly_braces_in_flow_control_structures": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 190,
+          "totalLines": 1309,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "prefer_expression_function_bodies": 3,
+            "unawaited_futures": 14,
+            "always_put_control_body_on_new_line": 44,
+            "avoid_redundant_argument_values": 3,
+            "only_throw_errors": 1,
+            "lines_longer_than_80_chars": 4,
+            "omit_obvious_property_types": 4,
+            "todo": 1,
+            "avoid_bool_literals_in_conditional_expressions": 2,
+            "avoid_escaping_inner_quotes": 2,
+            "prefer_final_locals": 5,
+            "omit_local_variable_types": 36,
+            "avoid_types_on_closure_parameters": 7,
+            "use_raw_strings": 2,
+            "avoid_void_async": 3,
+            "parameter_assignments": 23,
+            "inference_failure_on_instance_creation": 3,
+            "async_return_with_no_await": 2,
+            "comment_references": 2,
+            "strict_raw_type": 13,
+            "no_raw_types": 13,
+            "discarded_futures": 10,
+            "cast_nullable_to_non_nullable": 1,
+            "literal_only_boolean_expressions": 3,
+            "avoid_positional_boolean_parameters": 1,
+            "avoid_multiple_declarations_per_line": 1,
+            "prefer_asserts_with_message": 4,
+            "curly_braces_in_flow_control_structures": 4,
+            "prefer_final_in_for_each": 1,
+            "sort_constructors_first": 2,
+            "document_ignores": 1,
+            "prefer_foreach": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "31614ef10c9a8b0a0b58b82f05e8ad96a17a1928",
+      "subject": "fix: apply Atkinson Hyperlegible on yaru theme",
+      "files": [
+        "lib/components/theming/dynamic_material_app.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 244,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 14,
+          "totalLines": 244,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "always_put_control_body_on_new_line": 1,
+            "discarded_futures": 4,
+            "prefer_expression_function_bodies": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "avoid_redundant_argument_values": 3
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "sha": "b35cb112f2295513b8886a0f0c414ea218b61c2e",
+      "reason": "6 files"
+    },
+    {
+      "sha": "bb5c6295ad7f485a196fedf2e812b2001af9b620",
+      "reason": "only generated files"
+    },
+    {
+      "sha": "502bc9823ad308729ce6bd2775305d7d53f06e44",
+      "reason": "only additions"
+    },
+    {
+      "sha": "e5306a82a8845e9f74084d75edb2bb57eb41af7e",
+      "reason": "only generated files"
+    },
+    {
+      "sha": "ed4fe66fc5908a55d2e20806e9cb01fc11ad5d78",
+      "reason": "only additions"
+    },
+    {
+      "sha": "3bec6ea276aebaadd983277a25c6970b0a737d94",
+      "reason": "pub get failed at 3bec6ea"
+    },
+    {
+      "sha": "bcc3ca196040ed785ad1c3abf79674114483adc7",
+      "reason": "only additions"
+    },
+    {
+      "sha": "d62baa220ecceff5dedc3afdab452e9edb11dd22",
+      "reason": "only generated files"
+    },
+    {
+      "sha": "633503a879e41c9132fb332b466ccaaab6b95e1e",
+      "reason": "pub get failed at 633503a"
+    },
+    {
+      "sha": "fde32ac26f7d9daa2a8e9f1229733b5d371d37c6",
+      "reason": "pub get failed at fde32ac"
+    },
+    {
+      "sha": "bdb9a6d72e8d7d5f2e439ea0a7b793b52c9aabba",
+      "reason": "only additions"
+    },
+    {
+      "sha": "f3a4263baf65f42f6663daa778b73135bc0cb0be",
+      "reason": "only additions"
+    },
+    {
+      "sha": "a38930e4c59e464732e45dd1f14e0e954200c1db",
+      "reason": "only additions"
+    }
+  ]
+}

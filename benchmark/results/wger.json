@@ -1,0 +1,2820 @@
+{
+  "repo": "wger",
+  "url": "https://github.com/wger-project/flutter.git",
+  "path": ".",
+  "since": "2025-09-01",
+  "commits": [
+    {
+      "sha": "65dbf426cf97f4716135ac8dcd85cfb10eec1d78",
+      "subject": "Use ValueKey instead of accessing uuid directly",
+      "files": [
+        "lib/widgets/exercises/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 89,
+          "hitsByRule": {},
+          "linesByRule": {
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 1,
+          "diagnosticLines": 17,
+          "totalLines": 89,
+          "hitsByRule": {
+            "avoid_dynamic_calls": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "always_put_required_named_parameters_first": 4,
+            "library_private_types_in_public_api": 1,
+            "strict_raw_type": 2,
+            "no_raw_types": 2,
+            "lines_longer_than_80_chars": 2,
+            "prefer_int_literals": 2,
+            "avoid_types_on_closure_parameters": 2,
+            "avoid_dynamic_calls": 4,
+            "no_dynamic_casts": 3,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "148fe8c8a4babb79dc40af5dfbbb2baff931a3df",
+      "subject": "Fix null-check-operator error in the log page in the gym mode",
+      "files": [
+        "lib/widgets/routines/gym_mode/log_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 387,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 20,
+          "totalLines": 387,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "use_key_in_widget_constructors": 1,
+            "lines_longer_than_80_chars": 11,
+            "use_colored_box": 1,
+            "always_put_required_named_parameters_first": 3,
+            "prefer_expression_function_bodies": 1,
+            "library_private_types_in_public_api": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "87a433bc97fd4330849be2d81fa232d20c93dd03",
+      "subject": "Fix set-state-error on TimeInputWidget",
+      "files": [
+        "lib/widgets/core/datetime_input.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 237,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 22,
+          "hitLines": 2,
+          "diagnosticLines": 3,
+          "totalLines": 237,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 2
+          },
+          "linesByRule": {
+            "lines_longer_than_80_chars": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "341dec6d992f7e25d006820e7510f8ec72b69f5d",
+      "subject": "Fix avoid_slow_async_io lint warning",
+      "files": [
+        "lib/database/powersync/powersync.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 224,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 1,
+          "diagnosticLines": 13,
+          "totalLines": 224,
+          "hitsByRule": {
+            "avoid_slow_async_io": 1
+          },
+          "linesByRule": {
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 3,
+            "cascade_invocations": 1,
+            "lines_longer_than_80_chars": 3,
+            "prefer_expression_function_bodies": 2,
+            "document_ignores": 1,
+            "avoid_slow_async_io": 1,
+            "avoid_catches_without_on_clauses": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "177a48d6c7f96c687377beb91442a0dffaa6479b",
+      "subject": "Fix use_build_context_synchronously and unused_local_variable lint warnings",
+      "files": [
+        "lib/core/error_dialogs.dart",
+        "lib/helpers/misc.dart",
+        "lib/widgets/nutrition/ingredient_dialogs.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 3,
+          "diagnosticLines": 5,
+          "totalLines": 875,
+          "hitsByRule": {
+            "unused_local_variable": 2,
+            "use_build_context_synchronously": 1
+          },
+          "linesByRule": {
+            "unused_local_variable": 2,
+            "use_build_context_synchronously": 2,
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 3,
+          "diagnosticLines": 60,
+          "totalLines": 875,
+          "hitsByRule": {
+            "use_build_context_synchronously": 1,
+            "unused_local_variable": 2
+          },
+          "linesByRule": {
+            "omit_obvious_property_types": 1,
+            "lines_longer_than_80_chars": 22,
+            "omit_local_variable_types": 8,
+            "inference_failure_on_function_invocation": 2,
+            "discarded_futures": 3,
+            "avoid_annotating_with_dynamic": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "prefer_expression_function_bodies": 1,
+            "prefer_int_literals": 8,
+            "avoid_catches_without_on_clauses": 1,
+            "use_build_context_synchronously": 2,
+            "sort_constructors_first": 7,
+            "inference_failure_on_untyped_parameter": 1,
+            "avoid_redundant_argument_values": 2,
+            "avoid_void_async": 1,
+            "cascade_invocations": 1,
+            "always_put_required_named_parameters_first": 1,
+            "unused_local_variable": 2,
+            "inference_failure_on_function_return_type": 1,
+            "use_key_in_widget_constructors": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a8f46ce3026a0e14dc4c5f8c8676f4c2e96b1140",
+      "subject": "Fix always_put_control_body_on_new_line lint warning",
+      "files": [
+        "lib/providers/nutrition_repository.dart",
+        "lib/widgets/nutrition/charts.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 964,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 3,
+          "diagnosticLines": 66,
+          "totalLines": 964,
+          "hitsByRule": {
+            "always_put_control_body_on_new_line": 3
+          },
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "comment_references": 1,
+            "lines_longer_than_80_chars": 35,
+            "always_put_control_body_on_new_line": 3,
+            "cascade_invocations": 1,
+            "always_put_required_named_parameters_first": 4,
+            "prefer_expression_function_bodies": 5,
+            "prefer_int_literals": 5,
+            "use_key_in_widget_constructors": 1,
+            "omit_obvious_property_types": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "omit_local_variable_types": 2,
+            "avoid_redundant_argument_values": 8
+          }
+        }
+      }
+    },
+    {
+      "sha": "dee6c12ceacaadb2db43908bf55fa7d41da03398",
+      "subject": "Fixed i18n",
+      "files": [
+        "lib/widgets/nutrition/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 827,
+          "hitsByRule": {},
+          "linesByRule": {
+            "must_be_immutable": 1,
+            "use_key_in_widget_constructors": 3
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 11,
+          "hitLines": 0,
+          "diagnosticLines": 47,
+          "totalLines": 827,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "use_key_in_widget_constructors": 3,
+            "inference_failure_on_untyped_parameter": 1,
+            "no_dynamic_casts": 1,
+            "lines_longer_than_80_chars": 15,
+            "prefer_expression_function_bodies": 3,
+            "cast_nullable_to_non_nullable": 1,
+            "discarded_futures": 3,
+            "avoid_positional_boolean_parameters": 1,
+            "flutter_style_todos": 2,
+            "todo": 2,
+            "avoid_types_on_closure_parameters": 10,
+            "inference_failure_on_function_return_type": 2,
+            "omit_local_variable_types": 1,
+            "prefer_int_literals": 3,
+            "must_be_immutable": 1,
+            "unnecessary_breaks": 1,
+            "always_put_required_named_parameters_first": 3,
+            "avoid_catches_without_on_clauses": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "41160d2a6e7521bb7e59f9650f6a248d8e61ba7a",
+      "subject": "fixed ingredient weight validation",
+      "files": [
+        "lib/widgets/nutrition/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 818,
+          "hitsByRule": {},
+          "linesByRule": {
+            "must_be_immutable": 1,
+            "use_key_in_widget_constructors": 3
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 1,
+          "diagnosticLines": 50,
+          "totalLines": 818,
+          "hitsByRule": {
+            "avoid_catches_without_on_clauses": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "use_key_in_widget_constructors": 3,
+            "inference_failure_on_untyped_parameter": 1,
+            "no_dynamic_casts": 1,
+            "lines_longer_than_80_chars": 17,
+            "prefer_expression_function_bodies": 3,
+            "cast_nullable_to_non_nullable": 1,
+            "discarded_futures": 3,
+            "avoid_positional_boolean_parameters": 1,
+            "flutter_style_todos": 2,
+            "todo": 2,
+            "avoid_types_on_closure_parameters": 10,
+            "inference_failure_on_function_return_type": 2,
+            "omit_local_variable_types": 1,
+            "avoid_catches_without_on_clauses": 2,
+            "prefer_int_literals": 3,
+            "must_be_immutable": 1,
+            "unnecessary_breaks": 1,
+            "always_put_required_named_parameters_first": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "3f92631a895984552370a91d967ca025fece2219",
+      "subject": "Pre-fill the app version in bug reports",
+      "files": [
+        "lib/core/error_dialogs.dart",
+        "lib/core/errors.dart",
+        "lib/core/widgets/about.dart",
+        "lib/core/widgets/log_overview.dart",
+        "lib/core/widgets/sync_status_dialog.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 1489,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 95,
+          "totalLines": 1489,
+          "hitsByRule": {},
+          "linesByRule": {
+            "omit_obvious_property_types": 4,
+            "lines_longer_than_80_chars": 51,
+            "discarded_futures": 2,
+            "omit_local_variable_types": 9,
+            "avoid_annotating_with_dynamic": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "prefer_expression_function_bodies": 4,
+            "prefer_int_literals": 10,
+            "avoid_catches_without_on_clauses": 2,
+            "sort_constructors_first": 7,
+            "inference_failure_on_untyped_parameter": 1,
+            "avoid_redundant_argument_values": 2,
+            "unnecessary_raw_strings": 1,
+            "always_use_package_imports": 2,
+            "async_return_with_no_await": 1,
+            "cascade_invocations": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "de758b5dfa3a0445df9b9ed2f6b2479dea68f644",
+      "subject": "Final fixes",
+      "files": [
+        "lib/core/network/network_provider.dart",
+        "lib/core/widgets/app_bar.dart",
+        "lib/core/widgets/sync_status_dialog.dart",
+        "lib/powersync/sync_watchdog.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 36,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 1096,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 36,
+          "hitLines": 1,
+          "diagnosticLines": 50,
+          "totalLines": 1096,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 1
+          },
+          "linesByRule": {
+            "lines_longer_than_80_chars": 27,
+            "avoid_catches_without_on_clauses": 2,
+            "omit_obvious_property_types": 7,
+            "prefer_expression_function_bodies": 4,
+            "unnecessary_lambdas": 1,
+            "sort_constructors_first": 3,
+            "use_key_in_widget_constructors": 2,
+            "cascade_invocations": 3,
+            "async_return_with_no_await": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "avoid_redundant_argument_values": 1,
+            "avoid_setters_without_getters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "067ce06a809d910e6e87ed8f07295e243b821078",
+      "subject": "Handle duplicate muscles in MuscleWidget",
+      "files": [
+        "lib/features/exercises/widgets/exercises.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 221,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 1,
+          "diagnosticLines": 14,
+          "totalLines": 221,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 5,
+            "lines_longer_than_80_chars": 3,
+            "prefer_expression_function_bodies": 3,
+            "use_key_in_widget_constructors": 2,
+            "avoid_redundant_argument_values": 2,
+            "always_put_required_named_parameters_first": 1,
+            "omit_obvious_property_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "d3749ac37c20edfdee0ae6c81d5b137eda853bd1",
+      "subject": "Report the local sync counters in bug reports",
+      "files": [
+        "lib/core/widgets/sync_status_dialog.dart",
+        "lib/database/powersync/powersync.dart",
+        "lib/powersync/connector.dart",
+        "lib/powersync/sync_watchdog.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 1154,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 57,
+          "totalLines": 1154,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 33,
+            "sort_constructors_first": 3,
+            "avoid_redundant_argument_values": 1,
+            "cascade_invocations": 2,
+            "avoid_catches_without_on_clauses": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 4,
+            "prefer_expression_function_bodies": 2,
+            "document_ignores": 1,
+            "omit_obvious_property_types": 4,
+            "unnecessary_breaks": 4,
+            "avoid_setters_without_getters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "afaa58c34e432c0a0d12387a93299c273133e8ed",
+      "subject": "Report the local sync counters in bug reports",
+      "files": [
+        "lib/core/widgets/sync_status_dialog.dart",
+        "lib/database/powersync/powersync.dart",
+        "lib/powersync/connector.dart",
+        "lib/powersync/sync_watchdog.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 1107,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 50,
+          "totalLines": 1107,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 28,
+            "sort_constructors_first": 3,
+            "avoid_redundant_argument_values": 1,
+            "cascade_invocations": 2,
+            "avoid_catches_without_on_clauses": 2,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 4,
+            "prefer_expression_function_bodies": 2,
+            "document_ignores": 1,
+            "omit_obvious_property_types": 3,
+            "unnecessary_breaks": 4
+          }
+        }
+      }
+    },
+    {
+      "sha": "23291513dc941e6c7b52ffa2b41627daec77e4e4",
+      "subject": "Fix logger name",
+      "files": [
+        "lib/core/network/network_provider.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 320,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 17,
+          "totalLines": 320,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 9,
+            "avoid_catches_without_on_clauses": 1,
+            "omit_obvious_property_types": 3,
+            "discarded_futures": 2,
+            "async_return_with_no_await": 1,
+            "unnecessary_lambdas": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "57fe12677c983957f12b3a2474f2f96ee37f1313",
+      "subject": "fix(auth): do not await PowerSync disconnect during session clear",
+      "files": [
+        "lib/core/network/auth_notifier.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 19,
+          "hitLines": 0,
+          "diagnosticLines": 6,
+          "totalLines": 1065,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 6
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 19,
+          "hitLines": 0,
+          "diagnosticLines": 68,
+          "totalLines": 1065,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 6,
+            "omit_obvious_property_types": 1,
+            "async_return_with_no_await": 7,
+            "lines_longer_than_80_chars": 46,
+            "avoid_catches_without_on_clauses": 7,
+            "prefer_expression_function_bodies": 3,
+            "cascade_invocations": 1,
+            "avoid_dynamic_calls": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a9011c54c77aa7c744b46c9bae78388981e8d146",
+      "subject": "Fix user profile is unavailable with PowerSync",
+      "files": [
+        "lib/core/widgets/dashboard/widgets/weight.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 168,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 1,
+          "diagnosticLines": 7,
+          "totalLines": 168,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 1
+          },
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "prefer_expression_function_bodies": 2,
+            "lines_longer_than_80_chars": 4
+          }
+        }
+      }
+    },
+    {
+      "sha": "8ff1a7b7e639286b94fb5a179b6878af0fd5826a",
+      "subject": "Fix x axis labels on measurement bar charts",
+      "files": [
+        "lib/features/measurements/widgets/charts.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 3,
+          "totalLines": 464,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 3
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 0,
+          "diagnosticLines": 67,
+          "totalLines": 464,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 4,
+            "use_key_in_widget_constructors": 3,
+            "omit_local_variable_types": 15,
+            "avoid_positional_boolean_parameters": 1,
+            "prefer_expression_function_bodies": 9,
+            "lines_longer_than_80_chars": 31,
+            "avoid_redundant_argument_values": 12,
+            "always_put_required_named_parameters_first": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "88f72a64bd7c32fa11036b2f06a45a6385c3fbd8",
+      "subject": "Fix the unit dropdowns in the slot entry form discarding the selection",
+      "files": [
+        "lib/features/routines/widgets/forms/slot_entry.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 599,
+          "hitsByRule": {},
+          "linesByRule": {
+            "library_private_types_in_public_api": 3,
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 36,
+          "totalLines": 599,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "lines_longer_than_80_chars": 20,
+            "library_private_types_in_public_api": 3,
+            "omit_obvious_property_types": 6,
+            "prefer_int_literals": 1,
+            "avoid_types_on_closure_parameters": 2,
+            "prefer_expression_function_bodies": 1,
+            "omit_local_variable_types": 2,
+            "use_key_in_widget_constructors": 1,
+            "discarded_futures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "b7a0d4893cc077dda08d42e2a62a69ce964633b8",
+      "subject": "Hydrate the exercise when copying a past log in gym mode",
+      "files": [
+        "lib/features/routines/providers/gym_log_notifier.dart",
+        "lib/features/routines/widgets/gym_mode/log_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 533,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 1,
+          "diagnosticLines": 22,
+          "totalLines": 533,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 1
+          },
+          "linesByRule": {
+            "lines_longer_than_80_chars": 13,
+            "sort_constructors_first": 3,
+            "use_key_in_widget_constructors": 1,
+            "use_colored_box": 1,
+            "always_put_required_named_parameters_first": 3,
+            "prefer_expression_function_bodies": 1,
+            "library_private_types_in_public_api": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1b199bd06eb875a838f5101cc5217968f811c8e2",
+      "subject": "Fix crash when copying a log with no hydrated exercise",
+      "files": [
+        "lib/features/routines/models/log.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 307,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 33,
+          "totalLines": 307,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 1,
+            "sort_constructors_first": 2,
+            "always_put_required_named_parameters_first": 1,
+            "lines_longer_than_80_chars": 17,
+            "cascade_invocations": 3,
+            "prefer_expression_function_bodies": 4,
+            "avoid_setters_without_getters": 3,
+            "omit_local_variable_types": 1,
+            "document_ignores": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "7ebb97c4625cdfafd6476d32afec1a551392beaf",
+      "subject": "Fix source default, hide health settings section when unavailable",
+      "files": [
+        "lib/database/powersync/tables/measurements.dart",
+        "lib/features/account/widgets/settings.dart",
+        "lib/features/account/widgets/settings/health_sync.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 28,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 255,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 28,
+          "hitLines": 1,
+          "diagnosticLines": 15,
+          "totalLines": 255,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 1
+          },
+          "linesByRule": {
+            "unnecessary_lambdas": 2,
+            "lines_longer_than_80_chars": 8,
+            "constant_identifier_names": 2,
+            "omit_obvious_property_types": 1,
+            "sort_constructors_first": 1,
+            "discarded_futures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "cbb960bdef3054b1cea707fdfebf1b4260be1f5b",
+      "subject": "Filter out sub-categories, fix off-by-one index",
+      "files": [
+        "lib/features/measurements/providers/measurement_notifier.dart",
+        "lib/features/measurements/providers/measurement_repository.dart",
+        "lib/features/measurements/screens/measurement_categories_screen.dart",
+        "lib/features/measurements/screens/measurement_category_sort_screen.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 73,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 388,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 73,
+          "hitLines": 6,
+          "diagnosticLines": 26,
+          "totalLines": 388,
+          "hitsByRule": {
+            "always_put_control_body_on_new_line": 2,
+            "parameter_assignments": 1,
+            "omit_local_variable_types": 1,
+            "prefer_const_constructors": 1,
+            "unnecessary_lambdas": 2
+          },
+          "linesByRule": {
+            "always_use_package_imports": 1,
+            "async_return_with_no_await": 1,
+            "always_put_control_body_on_new_line": 2,
+            "parameter_assignments": 1,
+            "omit_local_variable_types": 2,
+            "sort_constructors_first": 3,
+            "lines_longer_than_80_chars": 14,
+            "use_key_in_widget_constructors": 1,
+            "prefer_const_constructors": 1,
+            "unnecessary_lambdas": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "cc483f3daea44409620a4967487f2bf13ee402fa",
+      "subject": "fix: make routineId nullable in WorkoutLogTable to prevent crash",
+      "files": [
+        "lib/database/powersync/tables/routines.dart",
+        "lib/features/routines/models/log.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 6,
+          "totalLines": 489,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 6
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 1,
+          "diagnosticLines": 44,
+          "totalLines": 489,
+          "hitsByRule": {
+            "always_put_required_named_parameters_first": 1
+          },
+          "linesByRule": {
+            "constant_identifier_names": 6,
+            "unnecessary_lambdas": 2,
+            "lines_longer_than_80_chars": 20,
+            "sort_constructors_first": 2,
+            "always_put_required_named_parameters_first": 2,
+            "cascade_invocations": 3,
+            "prefer_expression_function_bodies": 4,
+            "avoid_setters_without_getters": 3,
+            "omit_local_variable_types": 1,
+            "document_ignores": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "569c51c98a4c10631ff6904ecf86fdaee880fd0e",
+      "subject": "Fix setLogScopeWeeks",
+      "files": [
+        "lib/features/routines/providers/gym_state_notifier.dart",
+        "lib/features/routines/widgets/gym_mode/start_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 13,
+          "hitLines": 1,
+          "diagnosticLines": 2,
+          "totalLines": 769,
+          "hitsByRule": {
+            "unused_import": 1
+          },
+          "linesByRule": {
+            "unused_import": 1,
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 13,
+          "hitLines": 3,
+          "diagnosticLines": 58,
+          "totalLines": 769,
+          "hitsByRule": {
+            "unused_import": 1,
+            "lines_longer_than_80_chars": 2
+          },
+          "linesByRule": {
+            "lines_longer_than_80_chars": 31,
+            "omit_local_variable_types": 5,
+            "cascade_invocations": 3,
+            "avoid_redundant_argument_values": 3,
+            "avoid_positional_boolean_parameters": 5,
+            "discarded_futures": 7,
+            "unused_import": 1,
+            "omit_obvious_property_types": 1,
+            "unnecessary_lambdas": 3,
+            "avoid_types_on_closure_parameters": 3,
+            "sort_constructors_first": 1,
+            "use_key_in_widget_constructors": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "601be2cfe672dce8b8b9e1ceee42a4c6b7c64aeb",
+      "subject": "fix(nutrition): decouple MealEditingToolbar visibility from ViewMode",
+      "files": [
+        "lib/widgets/nutrition/charts.dart",
+        "lib/widgets/nutrition/meal.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 1064,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 77,
+          "totalLines": 1064,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 11,
+            "prefer_expression_function_bodies": 8,
+            "prefer_int_literals": 6,
+            "lines_longer_than_80_chars": 26,
+            "sort_constructors_first": 6,
+            "use_key_in_widget_constructors": 4,
+            "omit_obvious_property_types": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "omit_local_variable_types": 3,
+            "avoid_redundant_argument_values": 8,
+            "avoid_positional_boolean_parameters": 2,
+            "discarded_futures": 2,
+            "inference_failure_on_function_return_type": 4,
+            "unnecessary_lambdas": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "01b746fc6597adf2321fb1e58001bda98889bbec",
+      "subject": "Fix image picker validation and error handling logic",
+      "files": [
+        "lib/widgets/add_exercise/mixins/image_picker_mixin.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 64,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 8,
+          "totalLines": 64,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 5,
+            "avoid_void_async": 1,
+            "omit_local_variable_types": 2,
+            "unawaited_futures": 1,
+            "inference_failure_on_function_invocation": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "efaa5121c528899c3f7fa145c0e711071955b40d",
+      "subject": "Fix column types",
+      "files": [
+        "lib/database/powersync/tables/exercise.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 12,
+          "totalLines": 353,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 12
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 27,
+          "totalLines": 353,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_use_package_imports": 1,
+            "constant_identifier_names": 12,
+            "lines_longer_than_80_chars": 14
+          }
+        }
+      }
+    },
+    {
+      "sha": "a4425354fc63a71903446e63cb7d63bc5f20e7e4",
+      "subject": "Add bug preventing the web-handoff workflow from working with self-hosted instances",
+      "files": [
+        "lib/helpers/consts.dart",
+        "lib/providers/app_link_router.dart",
+        "lib/widgets/auth/auth_card.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 71,
+          "totalLines": 740,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 68,
+            "camel_case_types": 1,
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 105,
+          "totalLines": 740,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 68,
+            "camel_case_types": 1,
+            "document_ignores": 1,
+            "lines_longer_than_80_chars": 12,
+            "omit_obvious_property_types": 7,
+            "prefer_int_literals": 4,
+            "avoid_catches_without_on_clauses": 2,
+            "always_use_package_imports": 8,
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1,
+            "discarded_futures": 3,
+            "inference_failure_on_instance_creation": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "40e3b560d17e1f2d209f562197d20a78ee1a3452",
+      "subject": "Fix tests",
+      "files": [
+        "lib/providers/auth_credentials_storage.dart",
+        "lib/providers/auth_notifier.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 6,
+          "totalLines": 1186,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 6
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 75,
+          "totalLines": 1186,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 2,
+            "async_return_with_no_await": 8,
+            "lines_longer_than_80_chars": 42,
+            "avoid_catches_without_on_clauses": 9,
+            "constant_identifier_names": 6,
+            "omit_obvious_property_types": 1,
+            "comment_references": 3,
+            "prefer_expression_function_bodies": 2,
+            "cascade_invocations": 1,
+            "avoid_dynamic_calls": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "c795bb442005cbfd248d6343fa42ed7069d4691e",
+      "subject": "Fix empty selection bug",
+      "files": [
+        "lib/widgets/nutrition/widgets.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 345,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 29,
+          "totalLines": 345,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2,
+            "lines_longer_than_80_chars": 16,
+            "inference_failure_on_function_return_type": 3,
+            "sort_constructors_first": 2,
+            "always_put_required_named_parameters_first": 4,
+            "prefer_expression_function_bodies": 3,
+            "unawaited_futures": 1,
+            "inference_failure_on_function_invocation": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "discarded_futures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "67bf65882f57fdfc9b35b9432a007491bed51a95",
+      "subject": "Fix bug causing the routine provider to enter a refresh loop",
+      "files": [
+        "lib/providers/routines_notifier.dart",
+        "lib/widgets/dashboard/widgets/routines.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 725,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 32,
+          "totalLines": 725,
+          "hitsByRule": {},
+          "linesByRule": {
+            "prefer_expression_function_bodies": 7,
+            "cascade_invocations": 1,
+            "lines_longer_than_80_chars": 17,
+            "comment_references": 1,
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1,
+            "omit_obvious_property_types": 1,
+            "discarded_futures": 1,
+            "avoid_redundant_argument_values": 1,
+            "sort_constructors_first": 1,
+            "avoid_positional_boolean_parameters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "70a5ae3ddf7b6f53dd3496fda0a2937fd161c893",
+      "subject": "fix: use theme color for brightness mode compatibility",
+      "files": [
+        "lib/widgets/nutrition/ingredient_dialogs.dart",
+        "lib/widgets/nutrition/widgets.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 710,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 2,
+          "diagnosticLines": 51,
+          "totalLines": 710,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 2
+          },
+          "linesByRule": {
+            "sort_constructors_first": 5,
+            "lines_longer_than_80_chars": 29,
+            "prefer_int_literals": 4,
+            "inference_failure_on_function_return_type": 4,
+            "use_key_in_widget_constructors": 2,
+            "always_put_required_named_parameters_first": 4,
+            "prefer_expression_function_bodies": 4,
+            "unawaited_futures": 1,
+            "inference_failure_on_function_invocation": 2,
+            "avoid_types_on_closure_parameters": 1,
+            "discarded_futures": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "10094775532ac87cc64c9a35ff23a56303fa9ca4",
+      "subject": "Fix behaviour on logout",
+      "files": [
+        "lib/database/powersync/powersync.dart",
+        "lib/helpers/consts.dart",
+        "lib/providers/auth_http_client.dart",
+        "lib/providers/auth_notifier.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 70,
+          "totalLines": 1712,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 69,
+            "camel_case_types": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 150,
+          "totalLines": 1712,
+          "hitsByRule": {},
+          "linesByRule": {
+            "comment_references": 4,
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 3,
+            "cascade_invocations": 2,
+            "lines_longer_than_80_chars": 40,
+            "prefer_expression_function_bodies": 5,
+            "document_ignores": 2,
+            "constant_identifier_names": 69,
+            "camel_case_types": 1,
+            "omit_obvious_property_types": 3,
+            "prefer_int_literals": 1,
+            "sort_constructors_first": 3,
+            "async_return_with_no_await": 8,
+            "avoid_catches_without_on_clauses": 6,
+            "no_dynamic_casts": 5,
+            "avoid_dynamic_calls": 4,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "bcfe836ce77ddf44484c991d832126d22dece1cb",
+      "subject": "Fix some i18n issues",
+      "files": [
+        "lib/providers/ingredient_notifier.dart",
+        "lib/screens/ingredients_screen.dart",
+        "lib/screens/nutritional_plans_screen.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 10,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 314,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 10,
+          "hitLines": 1,
+          "diagnosticLines": 13,
+          "totalLines": 314,
+          "hitsByRule": {
+            "flutter_style_todos": 1,
+            "todo": 1
+          },
+          "linesByRule": {
+            "always_use_package_imports": 1,
+            "unawaited_futures": 1,
+            "lines_longer_than_80_chars": 2,
+            "async_return_with_no_await": 1,
+            "omit_local_variable_types": 1,
+            "prefer_expression_function_bodies": 4,
+            "use_key_in_widget_constructors": 1,
+            "flutter_style_todos": 1,
+            "todo": 1,
+            "unnecessary_breaks": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "e7d002825181493e6839681a37820979d7ed91d2",
+      "subject": "Fix bug in the measurements overview",
+      "files": [
+        "lib/models/measurements/measurement_category.dart",
+        "lib/screens/measurement_entries_screen.dart",
+        "lib/widgets/measurements/categories_card.dart",
+        "lib/widgets/measurements/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 608,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 12,
+          "hitLines": 0,
+          "diagnosticLines": 34,
+          "totalLines": 608,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 4,
+            "prefer_expression_function_bodies": 6,
+            "use_key_in_widget_constructors": 4,
+            "cast_nullable_to_non_nullable": 1,
+            "discarded_futures": 3,
+            "unnecessary_breaks": 2,
+            "inference_failure_on_function_invocation": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "lines_longer_than_80_chars": 14,
+            "always_use_package_imports": 2,
+            "avoid_redundant_argument_values": 1,
+            "unawaited_futures": 1,
+            "omit_obvious_property_types": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1b72fb71add33009ebeb2093e0b0ad69b9841dab",
+      "subject": "Fix circular provider dependency",
+      "files": [
+        "lib/database/powersync/powersync.dart",
+        "lib/providers/auth_notifier.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 5,
+          "totalLines": 862,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 5
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 41,
+          "totalLines": 862,
+          "hitsByRule": {},
+          "linesByRule": {
+            "avoid_positional_boolean_parameters": 1,
+            "discarded_futures": 2,
+            "cascade_invocations": 2,
+            "prefer_expression_function_bodies": 2,
+            "document_ignores": 1,
+            "constant_identifier_names": 5,
+            "async_return_with_no_await": 3,
+            "lines_longer_than_80_chars": 13,
+            "no_dynamic_casts": 5,
+            "avoid_dynamic_calls": 4,
+            "avoid_catches_without_on_clauses": 4,
+            "comment_references": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "37729347a4ab364b7b76547d8c83dd90b8e72c08",
+      "subject": "Fix trophy provider online gate",
+      "files": [
+        "lib/providers/trophy_notifier.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 14,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 134,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 14,
+          "hitLines": 0,
+          "diagnosticLines": 7,
+          "totalLines": 134,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "prefer_expression_function_bodies": 1,
+            "discarded_futures": 2,
+            "avoid_catches_without_on_clauses": 1,
+            "lines_longer_than_80_chars": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "90949c63fbdb74a3c6b78a46a6cd787abbca44b4",
+      "subject": "fix(nutrition): resolve fl_chart crash on division by zero when logged/planned macros are empty in MealDiaryBarChart",
+      "files": [
+        "lib/widgets/nutrition/charts.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 624,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 44,
+          "totalLines": 624,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_put_required_named_parameters_first": 4,
+            "prefer_expression_function_bodies": 5,
+            "prefer_int_literals": 3,
+            "lines_longer_than_80_chars": 18,
+            "sort_constructors_first": 2,
+            "use_key_in_widget_constructors": 1,
+            "omit_obvious_property_types": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "omit_local_variable_types": 2,
+            "avoid_redundant_argument_values": 8
+          }
+        }
+      }
+    },
+    {
+      "sha": "e22f7ebbe31ec41facbba297dd6de47cb36214dd",
+      "subject": "Fix locale resolution logic",
+      "files": [
+        "lib/main.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 299,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 35,
+          "totalLines": 299,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_use_package_imports": 2,
+            "document_ignores": 1,
+            "lines_longer_than_80_chars": 26,
+            "omit_obvious_property_types": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "cascade_invocations": 1,
+            "use_key_in_widget_constructors": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "11a83932d3ab9509535dac1016c5d126784f7fb2",
+      "subject": "fix(gym): resolve in-place routine mutation in replaceExercises",
+      "files": [
+        "lib/providers/gym_state.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 11,
+          "totalLines": 739,
+          "hitsByRule": {},
+          "linesByRule": {
+            "unused_field": 1,
+            "unnecessary_non_null_assertion": 1,
+            "constant_identifier_names": 9
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 1,
+          "diagnosticLines": 53,
+          "totalLines": 739,
+          "hitsByRule": {
+            "flutter_style_todos": 1,
+            "todo": 1
+          },
+          "linesByRule": {
+            "constant_identifier_names": 9,
+            "sort_constructors_first": 3,
+            "prefer_expression_function_bodies": 4,
+            "lines_longer_than_80_chars": 15,
+            "unused_field": 1,
+            "join_return_with_assignment": 1,
+            "prefer_int_literals": 1,
+            "omit_local_variable_types": 5,
+            "cascade_invocations": 3,
+            "avoid_redundant_argument_values": 2,
+            "avoid_positional_boolean_parameters": 4,
+            "discarded_futures": 5,
+            "flutter_style_todos": 1,
+            "todo": 1,
+            "unnecessary_non_null_assertion": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "fd8545f9972e31d6d112bf8c9a475d4acd46d5f0",
+      "subject": "fix: use unit IDs directly in Log.fromSetConfigData to prevent null on save",
+      "files": [
+        "lib/models/workouts/log.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 313,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 30,
+          "totalLines": 313,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 13,
+            "sort_constructors_first": 3,
+            "always_put_required_named_parameters_first": 2,
+            "cascade_invocations": 3,
+            "avoid_setters_without_getters": 3,
+            "prefer_expression_function_bodies": 3,
+            "omit_local_variable_types": 1,
+            "document_ignores": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "f7f864da8a067e34fadfe8c7b750977e8f28cc2b",
+      "subject": "fix(measurements): add time picker to measurement entry form",
+      "files": [
+        "lib/widgets/measurements/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 313,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 36,
+          "totalLines": 313,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 2,
+            "use_key_in_widget_constructors": 2,
+            "no_dynamic_casts": 21,
+            "prefer_expression_function_bodies": 1,
+            "lines_longer_than_80_chars": 10,
+            "avoid_redundant_argument_values": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "eol_at_end_of_file": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "627b8b9fd834f50df010d0f18e048c2936a8bee4",
+      "subject": "fix: unit conversion on enable, dashboard refresh, and permission check",
+      "files": [
+        "lib/providers/health_sync.dart",
+        "lib/widgets/core/settings/health_sync.dart",
+        "lib/widgets/dashboard/widgets/weight.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 94,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 461,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 94,
+          "hitLines": 0,
+          "diagnosticLines": 29,
+          "totalLines": 461,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "prefer_expression_function_bodies": 2,
+            "omit_obvious_property_types": 2,
+            "discarded_futures": 2,
+            "lines_longer_than_80_chars": 15,
+            "async_return_with_no_await": 1,
+            "omit_local_variable_types": 2,
+            "avoid_catches_without_on_clauses": 2,
+            "use_key_in_widget_constructors": 1,
+            "avoid_redundant_argument_values": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "7760efc9e3893c9ee0a8871f68a3f65ce996f5a2",
+      "subject": "fix: replace EOL sqlite3_flutter_libs with drift_flutter",
+      "files": [
+        "lib/database/exercises/exercise_database.dart",
+        "lib/database/ingredients/ingredients_database.dart",
+        "lib/main.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 476,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 22,
+          "hitLines": 0,
+          "diagnosticLines": 44,
+          "totalLines": 476,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 4,
+            "lines_longer_than_80_chars": 27,
+            "prefer_expression_function_bodies": 6,
+            "always_use_package_imports": 2,
+            "document_ignores": 1,
+            "omit_obvious_property_types": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "cascade_invocations": 1,
+            "use_key_in_widget_constructors": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "7bab9b617ef44ae0765ec4a1e1b4891ea10c6b88",
+      "subject": "feat: add unit label to weight form and convert health sync values",
+      "files": [
+        "lib/providers/health_sync.dart",
+        "lib/screens/home_tabs_screen.dart",
+        "lib/widgets/weight/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 9,
+          "totalLines": 738,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 1,
+            "use_build_context_synchronously": 2,
+            "empty_catches": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 46,
+          "totalLines": 738,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "prefer_expression_function_bodies": 4,
+            "omit_obvious_property_types": 4,
+            "discarded_futures": 2,
+            "lines_longer_than_80_chars": 18,
+            "async_return_with_no_await": 1,
+            "omit_local_variable_types": 2,
+            "avoid_catches_without_on_clauses": 3,
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 1,
+            "unawaited_futures": 2,
+            "use_build_context_synchronously": 2,
+            "only_throw_errors": 1,
+            "empty_catches": 4
+          }
+        }
+      }
+    },
+    {
+      "sha": "a92897b2f9b8e97b69b841fa05925e29e73bc277",
+      "subject": "feat: add automatic weight sync from Apple Health and Google Health Connect",
+      "files": [
+        "lib/helpers/shared_preferences.dart",
+        "lib/models/body_weight/weight_entry.dart",
+        "lib/providers/body_weight.dart",
+        "lib/screens/home_tabs_screen.dart",
+        "lib/widgets/core/settings.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 3,
+          "totalLines": 581,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 1,
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 49,
+          "totalLines": 581,
+          "hitsByRule": {},
+          "linesByRule": {
+            "omit_obvious_property_types": 6,
+            "sort_constructors_first": 6,
+            "comment_references": 1,
+            "omit_local_variable_types": 3,
+            "lines_longer_than_80_chars": 15,
+            "avoid_positional_boolean_parameters": 2,
+            "prefer_expression_function_bodies": 8,
+            "inference_failure_on_untyped_parameter": 1,
+            "no_dynamic_casts": 2,
+            "constant_identifier_names": 1,
+            "avoid_catching_errors": 1,
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 1,
+            "unawaited_futures": 1,
+            "only_throw_errors": 1,
+            "always_use_package_imports": 3,
+            "simple_directive_paths": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "e20de66cf06eace421bcff31b2e3519d9dae21fa",
+      "subject": "Fix and cleanup some tests",
+      "files": [
+        "lib/widgets/routines/forms/repetitions.dart",
+        "lib/widgets/routines/forms/weight.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 2,
+          "totalLines": 381,
+          "hitsByRule": {},
+          "linesByRule": {
+            "library_private_types_in_public_api": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 2,
+          "hitLines": 0,
+          "diagnosticLines": 22,
+          "totalLines": 381,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 4,
+            "lines_longer_than_80_chars": 11,
+            "always_put_required_named_parameters_first": 2,
+            "library_private_types_in_public_api": 2,
+            "omit_local_variable_types": 2,
+            "avoid_redundant_argument_values": 1,
+            "avoid_types_on_closure_parameters": 4,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "6e95437301d5321526c8fbd97e652f8ca546a085",
+      "subject": "fix: prevent FutureBuilder from reloading on every rebuild in NutritionalPlanScreen",
+      "files": [
+        "lib/screens/nutritional_plan_screen.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 14,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 191,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 14,
+          "hitLines": 1,
+          "diagnosticLines": 10,
+          "totalLines": 191,
+          "hitsByRule": {
+            "prefer_expression_function_bodies": 1
+          },
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "prefer_expression_function_bodies": 2,
+            "lines_longer_than_80_chars": 3,
+            "cast_nullable_to_non_nullable": 1,
+            "unnecessary_breaks": 2,
+            "discarded_futures": 1,
+            "avoid_types_on_closure_parameters": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "6317cc7fe9fbebacaaf69049b6bfd5a6698317e8",
+      "subject": "fix add time when log meal and nutrition",
+      "files": [
+        "lib/screens/log_meal_screen.dart",
+        "lib/widgets/nutrition/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 5,
+          "totalLines": 1036,
+          "hitsByRule": {},
+          "linesByRule": {
+            "must_be_immutable": 1,
+            "use_key_in_widget_constructors": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 62,
+          "totalLines": 1036,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 4,
+            "avoid_positional_boolean_parameters": 2,
+            "use_key_in_widget_constructors": 4,
+            "lines_longer_than_80_chars": 25,
+            "cast_nullable_to_non_nullable": 2,
+            "avoid_redundant_argument_values": 1,
+            "inference_failure_on_untyped_parameter": 1,
+            "no_dynamic_casts": 1,
+            "prefer_expression_function_bodies": 3,
+            "discarded_futures": 3,
+            "flutter_style_todos": 2,
+            "todo": 2,
+            "avoid_types_on_closure_parameters": 10,
+            "inference_failure_on_function_return_type": 2,
+            "omit_local_variable_types": 1,
+            "avoid_catches_without_on_clauses": 2,
+            "prefer_int_literals": 3,
+            "must_be_immutable": 1,
+            "unnecessary_breaks": 1,
+            "always_put_required_named_parameters_first": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "33111b79e9b788d10233fd2e097c28f7a9ba78c1",
+      "subject": "Fix bug causing the \"copy to log\" to not work anymore",
+      "files": [
+        "lib/widgets/routines/gym_mode/log_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 780,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 2,
+            "use_build_context_synchronously": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 20,
+          "hitLines": 0,
+          "diagnosticLines": 52,
+          "totalLines": 780,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 5,
+            "use_key_in_widget_constructors": 1,
+            "library_private_types_in_public_api": 2,
+            "lines_longer_than_80_chars": 17,
+            "unnecessary_lambdas": 5,
+            "use_colored_box": 1,
+            "always_put_required_named_parameters_first": 18,
+            "prefer_expression_function_bodies": 2,
+            "omit_obvious_property_types": 1,
+            "use_build_context_synchronously": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "13421c547124ae46b4a3c86d84a84cfa4743fafc",
+      "subject": "Fix: Dead-Screen Issue is fixed",
+      "files": [
+        "lib/screens/measurement_entries_screen.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 147,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 12,
+          "totalLines": 147,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1,
+            "cast_nullable_to_non_nullable": 1,
+            "lines_longer_than_80_chars": 4,
+            "unnecessary_breaks": 2,
+            "discarded_futures": 2,
+            "inference_failure_on_function_invocation": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "prefer_expression_function_bodies": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "55259e748318e0f4ab3fb7b4e44e99d975a2ab74",
+      "subject": "feat: add configurable sound & vibration when countdown finishes (Fixes #1012)",
+      "files": [
+        "lib/widgets/routines/gym_mode/timer.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 141,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 10,
+          "totalLines": 141,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 2,
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 2,
+            "always_put_control_body_on_new_line": 2,
+            "avoid_redundant_argument_values": 2,
+            "lines_longer_than_80_chars": 4
+          }
+        }
+      }
+    },
+    {
+      "sha": "142799d87023e24655567ebbdb3beaf84ff47ed4",
+      "subject": "Fix localization",
+      "files": [
+        "lib/helpers/i18n.dart",
+        "lib/widgets/routines/gym_mode/result.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 520,
+          "hitsByRule": {},
+          "linesByRule": {
+            "unused_field": 1,
+            "unused_local_variable": 1,
+            "dangling_library_doc_comments": 1,
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 26,
+          "totalLines": 520,
+          "hitsByRule": {},
+          "linesByRule": {
+            "dangling_library_doc_comments": 1,
+            "lines_longer_than_80_chars": 10,
+            "sort_constructors_first": 6,
+            "use_key_in_widget_constructors": 1,
+            "prefer_expression_function_bodies": 3,
+            "unused_field": 1,
+            "prefer_int_literals": 5,
+            "unused_local_variable": 1,
+            "omit_local_variable_types": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "067fa7455f1846eb7ccb89d85c27791091c62250",
+      "subject": "Revert to showDialog",
+      "files": [
+        "lib/widgets/routines/gym_mode/gym_mode.dart",
+        "lib/widgets/routines/gym_mode/navigation.dart",
+        "lib/widgets/routines/gym_mode/workout_menu.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 41,
+          "hitLines": 0,
+          "diagnosticLines": 5,
+          "totalLines": 740,
+          "hitsByRule": {},
+          "linesByRule": {
+            "dead_code": 1,
+            "use_key_in_widget_constructors": 4
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 41,
+          "hitLines": 1,
+          "diagnosticLines": 48,
+          "totalLines": 740,
+          "hitsByRule": {
+            "omit_local_variable_types": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 10,
+            "use_key_in_widget_constructors": 4,
+            "omit_obvious_property_types": 1,
+            "avoid_redundant_argument_values": 4,
+            "lines_longer_than_80_chars": 21,
+            "omit_local_variable_types": 4,
+            "cascade_invocations": 1,
+            "prefer_expression_function_bodies": 5,
+            "discarded_futures": 1,
+            "inference_failure_on_function_invocation": 2,
+            "prefer_int_literals": 1,
+            "dead_code": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "ec8578d43d9fab9a54c74d96ecfa203ff578dcf7",
+      "subject": "Add some tests and fix a small bug in uuid handling",
+      "files": [
+        "lib/providers/gym_state.dart",
+        "lib/widgets/routines/gym_mode/navigation.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 7,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 631,
+          "hitsByRule": {},
+          "linesByRule": {
+            "unused_field": 1,
+            "constant_identifier_names": 1,
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 7,
+          "hitLines": 1,
+          "diagnosticLines": 32,
+          "totalLines": 631,
+          "hitsByRule": {
+            "lines_longer_than_80_chars": 1
+          },
+          "linesByRule": {
+            "constant_identifier_names": 1,
+            "sort_constructors_first": 5,
+            "prefer_expression_function_bodies": 4,
+            "lines_longer_than_80_chars": 12,
+            "unused_field": 1,
+            "join_return_with_assignment": 1,
+            "prefer_int_literals": 1,
+            "omit_local_variable_types": 2,
+            "avoid_positional_boolean_parameters": 2,
+            "discarded_futures": 3,
+            "flutter_style_todos": 1,
+            "todo": 1,
+            "avoid_redundant_argument_values": 1,
+            "use_key_in_widget_constructors": 2,
+            "inference_failure_on_function_invocation": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1e9e5ab24c00096f41b39ddefa4162ce297316d8",
+      "subject": "Fix some more tests",
+      "files": [
+        "lib/providers/plate_weights.dart",
+        "lib/screens/routine_screen.dart",
+        "lib/widgets/routines/forms/reps_unit.dart",
+        "lib/widgets/routines/forms/weight_unit.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 10,
+          "totalLines": 402,
+          "hitsByRule": {},
+          "linesByRule": {
+            "unused_field": 1,
+            "constant_identifier_names": 5,
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 6,
+          "hitLines": 0,
+          "diagnosticLines": 44,
+          "totalLines": 402,
+          "hitsByRule": {},
+          "linesByRule": {
+            "constant_identifier_names": 5,
+            "lines_longer_than_80_chars": 13,
+            "unused_field": 1,
+            "sort_constructors_first": 5,
+            "avoid_dynamic_calls": 1,
+            "no_dynamic_casts": 2,
+            "prefer_expression_function_bodies": 9,
+            "discarded_futures": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "avoid_positional_boolean_parameters": 1,
+            "omit_local_variable_types": 3,
+            "cast_nullable_to_non_nullable": 1,
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 2,
+            "avoid_redundant_argument_values": 1,
+            "avoid_types_on_closure_parameters": 4
+          }
+        }
+      }
+    },
+    {
+      "sha": "5912cea664bf5fdcd4d5deb4d83c9991a6f07ed0",
+      "subject": "Fix some tests",
+      "files": [
+        "lib/main.dart",
+        "lib/providers/routines.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 923,
+          "hitsByRule": {},
+          "linesByRule": {
+            "unused_field": 1,
+            "avoid_print": 1,
+            "use_key_in_widget_constructors": 1,
+            "unnecessary_brace_in_string_interps": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 5,
+          "hitLines": 0,
+          "diagnosticLines": 77,
+          "totalLines": 923,
+          "hitsByRule": {},
+          "linesByRule": {
+            "always_use_package_imports": 4,
+            "avoid_print": 1,
+            "lines_longer_than_80_chars": 44,
+            "omit_obvious_property_types": 1,
+            "avoid_types_on_closure_parameters": 1,
+            "cascade_invocations": 2,
+            "use_key_in_widget_constructors": 1,
+            "prefer_expression_function_bodies": 10,
+            "unused_field": 1,
+            "sort_constructors_first": 1,
+            "avoid_setters_without_getters": 1,
+            "no_dynamic_casts": 8,
+            "avoid_dynamic_calls": 2,
+            "omit_local_variable_types": 1,
+            "parameter_assignments": 1,
+            "unawaited_futures": 3,
+            "unnecessary_brace_in_string_interps": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "1fcd01e14cb68a99f682ed5d263e32ed79aa0dc4",
+      "subject": "Fix some tests",
+      "files": [
+        "lib/helpers/errors.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 3,
+          "totalLines": 463,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_build_context_synchronously": 1,
+            "void_checks": 1,
+            "avoid_print": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 1,
+          "diagnosticLines": 56,
+          "totalLines": 463,
+          "hitsByRule": {
+            "discarded_futures": 1
+          },
+          "linesByRule": {
+            "always_use_package_imports": 2,
+            "lines_longer_than_80_chars": 24,
+            "omit_local_variable_types": 12,
+            "discarded_futures": 4,
+            "inference_failure_on_function_invocation": 3,
+            "avoid_annotating_with_dynamic": 2,
+            "avoid_types_on_closure_parameters": 2,
+            "prefer_expression_function_bodies": 5,
+            "prefer_int_literals": 4,
+            "avoid_catches_without_on_clauses": 1,
+            "use_build_context_synchronously": 1,
+            "sort_constructors_first": 4,
+            "inference_failure_on_untyped_parameter": 1,
+            "avoid_void_async": 1,
+            "void_checks": 1,
+            "no_dynamic_casts": 1,
+            "avoid_print": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a7ba6230058d5c3ca5e2d9bd3e5be8ff3796564d",
+      "subject": "fix: Save ingredient to cache on selection",
+      "files": [
+        "lib/providers/nutrition.dart",
+        "lib/widgets/nutrition/widgets.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 16,
+          "hitLines": 0,
+          "diagnosticLines": 4,
+          "totalLines": 720,
+          "hitsByRule": {},
+          "linesByRule": {
+            "empty_catches": 1,
+            "use_key_in_widget_constructors": 2,
+            "library_private_types_in_public_api": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 16,
+          "hitLines": 2,
+          "diagnosticLines": 78,
+          "totalLines": 720,
+          "hitsByRule": {
+            "unawaited_futures": 1,
+            "flutter_style_todos": 1,
+            "todo": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 3,
+            "prefer_expression_function_bodies": 8,
+            "lines_longer_than_80_chars": 29,
+            "avoid_catching_errors": 2,
+            "empty_catches": 1,
+            "no_dynamic_casts": 16,
+            "avoid_dynamic_calls": 9,
+            "flutter_style_todos": 3,
+            "todo": 3,
+            "omit_local_variable_types": 3,
+            "parameter_assignments": 3,
+            "unawaited_futures": 3,
+            "use_key_in_widget_constructors": 2,
+            "inference_failure_on_function_return_type": 3,
+            "always_put_required_named_parameters_first": 4,
+            "library_private_types_in_public_api": 1,
+            "inference_failure_on_function_invocation": 1,
+            "avoid_types_on_closure_parameters": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "a0c13b60c98866e6eca6927bfdbc5e8d27b84833",
+      "subject": "fixed attribute name in session page",
+      "files": [
+        "lib/widgets/routines/gym_mode/session_page.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 81,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_key_in_widget_constructors": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 3,
+          "hitLines": 0,
+          "diagnosticLines": 5,
+          "totalLines": 81,
+          "hitsByRule": {},
+          "linesByRule": {
+            "sort_constructors_first": 1,
+            "use_key_in_widget_constructors": 1,
+            "unnecessary_null_checks": 2,
+            "avoid_redundant_argument_values": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "cb138f41f7ccb9c6f16212cbe934e3efdba3534f",
+      "subject": "missing button fix",
+      "files": [
+        "lib/widgets/add_exercise/image_details_form.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 1,
+          "totalLines": 451,
+          "hitsByRule": {},
+          "linesByRule": {
+            "use_super_parameters": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 8,
+          "hitLines": 0,
+          "diagnosticLines": 28,
+          "totalLines": 451,
+          "hitsByRule": {},
+          "linesByRule": {
+            "inference_failure_on_function_return_type": 1,
+            "sort_constructors_first": 1,
+            "always_put_required_named_parameters_first": 3,
+            "lines_longer_than_80_chars": 10,
+            "omit_obvious_property_types": 1,
+            "prefer_expression_function_bodies": 7,
+            "prefer_int_literals": 1,
+            "no_dynamic_casts": 3,
+            "eol_at_end_of_file": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "5a4d4c7208a50332e92bcefce0b86cab78148b5a",
+      "subject": "Save the application logs",
+      "files": [
+        "lib/helpers/errors.dart",
+        "lib/main.dart",
+        "lib/widgets/core/about.dart",
+        "lib/widgets/routines/routines_list.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 30,
+          "hitLines": 2,
+          "diagnosticLines": 8,
+          "totalLines": 1008,
+          "hitsByRule": {
+            "use_build_context_synchronously": 2
+          },
+          "linesByRule": {
+            "use_build_context_synchronously": 4,
+            "void_checks": 1,
+            "avoid_print": 1,
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 30,
+          "hitLines": 3,
+          "diagnosticLines": 99,
+          "totalLines": 1008,
+          "hitsByRule": {
+            "omit_local_variable_types": 1,
+            "use_build_context_synchronously": 2
+          },
+          "linesByRule": {
+            "always_use_package_imports": 2,
+            "lines_longer_than_80_chars": 46,
+            "omit_local_variable_types": 13,
+            "discarded_futures": 5,
+            "inference_failure_on_function_invocation": 4,
+            "avoid_annotating_with_dynamic": 1,
+            "avoid_types_on_closure_parameters": 4,
+            "prefer_expression_function_bodies": 8,
+            "prefer_int_literals": 9,
+            "use_build_context_synchronously": 4,
+            "inference_failure_on_untyped_parameter": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "avoid_void_async": 1,
+            "void_checks": 1,
+            "no_dynamic_casts": 2,
+            "sort_constructors_first": 5,
+            "avoid_print": 1,
+            "omit_obvious_property_types": 2,
+            "cascade_invocations": 1,
+            "use_key_in_widget_constructors": 2
+          }
+        }
+      }
+    },
+    {
+      "sha": "4dff6ea2b1c1315d8a7b1cbb289f6a9f9a89ee04",
+      "subject": "Fix import so that \"isSameDayAs\" becomes available again",
+      "files": [
+        "lib/helpers/measurements.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 1,
+          "diagnosticLines": 1,
+          "totalLines": 105,
+          "hitsByRule": {
+            "unused_import": 1
+          },
+          "linesByRule": {
+            "unused_import": 1
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 1,
+          "diagnosticLines": 14,
+          "totalLines": 105,
+          "hitsByRule": {
+            "unused_import": 1
+          },
+          "linesByRule": {
+            "unused_import": 1,
+            "prefer_expression_function_bodies": 1,
+            "lines_longer_than_80_chars": 9,
+            "omit_local_variable_types": 3
+          }
+        }
+      }
+    },
+    {
+      "sha": "fb88facda989c483932d37681ac7fc5b7ff32171",
+      "subject": "Report the local sync counters in bug reports",
+      "files": [
+        "lib/core/widgets/sync_status_dialog.dart",
+        "lib/powersync/sync_diagnostics.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 405,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 14,
+          "totalLines": 405,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 8,
+            "sort_constructors_first": 1,
+            "avoid_redundant_argument_values": 1,
+            "cascade_invocations": 1,
+            "avoid_catches_without_on_clauses": 2,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "67ed4d8ca19db8b5dab2b7900b42bb2caedc2ea8",
+      "subject": "Report the local sync counters in bug reports",
+      "files": [
+        "lib/core/widgets/sync_status_dialog.dart",
+        "lib/features/account/widgets/settings/health_sync.dart",
+        "lib/powersync/sync_diagnostics.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 0,
+          "totalLines": 612,
+          "hitsByRule": {},
+          "linesByRule": {}
+        },
+        "flutter_agent_lints": {
+          "fixLines": 4,
+          "hitLines": 0,
+          "diagnosticLines": 29,
+          "totalLines": 612,
+          "hitsByRule": {},
+          "linesByRule": {
+            "lines_longer_than_80_chars": 20,
+            "sort_constructors_first": 1,
+            "avoid_redundant_argument_values": 1,
+            "cascade_invocations": 1,
+            "avoid_catches_without_on_clauses": 4,
+            "discarded_futures": 1,
+            "prefer_expression_function_bodies": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "733a88028072f308a4eff0be77a270bb3ca6d21e",
+      "subject": "fix(measurements): restore complete forms.dart with only selectableDayPredicate removed",
+      "files": [
+        "lib/widgets/measurements/forms.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 1,
+          "hitLines": 0,
+          "diagnosticLines": 5,
+          "totalLines": 161,
+          "hitsByRule": {},
+          "linesByRule": {
+            "unused_field": 3,
+            "use_key_in_widget_constructors": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 1,
+          "hitLines": 1,
+          "diagnosticLines": 17,
+          "totalLines": 161,
+          "hitsByRule": {
+            "unnecessary_statements": 1
+          },
+          "linesByRule": {
+            "sort_constructors_first": 2,
+            "use_key_in_widget_constructors": 2,
+            "no_dynamic_casts": 8,
+            "prefer_expression_function_bodies": 1,
+            "lines_longer_than_80_chars": 2,
+            "unused_field": 3,
+            "unnecessary_statements": 1,
+            "eol_at_end_of_file": 1
+          }
+        }
+      }
+    },
+    {
+      "sha": "0774571fbc87c116ca19f59345f5eb1a68bcbd7a",
+      "subject": "Fix test",
+      "files": [
+        "lib/providers/trophies.dart"
+      ],
+      "scores": {
+        "flutter_lints": {
+          "fixLines": 9,
+          "hitLines": 2,
+          "diagnosticLines": 2,
+          "totalLines": 94,
+          "hitsByRule": {
+            "avoid_print": 2
+          },
+          "linesByRule": {
+            "avoid_print": 2
+          }
+        },
+        "flutter_agent_lints": {
+          "fixLines": 9,
+          "hitLines": 3,
+          "diagnosticLines": 13,
+          "totalLines": 94,
+          "hitsByRule": {
+            "avoid_catches_without_on_clauses": 1,
+            "avoid_print": 2
+          },
+          "linesByRule": {
+            "always_use_package_imports": 1,
+            "sort_constructors_first": 1,
+            "no_dynamic_casts": 4,
+            "lines_longer_than_80_chars": 1,
+            "avoid_catches_without_on_clauses": 1,
+            "avoid_print": 2,
+            "async_return_with_no_await": 3
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "sha": "5bec45cdaf77748072f011f8e7ace39e260924aa",
+      "reason": "only additions"
+    },
+    {
+      "sha": "f135da6d151f5f77a5331af6d80893d107c83e4f",
+      "reason": "only additions"
+    },
+    {
+      "sha": "0cf4111c8d40a8767d7fb65c9d547cc5a0474719",
+      "reason": "only additions"
+    },
+    {
+      "sha": "138177ef9cf93dcc5cdff3234d519ff72af0725e",
+      "reason": "12 files"
+    },
+    {
+      "sha": "8e05d3ab105fd5d8b21896853b7d07db1352a1ba",
+      "reason": "26 files"
+    },
+    {
+      "sha": "fe33f693a8c096de9e39de65dca229e1242fade6",
+      "reason": "7 files"
+    },
+    {
+      "sha": "07aa325ec5ba3922c2c2dbe15e5985b55d10f2d4",
+      "reason": "6 files"
+    },
+    {
+      "sha": "ec20dd45de1882f50747ae1a4b32d6f35dd99196",
+      "reason": "7 files"
+    },
+    {
+      "sha": "a699fd472a441ac8238f2e0a9d9ed58a47b245c8",
+      "reason": "only generated files"
+    },
+    {
+      "sha": "c411e8949a616543731355cc8127f1d5b4ef2b99",
+      "reason": "383 fixed lines"
+    },
+    {
+      "sha": "70dff579d467f2af1027a1719ece8cecc39665b5",
+      "reason": "6 files"
+    },
+    {
+      "sha": "e1968d0b2f87d95ed6481826b7dde250e0104019",
+      "reason": "only additions"
+    },
+    {
+      "sha": "2afad29832a3a490d997d104c28ec92f25aee72d",
+      "reason": "8 files"
+    },
+    {
+      "sha": "9040106939b4acd4a674b89ebe5c31199574e986",
+      "reason": "8 files"
+    },
+    {
+      "sha": "e0228d5793c155c314c8bb8e5fc216d572e8424b",
+      "reason": "only additions"
+    }
+  ]
+}

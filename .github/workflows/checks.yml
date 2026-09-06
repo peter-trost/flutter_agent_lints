@@ -67,8 +67,30 @@ jobs:
       - name: Every SDK rule is decided
         run: dart run tool/check_rules.dart
 
-      - name: Publish dry run
-        run: dart pub publish --dry-run
+      # The dry run validates but never fails on size. Plant build output that
+      # .pubignore must exclude, then fail if it shows up in the archive or if
+      # the archive is far bigger than a lint package should ever be.
+      - name: Publish dry run, archive stays small and excludes build output
+        run: |
+          mkdir -p example/.dart_tool build
+          echo canary > example/.dart_tool/canary.dill
+          echo canary > build/canary
+          out="$(dart pub publish --dry-run 2>&1)"
+          echo "$out" | tail -n 4
+          if echo "$out" | grep -q canary; then
+            echo "::error::build output ended up in the archive; check .pubignore"
+            exit 1
+          fi
+          size="$(echo "$out" | awk -F': ' '/Total compressed archive size/ { sub(/\.$/, "", $2); print $2 }')"
+          if [ -z "$size" ]; then
+            echo "::error::no archive size in the dry run output"
+            exit 1
+          fi
+          kb="$(echo "$size" | tr -d '<' | awk '{ if ($2 == "B") print $1 / 1024; else if ($2 == "KB") print $1; else if ($2 == "MB") print $1 * 1024; else print $1 * 1024 * 1024 }')"
+          if awk -v kb="$kb" 'BEGIN { exit !(kb > 100) }'; then
+            echo "::error::archive is $size, limit is 100 KB"
+            exit 1
+          fi
 
       - name: Pure Dart fixture analyzes clean (experimental variant)
         working-directory: fixtures/pure_dart

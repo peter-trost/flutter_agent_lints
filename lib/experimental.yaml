@@ -1,0 +1,21 @@
+# flutter_agent_lints, experimental variant: analysis_options.yaml plus the
+# rules the targeted Dart SDK still marks experimental. Same contract: every
+# experimental rule appears under `linter.rules` exactly once, as `true` or
+# `false`, with a reason. Opt-in; see README.md. Includes the main file through
+# experimental_errors.yaml, which promotes these rules to error.
+
+include: experimental_errors.yaml
+
+linter:
+  rules:
+    annotate_redeclares: true # An unannotated redeclaration in an extension type is indistinguishable from a typo.
+    avoid_futureor_void: true # `FutureOr<void>` cannot be awaited meaningfully; it is always a type error waiting to happen.
+    implicit_reopen: true # Reopening a sealed hierarchy must be written `@reopen` or it is an accident.
+    invalid_case_patterns: true # Case expressions that Dart 3 parses differently from Dart 2 are rewritten unambiguously.
+    no_default_cases: true # A `default` hides new enum values from the exhaustiveness check; list every case.
+    unnecessary_async: true # An `async` body without `await` is overhead and hides that nothing is asynchronous.
+    unsafe_variance: true # A type variable in a non-covariant position is a runtime type error the checker cannot see.
+    use_late_for_private_fields_and_variables: false # Trades a compile-time null check for a runtime `LateInitializationError`.
+    use_primary_constructors: true # One constructor form where the language offers two.
+    use_super_parameters: true # `super.x` replaces forwarding boilerplate; one form.
+    var_with_no_type_annotation: true # An untyped `var` parameter is `dynamic`; the type must be written.

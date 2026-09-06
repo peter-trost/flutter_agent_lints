@@ -1,0 +1,19 @@
+# GENERATED CODE - DO NOT MODIFY BY HAND
+# Regenerate with `dart run tool/generate.dart`. Promotes every rule
+# enabled by the including options file, plus every analyzer diagnostic
+# whose default severity is warning or info, to error.
+
+include: analysis_options.yaml
+
+analyzer:
+  errors:
+    annotate_redeclares: error
+    avoid_futureor_void: error
+    implicit_reopen: error
+    invalid_case_patterns: error
+    no_default_cases: error
+    unnecessary_async: error
+    unsafe_variance: error
+    use_primary_constructors: error
+    use_super_parameters: error
+    var_with_no_type_annotation: error

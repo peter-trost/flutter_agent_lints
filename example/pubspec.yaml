@@ -1,0 +1,21 @@
+name: example
+description: Minimal Flutter app that analyzes clean under flutter_agent_lints.
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+  # Exact pin, read by CI to install the matching Flutter. Renovate bumps it.
+  flutter: 3.47.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_agent_lints:
+    path: ../
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

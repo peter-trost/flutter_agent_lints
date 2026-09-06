@@ -1,0 +1,9 @@
+# The package analyzes itself with the rules it ships. The example app and
+# the fixtures are separate packages with their own dependency resolution and
+# are analyzed by their own CI steps.
+include: lib/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - example/**
+    - fixtures/**

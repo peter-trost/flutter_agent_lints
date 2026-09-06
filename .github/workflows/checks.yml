@@ -1,0 +1,113 @@
+# Reusable check suite, called by ci.yml on every pull request and on pushes
+# to main. Every external input that can change (Dart and Flutter releases,
+# dependencies, action digests) arrives as a Renovate pull request, so there is
+# no scheduled run: nothing drifts without a PR to run these checks on.
+name: Checks
+
+on:
+  workflow_call:
+    inputs:
+      dart-sdk:
+        description: >-
+          Dart SDK to test with. "pubspec" resolves to the lower bound of
+          environment.sdk in pubspec.yaml; anything else is passed to
+          setup-dart verbatim (for example "stable" or "3.14.0").
+        required: true
+        type: string
+      flutter:
+        description: >-
+          Flutter to test the example app with. "pubspec" resolves to the exact
+          version pinned in example/pubspec.yaml under environment.flutter;
+          anything else is used as a channel name (for example "stable").
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package (${{ inputs.dart-sdk }})
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Resolve Dart SDK version
+        id: sdk
+        run: |
+          if [ "${{ inputs.dart-sdk }}" = "pubspec" ]; then
+            version="$(yq -r '.environment.sdk' pubspec.yaml | sed 's/[^0-9.]//g')"
+          else
+            version="${{ inputs.dart-sdk }}"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
+        with:
+          sdk: ${{ steps.sdk.outputs.version }}
+
+      - run: dart --version
+
+      # --no-example: pub also resolves example/ by default, which needs the
+      # Flutter SDK this job does not have. The example job handles it.
+      - run: dart pub get --no-example
+
+      - name: Format
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze --fatal-infos
+
+      - name: Test
+        run: dart test
+
+      - name: Generated errors block is current
+        run: dart run tool/generate.dart --check
+
+      - name: Every SDK rule is decided
+        run: dart run tool/check_rules.dart
+
+      - name: Publish dry run
+        run: dart pub publish --dry-run
+
+      - name: Pure Dart fixture analyzes clean (experimental variant)
+        working-directory: fixtures/pure_dart
+        run: |
+          dart pub get
+          dart analyze --fatal-infos
+
+  example:
+    name: Example app (${{ inputs.flutter }})
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Resolve Flutter version
+        id: flutter
+        run: |
+          if [ "${{ inputs.flutter }}" = "pubspec" ]; then
+            echo "version=$(yq -r '.environment.flutter' example/pubspec.yaml)" >> "$GITHUB_OUTPUT"
+            echo "channel=" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=" >> "$GITHUB_OUTPUT"
+            echo "channel=${{ inputs.flutter }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          flutter-version: ${{ steps.flutter.outputs.version }}
+          channel: ${{ steps.flutter.outputs.channel }}
+          cache: true
+
+      - run: flutter --version
+
+      - working-directory: example
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: example
+        run: dart analyze --fatal-infos
+
+      - name: Test
+        working-directory: example
+        run: flutter test

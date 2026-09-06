@@ -1,0 +1,96 @@
+# Runs on the Renovate PR that bumps the Dart SDK lower bound (label
+# sdk-update). If the new SDK brings rules or diagnostics the option files have
+# not decided on, Claude adds each one with a decision and a reason, moves the
+# analyzer pin, regenerates the errors files, bumps the major version, writes
+# the changelog entry, and pushes to the PR branch. The push re-triggers CI so
+# the PR shows green checks on its final commit.
+#
+# Setup, once per repository:
+#   1. Install the Renovate app (https://github.com/apps/renovate).
+#   2. Install the Claude app (https://github.com/apps/claude).
+#   3. In the Claude Console, register GitHub Actions as a workload identity
+#      issuer and create a federation rule for this repository targeting a
+#      service account in the workspace that should be billed. No API key.
+name: SDK update
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: sdk-update-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  decide:
+    if: >-
+      github.event.pull_request.user.login == 'renovate[bot]' &&
+      contains(github.event.pull_request.labels.*.name, 'sdk-update')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Resolve the new Dart SDK version from pubspec.yaml
+        id: sdk
+        run: |
+          version="$(yq -r '.environment.sdk' pubspec.yaml | sed 's/[^0-9.]//g')"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
+        with:
+          sdk: ${{ steps.sdk.outputs.version }}
+
+      # The same checks the sdk-update skill ends on. Only if one fails is
+      # there a decision to make, and only then does the agent run.
+      - name: Is there anything to decide?
+        id: gate
+        run: |
+          dart pub get --no-example
+          needs=false
+          dart run tool/check_rules.dart || needs=true
+          dart analyze --fatal-infos || needs=true
+          dart run tool/generate.dart --check || needs=true
+          pinned="$(yq -r '.dev_dependencies.analyzer' pubspec.yaml)"
+          bundled="$(dart run .claude/skills/sdk-update/scripts/bundled_analyzer_version.dart)"
+          [ "$pinned" = "$bundled" ] || needs=true
+          echo "needs_agent=$needs" >> "$GITHUB_OUTPUT"
+
+      - name: Add decisions for the new SDK
+        if: steps.gate.outputs.needs_agent == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          # Workload identity federation: the job's GitHub OIDC token is
+          # exchanged for a short-lived Anthropic token. These are identifiers,
+          # not credentials. The rule matches only pull_request runs of this
+          # repository and is scoped to the flutter_agent_lints workspace,
+          # which carries its own monthly spend limit.
+          anthropic_federation_rule_id: fdrl_01Lvvt4Hu1n5vGv6K7piqVVh
+          anthropic_organization_id: aa1949cc-2369-449f-a0cd-44a8bfe66071
+          anthropic_service_account_id: svac_015USko5mSJt8tv82gAKXEQ2
+          anthropic_workspace_id: wrkspc_01YW4WKT8QjcKq3EcfBLboAd
+          allowed_bots: renovate[bot]
+          prompt: |
+            Renovate has bumped the Dart SDK lower bound in pubspec.yaml to
+            ${{ steps.sdk.outputs.version }} on this PR branch, and that SDK
+            is installed. Follow .claude/skills/sdk-update/SKILL.md to bring
+            the package up to date with it, every step through to its check.
+
+            Then commit with a message that explains each decision, push to
+            this PR branch, and post one comment on the PR summarising every
+            decision in a table so the reviewer can approve or ask for a
+            change.
+
+            Never add `// ignore` comments, never edit the generated errors
+            files by hand, and never leave a rule undecided.
+          claude_args: |
+            --model claude-opus-5
+            --max-turns 60
+            --allowedTools "Read,Edit,Write,Bash(dart:*),Bash(git:*),Bash(gh pr comment:*),WebFetch"

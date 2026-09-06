@@ -1,0 +1,263 @@
+# flutter_agent_lints. Installation and principles: README.md.
+#
+# Contract: every stable, non-deprecated lint rule of the targeted Dart SDK
+# appears under `linter.rules` exactly once, as `true` or `false`, with a
+# one-line reason. Decisions follow the README's principles in order:
+# robustness, one way to write it, token efficiency. Everything enabled is
+# promoted to error in errors.yaml, which this file includes.
+
+include: errors.yaml
+
+analyzer:
+  language:
+    strict-casts: true # No implicit downcasts; a cast is a decision and must be written.
+    strict-inference: true # Inference failures are errors instead of silently becoming `dynamic`.
+    strict-raw-types: true # Generic types must state their type arguments.
+
+  exclude:
+    # Generated code cannot be fixed by the agent that consumes it. Excluding
+    # it removes the temptation to reach for `ignore_for_file`.
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+    - "**/*.mocks.dart"
+    - "**/*.gen.dart"
+    - "**/*.config.dart"
+
+formatter:
+  page_width: 80 # The ecosystem default, pinned so it is never a project-level choice.
+  trailing_commas: automate # The formatter owns trailing commas; no lint or human decides them.
+
+linter:
+  rules:
+    always_declare_return_types: true # A return type cannot be inferred for a non-override; without it the function returns `dynamic`.
+    always_put_control_body_on_new_line: true # One shape for control flow, implied by mandatory braces and the formatter.
+    always_put_required_named_parameters_first: true # Deterministic parameter order; required arguments are the ones a reader looks for first.
+    always_specify_types: false # Types are required only where inference fails; annotating everything doubles the tokens for zero information.
+    always_use_package_imports: true # Exactly one valid import string per file, independent of where the importing file sits.
+    annotate_overrides: true # An unannotated override is indistinguishable from a typo.
+    async_return_with_no_await: true # An `async` body that never awaits is either a mistake or unneeded overhead.
+    avoid_annotating_with_dynamic: true # Untyped means `dynamic` already; writing it adds nothing and hides that inference was skipped.
+    avoid_bool_literals_in_conditional_expressions: true # `c ? true : x` is `c || x`; one canonical spelling.
+    avoid_catches_without_on_clauses: true # A bare `catch` swallows programming errors; the caught type must be named.
+    avoid_catching_errors: true # `Error` subtypes signal bugs, not recoverable conditions.
+    avoid_classes_with_only_static_members: true # Namespacing belongs to the library, not to a class that is never instantiated.
+    avoid_double_and_int_checks: true # `is double` and `is int` behave differently on web; the check is platform dependent.
+    avoid_dynamic_calls: true # Calls on `dynamic` bypass every static guarantee this file exists to provide.
+    avoid_empty_else: true # An empty `else` is a dangling semicolon bug waiting to be found.
+    avoid_equals_and_hash_code_on_mutable_classes: true # Mutable keys break hash-based collections; equality belongs to `@immutable` types.
+    avoid_escaping_inner_quotes: true # Deterministic quote choice when the string contains a quote.
+    avoid_field_initializers_in_const_classes: true # In a const class the value belongs in a getter or the constructor.
+    avoid_final_parameters: false # Dart 3.13 rejects `final` on parameters at the language level, so the rule can never fire.
+    avoid_function_literals_in_foreach_calls: true # A `for` loop is the one way to iterate with a body; `forEach` is for tear-offs only.
+    avoid_implementing_value_types: true # Implementing a class with custom `==` produces objects that compare wrong.
+    avoid_init_to_null: true # `= null` on a nullable declaration is noise.
+    avoid_js_rounded_ints: true # Integers above 2^53 silently lose precision on web.
+    avoid_multiple_declarations_per_line: true # One declaration per line; diffs and reviews stay per variable.
+    avoid_positional_boolean_parameters: true # A bare `true` at a call site carries no meaning; booleans are named.
+    avoid_print: true # `print` is not logging; production output goes through a logger.
+    avoid_redundant_argument_values: true # Repeating a default value looks like a decision that was never made.
+    avoid_relative_lib_imports: true # A relative import into `lib/` from outside creates two identities for one library.
+    avoid_renaming_method_parameters: true # Overrides keep parameter names so named-argument call sites keep working.
+    avoid_return_types_on_setters: true # A setter's return type is always `void`; writing it is noise.
+    avoid_returning_null_for_void: true # `return null` in a `void` function is a leftover from a type change.
+    avoid_returning_this: true # Fluent interfaces via `return this` are replaced by cascades, which the language provides.
+    avoid_setters_without_getters: true # Write-only properties cannot be read back or tested.
+    avoid_shadowing_type_parameters: true # A shadowed type parameter silently refers to the wrong type.
+    avoid_single_cascade_in_expression_statements: true # A single cascade is a plain method call written strangely.
+    avoid_slow_async_io: true # The synchronous `dart:io` variants exist and are faster; the async ones block the event loop anyway.
+    avoid_type_to_string: true # `Type.toString()` changes under minification; use it and web builds break.
+    avoid_types_as_parameter_names: true # `f(int)` declares a parameter named `int`; always a mistake.
+    avoid_types_on_closure_parameters: true # Closure parameter types are inferred from the expected function type.
+    avoid_unnecessary_containers: true # A `Container` with one argument is a more specific widget in disguise.
+    avoid_unused_constructor_parameters: true # An unused constructor parameter is dead API surface.
+    avoid_void_async: true # `void async` hides the future so errors are lost; return `Future<void>`.
+    avoid_web_libraries_in_flutter: true # `dart:html` and friends break every non-web build of the app.
+    await_only_futures: true # Awaiting a non-future is a no-op that suggests a misunderstanding of the type.
+    camel_case_extensions: true # One naming convention for extensions.
+    camel_case_types: true # One naming convention for types.
+    cancel_subscriptions: true # An uncancelled `StreamSubscription` is a leak and a source of callbacks after dispose.
+    cascade_invocations: true # Consecutive calls on one receiver have exactly one shape: a cascade.
+    cast_nullable_to_non_nullable: true # Casting away nullability skips the null check the type system asked for.
+    close_sinks: true # An unclosed `Sink` leaks; robustness beats the rare false positive, which must be documented via `ignore`.
+    collection_methods_unrelated_type: true # `list.contains(wrongType)` is always false and always a bug.
+    combinators_ordering: true # `show` and `hide` lists are sorted; no ordering decision to make.
+    comment_references: true # A doc reference to an out-of-scope identifier is a broken link.
+    conditional_uri_does_not_exist: true # A conditional import pointing to a missing file fails only on the platform that selects it.
+    constant_identifier_names: true # One naming convention for constants.
+    control_flow_in_finally: true # `return` or `break` in `finally` discards the pending exception.
+    curly_braces_in_flow_control_structures: true # Braces are mandatory; there is no single-statement form to choose.
+    dangling_library_doc_comments: true # A doc comment at file top that documents nothing is misattributed by tooling.
+    depend_on_referenced_packages: true # Importing a transitive dependency breaks when the direct dependency drops it.
+    deprecated_consistency: true # A deprecated constructor on a live class, or the reverse, is inconsistent API.
+    deprecated_member_use_from_same_package: true # A package should not depend on the API it has already deprecated.
+    diagnostic_describe_all_properties: false # Requires `debugFillProperties` boilerplate on every widget; inspector convenience, not correctness.
+    directives_ordering: true # Imports have one canonical order.
+    discarded_futures: true # A future dropped in a synchronous function loses its errors.
+    do_not_use_environment: false # `String.fromEnvironment` is the standard `--dart-define` path in Flutter.
+    document_ignores: true # Every `ignore` comment needs a stated reason; an undocumented one is an unreviewed decision.
+    empty_catches: true # Swallowing an exception silently is never a valid strategy.
+    empty_constructor_bodies: true # `;` instead of `{}`; one spelling for an empty body.
+    empty_container_bodies: true # One spelling for empty bodies.
+    empty_statements: true # A stray `;` is a typo that changes control flow.
+    eol_at_end_of_file: true # Deterministic file endings; no noisy diffs.
+    exhaustive_cases: true # Enum-like switches must handle every value, or a new value silently falls through.
+    file_names: true # One naming convention for files.
+    flutter_style_todos: true # TODOs are errors anyway; if one exists it must at least carry an owner and a link.
+    hash_and_equals: true # Overriding `==` without `hashCode` breaks every hash-based collection.
+    implementation_imports: true # `src/` of another package is not API and changes without notice.
+    implicit_call_tearoffs: true # Passing a callable object where a function is expected must be written as `.call`.
+    initialize_in_field_declaration: true # A field that has a constant initial value is initialized where it is declared, not in every constructor.
+    invalid_runtime_check_with_js_interop_types: true # `is` checks on JS interop types give platform-dependent results.
+    join_return_with_assignment: true # `x = v; return x;` has one canonical form.
+    leading_newlines_in_multiline_strings: true # One layout for multiline strings.
+    library_annotations: true # An annotation meant for the library must be on the `library` directive or it applies to the wrong thing.
+    library_names: true # Naming convention, kept for the rare library that still has a name.
+    library_prefixes: true # One naming convention for import prefixes.
+    library_private_types_in_public_api: true # A private type in a public signature cannot be named by callers.
+    lines_longer_than_80_chars: true # The formatter cannot wrap comments and strings; this catches what it leaves behind.
+    literal_only_boolean_expressions: true # A condition made of literals is dead code or a bug.
+    matching_super_parameters: true # `super.x` parameters keep the superclass name, so positional mix-ups are visible.
+    missing_code_block_language_in_doc_comment: true # An unlabelled code block renders unhighlighted and is ambiguous to tooling.
+    missing_whitespace_between_adjacent_strings: true # `'a' 'b'` concatenation almost always meant to have a space.
+    no_adjacent_strings_in_list: true # Adjacent strings in a list are a missing comma.
+    no_duplicate_case_values: true # A duplicate case is unreachable and hides a copy-paste error.
+    no_dynamic_casts: true # Implicit conversion from `dynamic` reintroduces the unsafety `strict-casts` removes.
+    no_leading_underscores_for_library_prefixes: true # Underscore means private; a prefix is not.
+    no_leading_underscores_for_local_identifiers: true # Underscore means private; a local is not.
+    no_literal_bool_comparisons: true # `x == true` is `x`.
+    no_logic_in_create_state: true # `createState` must only construct; Flutter calls it in ways that break otherwise.
+    no_raw_types: true # A raw generic is `dynamic` in disguise.
+    no_runtimetype_tostring: true # `runtimeType.toString()` changes under minification.
+    no_self_assignments: true # `x = x` is always a mistake.
+    no_wildcard_variable_uses: true # `_` is a discard; reading it is a bug on current Dart.
+    non_constant_identifier_names: true # One naming convention for identifiers.
+    noop_primitive_operations: true # `toString()` on a string or `.toInt()` on an int does nothing.
+    null_check_on_nullable_type_parameter: true # `!` on a `T?` where `T` may itself be nullable does not do what it looks like.
+    null_closures: true # Passing `null` where a closure is expected throws at call time.
+    omit_local_variable_types: true # Local types are inferred from the initializer; writing them repeats the compiler.
+    omit_obvious_local_variable_types: false # Strict subset of `omit_local_variable_types`; enabling both reports every site twice.
+    omit_obvious_property_types: true # Top-level and static variable types are inferred from their initializer.
+    only_throw_errors: true # Throwing a non-`Exception`, non-`Error` value defeats every `on` clause.
+    overridden_fields: true # Overriding a field shadows storage; there are then two fields with one name.
+    package_names: true # One naming convention for packages.
+    package_prefixed_library_names: true # Naming convention, kept for the rare library that still has a name.
+    parameter_assignments: true # Reassigning a parameter hides the original argument for the rest of the body.
+    prefer_adjacent_string_concatenation: true # Adjacent literals concatenate at compile time; `+` is for runtime values.
+    prefer_asserts_in_initializer_lists: true # Constructor asserts have one place.
+    prefer_asserts_with_message: true # An assert without a message fails with no explanation.
+    prefer_collection_literals: true # `[]`, `{}` and `<K, V>{}` over constructors; one spelling.
+    prefer_conditional_assignment: true # `??=` is the canonical null-initialization.
+    prefer_const_constructors: true # Const construction is free and lets Flutter skip rebuilds.
+    prefer_const_constructors_in_immutables: true # An `@immutable` class must be constructible as const.
+    prefer_const_declarations: true # A `final` with a constant value is `const`; one keyword per situation.
+    prefer_const_literals_to_create_immutables: true # Literal arguments to const constructors are const too.
+    prefer_constructors_over_static_methods: true # Instance creation has one shape: a constructor.
+    prefer_contains: true # `indexOf(x) != -1` is `contains(x)`.
+    prefer_double_quotes: false # Single quotes are the enabled side of this pair.
+    prefer_expression_function_bodies: true # A single-return body has one form: `=>`.
+    prefer_final_fields: true # A private field that is never reassigned is final; mutability must be earned.
+    prefer_final_in_for_each: true # Loop variables that are never reassigned are final.
+    prefer_final_locals: true # Locals that are never reassigned are final; accidental reassignment becomes a compile error.
+    prefer_for_elements_to_map_fromiterable: true # A map built from an iterable has one form: a `for` element.
+    prefer_foreach: true # Applying a tear-off to every element has one form: `forEach`.
+    prefer_function_declarations_over_variables: true # A named function is a declaration, not a variable holding a closure.
+    prefer_generic_function_type_aliases: true # The old `typedef F(int x)` syntax is legacy; one typedef form.
+    prefer_if_elements_to_conditional_expressions: true # `if` inside a collection literal replaces `c ? [x] : []` patterns.
+    prefer_if_null_operators: true # `x == null ? y : x` is `x ?? y`.
+    prefer_initializing_formals: true # `this.x` in the parameter list; no constructor body to assign fields.
+    prefer_inlined_adds: true # `..add(x)` on a literal is an element of the literal.
+    prefer_int_literals: true # `1.0` where a double is expected is written `1`.
+    prefer_interpolation_to_compose_strings: true # String composition has one form: interpolation.
+    prefer_is_empty: true # `length == 0` is `isEmpty`.
+    prefer_is_not_empty: true # `!isEmpty` is `isNotEmpty`.
+    prefer_is_not_operator: true # `!(x is T)` is `x is! T`.
+    prefer_iterable_wheretype: true # `where((e) => e is T)` is `whereType<T>()`, and it also fixes the element type.
+    prefer_mixin: true # Mixing in a class that was not declared `mixin` is a compile error on current Dart anyway.
+    prefer_null_aware_method_calls: true # `x != null ? x() : null` is `x?.call()`.
+    prefer_null_aware_operators: true # `x == null ? null : x.y` is `x?.y`.
+    prefer_relative_imports: false # Package imports are the enabled side of this pair.
+    prefer_single_quotes: true # One quote style; the formatter and the ecosystem default.
+    prefer_spread_collections: true # `..addAll(other)` on a literal is `...other`.
+    prefer_typing_uninitialized_variables: true # A declaration without initializer or type is `dynamic`.
+    prefer_void_to_null: true # `Null` as a return or type argument is almost always meant to be `void`.
+    provide_deprecation_message: true # A deprecation without a message gives the caller nothing to act on.
+    public_member_api_docs: false # Forced doc comments on every member produce filler that misleads; document what needs it.
+    recursive_getters: true # A getter returning itself is a stack overflow.
+    remove_deprecations_in_breaking_versions: true # A deprecation that survives a major bump was never meant.
+    require_trailing_commas: false # The formatter's `trailing_commas: automate` owns this; the lint would fight it.
+    secure_pubspec_urls: true # `http://` URLs in pubspec.yaml are a downgrade vector.
+    simple_directive_paths: true # Import paths have one canonical spelling.
+    simplify_variable_pattern: true # `var x` in a pattern has one form.
+    sized_box_for_whitespace: true # Whitespace is a `SizedBox`, not a `Container`.
+    sized_box_shrink_expand: true # `SizedBox.shrink()` and `.expand()` over hand-written dimensions.
+    slash_for_doc_comments: true # Doc comments have one form: `///`.
+    sort_child_properties_last: true # `child` is last so the widget tree reads top to bottom.
+    sort_constructors_first: true # Members have one order; constructors come first.
+    sort_pub_dependencies: true # Dependencies are sorted; no ordering decision, no merge conflicts from appending.
+    sort_unnamed_constructors_first: true # Members have one order; the unnamed constructor leads.
+    specify_nonobvious_local_variable_types: false # Requires annotations the compiler can infer; incompatible with `omit_local_variable_types`.
+    specify_nonobvious_property_types: false # Requires annotations the compiler can infer, for readability alone.
+    strict_top_level_inference: true # Top-level and member signatures that cannot be inferred must be written, or they are `dynamic`.
+    switch_on_type: true # Switching on `runtimeType` bypasses subtyping; use `is` patterns.
+    test_types_in_equals: true # An `==` that does not check the argument type throws on unrelated types.
+    throw_in_finally: true # A throw in `finally` replaces the original exception.
+    tighten_type_of_initializing_formals: true # An initializing formal with a null check is declared non-nullable instead.
+    type_annotate_public_apis: false # Redundant with `strict-inference` and `strict_top_level_inference`; incompatible with `omit_obvious_property_types`.
+    type_init_formals: true # `this.x` already has the field's type; annotating it repeats the field.
+    type_literal_in_constant_pattern: true # `case int:` compares to the `Type` object; `case int():` is what was meant.
+    unawaited_futures: true # A dropped future in an async function loses its error; write `await` or `unawaited(...)`.
+    unintended_html_in_doc_comment: true # `List<int>` in a doc comment renders as an HTML tag unless escaped.
+    unnecessary_brace_in_string_interps: true # `${x}` is `$x`; one interpolation form per situation.
+    unnecessary_breaks: true # `break` at the end of a case is implied on Dart 3.
+    unnecessary_const: true # `const` inside a const context is noise.
+    unnecessary_const_in_enum_constructor: true # Enum constructors are implicitly const.
+    unnecessary_constructor_name: true # `.new` is only needed for tear-offs.
+    unnecessary_final: false # Final-by-default is the enabled side of this pair.
+    unnecessary_getters_setters: true # A getter/setter pair that only forwards to a field is the field.
+    unnecessary_ignore: true # An `ignore` for a diagnostic that does not fire is stale and hides its own removal.
+    unnecessary_lambdas: true # `(x) => f(x)` is `f`.
+    unnecessary_late: true # `late` on an initialized declaration is noise.
+    unnecessary_library_directive: true # A bare `library;` without doc or annotations adds nothing.
+    unnecessary_library_name: true # Library names are legacy; the directive is anonymous.
+    unnecessary_new: true # `new` is optional and therefore never written.
+    unnecessary_null_aware_assignments: true # `x ??= null` does nothing.
+    unnecessary_null_aware_operator_on_extension_on_nullable: true # `?.` on an extension declared on a nullable type skips the extension.
+    unnecessary_null_checks: true # `!` where the type is already non-nullable is noise that hides real casts.
+    unnecessary_null_in_if_null_operators: true # `x ?? null` is `x`.
+    unnecessary_nullable_for_final_variable_declarations: true # A final initialized with a non-null value is non-nullable.
+    unnecessary_overrides: true # An override that only calls super is the inherited member.
+    unnecessary_parenthesis: true # Parentheses that change nothing are noise.
+    unnecessary_primary_constructor_body: true # An empty primary constructor body is omitted.
+    unnecessary_raw_strings: true # `r''` without backslashes or `$` is a plain string.
+    unnecessary_statements: true # An expression statement with no effect is a lost assignment or call.
+    unnecessary_string_escapes: true # Escapes the quote style makes unnecessary are removed.
+    unnecessary_string_interpolations: true # `'$x'` where `x` is a string is `x`.
+    unnecessary_this: true # `this.` is written only to disambiguate.
+    unnecessary_to_list_in_spreads: true # `...list.toList()` copies twice.
+    unnecessary_type_name_in_constructor: true # `Foo Foo()` repeats the class name.
+    unnecessary_unawaited: true # `unawaited` on a non-future or where the value is used is noise.
+    unnecessary_underscores: true # `__` where `_` would do is noise.
+    unreachable_from_main: true # Dead top-level code in an executable is deleted, not carried.
+    unrelated_type_equality_checks: true # `==` between unrelated types is always false and always a bug.
+    use_build_context_synchronously: true # A `BuildContext` used after an `await` may belong to a disposed widget.
+    use_colored_box: true # A `Container` with only `color` is a `ColoredBox`.
+    use_declaring_parameters: true # Declaring parameters replace the field-plus-initializing-formal boilerplate.
+    use_decorated_box: true # A `Container` with only `decoration` is a `DecoratedBox`.
+    use_enums: true # A class of static const instances is an enum.
+    use_full_hex_values_for_flutter_colors: true # `Color(0xFFFFFF)` is fully transparent; the alpha byte must be written.
+    use_function_type_syntax_for_parameters: true # Function-typed parameters have one syntax: `R Function(A)`.
+    use_is_even_rather_than_modulo: true # `x % 2 == 0` is `x.isEven`.
+    use_key_in_widget_constructors: true # A public widget without a `key` parameter cannot be keyed by its parent.
+    use_named_constants: true # A literal that equals a named constant is written as the constant.
+    use_null_aware_elements: true # `if (x != null) x` in a collection is `?x`.
+    use_raw_strings: true # A string full of backslashes has one form: raw.
+    use_rethrow_when_possible: true # `throw e` loses the stack trace; `rethrow` keeps it.
+    use_setters_to_change_properties: true # `setX(v)` is a setter.
+    use_string_buffers: true # String concatenation in a loop is quadratic; a buffer is not.
+    use_string_in_part_of_directives: true # `part of 'file.dart'` is the one supported form.
+    use_test_throws_matchers: true # `fail()` after a call that should throw has one form: `throwsA`.
+    use_to_and_as_if_applicable: true # Conversion methods are named `toX`/`asX` so callers can find them.
+    use_truncating_division: true # `(a / b).toInt()` is `a ~/ b`, and it does not overflow on web.
+    valid_regexps: true # An invalid regular expression throws at runtime.
+    void_checks: true # Assigning to a `void` value is always a mistake.

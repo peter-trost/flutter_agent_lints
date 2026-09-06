@@ -1,0 +1,25 @@
+name: flutter_agent_lints
+description: >-
+  Strict Dart and Flutter analysis options for agent-implemented codebases.
+  Every lint and diagnostic is an error or explicitly disabled with a reason.
+version: 1.0.0
+repository: https://github.com/peter-trost/flutter_agent_lints
+issue_tracker: https://github.com/peter-trost/flutter_agent_lints/issues
+topics:
+  - lints
+  - analysis
+  - flutter
+  - agents
+  - static-analysis
+
+environment:
+  sdk: ^3.13.0
+
+dev_dependencies:
+  # Pinned to the analyzer version bundled with the SDK in environment.sdk
+  # (pkg/analyzer/pubspec.yaml at that SDK tag). A newer analyzer knows
+  # diagnostic codes the SDK's analyzer does not, and the generated block
+  # would then contain codes consumers' analyzers reject.
+  analyzer: 14.1.0
+  test: ^1.32.0
+  yaml: ^3.1.4

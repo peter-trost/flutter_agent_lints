@@ -1,2 +1,13 @@
+# A .pubignore replaces .gitignore for pub, so the ignore patterns must be
+# repeated here or build output ends up in the archive.
+.dart_tool/
+build/
+pubspec.lock
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
 # Not part of the published package.
 fixtures/
+renovate.json

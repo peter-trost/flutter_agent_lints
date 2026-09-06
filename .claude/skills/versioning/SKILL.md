@@ -26,6 +26,9 @@ It compares the shipped files under `lib/` and `environment: sdk` in
 - Rule set unchanged, SDK lower bound moved: **minor**.
 - Neither: **none**. Docs, tooling, CI, and the example are invisible to
   consumers and get no release.
+- Exception the script cannot see: a packaging-only fix that changes what
+  consumers download (for example the archive contents) is a **patch**,
+  decided by hand.
 - No tag yet: **initial**; release the version already in `pubspec.yaml`.
 
 ## Move the SDK bound with a major

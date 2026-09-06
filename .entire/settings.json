@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "telemetry": true,
+  "checkpoints": {
+    "primary": {
+      "type": "git-refs"
+    }
+  },
+  "strategy_options": {
+    "checkpoint_remote": {
+      "provider": "github",
+      "repo": "peter-trost/flutter_agent_lints-checkpoints"
+    }
+  },
+  "redaction": {
+    "pii": {
+      "enabled": true,
+      "email": true
+    }
+  }
+}

@@ -46,7 +46,7 @@ analyzer:
     unused_import: error
 '''),
       );
-      expect(file, startsWith('# Generated'));
+      expect(file, startsWith('# GENERATED CODE - DO NOT MODIFY BY HAND\n'));
       expect(file, isNot(contains('include:')));
     });
 

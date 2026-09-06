@@ -23,8 +23,8 @@ Future<void> main() async {
     ('lib/experimental.yaml', 'experimental'),
   ]) {
     final listed = listedRuleNames(File(path).readAsStringSync());
-    final required = ruleNamesWithState(rulesJson, state);
-    final missing = missingRules(required: required, listed: listed);
+    final expected = ruleNamesWithState(rulesJson, state);
+    final missing = missingRules(expected: expected, listed: listed);
     final unusable = missing.isEmpty
         ? const <String>{}
         : await _unusableAccordingToAnalyzer(missing);
@@ -32,7 +32,7 @@ Future<void> main() async {
     final unknown = listed.difference(known);
 
     stdout.writeln(
-      '$path: ${listed.length} listed, ${required.length} $state in SDK '
+      '$path: ${listed.length} listed, ${expected.length} $state in SDK '
       '$sdkVersion, ${unusable.length} deprecated or removed by the analyzer',
     );
     if (undecided.isNotEmpty) {

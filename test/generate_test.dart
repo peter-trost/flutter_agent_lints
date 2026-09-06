@@ -3,10 +3,7 @@ import 'package:test/test.dart';
 import '../tool/src/generate.dart';
 
 const _options = '''
-analyzer:
-  errors:
-    # BEGIN GENERATED
-    # END GENERATED
+include: errors.yaml
 
 linter:
   rules:
@@ -16,73 +13,12 @@ linter:
 ''';
 
 void main() {
-  group('generateErrorsBlock', () {
-    test(
-      'promotes every enabled lint rule to error, sorted, between markers',
-      () {
-        final output = generateErrorsBlock(_options, diagnostics: const []);
-        expect(output, '''
-analyzer:
-  errors:
-    # BEGIN GENERATED
-    avoid_print: error
-    prefer_single_quotes: error
-    # END GENERATED
-
-linter:
-  rules:
-    prefer_single_quotes: true # reason
-    prefer_double_quotes: false # reason
-    avoid_print: true # reason
-''');
-      },
-    );
-
-    test(
-      'merges analyzer diagnostics into the same sorted block, deduplicated',
-      () {
-        final output = generateErrorsBlock(
-          _options,
-          diagnostics: const ['unused_import', 'todo', 'unused_import'],
-        );
-        expect(
-          output,
-          contains('''
-    # BEGIN GENERATED
-    avoid_print: error
-    prefer_single_quotes: error
-    todo: error
-    unused_import: error
-    # END GENERATED
-'''),
-        );
-      },
-    );
-
-    test('is idempotent', () {
-      final once = generateErrorsBlock(_options, diagnostics: const ['todo']);
-      final twice = generateErrorsBlock(once, diagnostics: const ['todo']);
-      expect(twice, once);
-    });
-
-    test('throws when the markers are missing', () {
-      expect(
-        () => generateErrorsBlock(
-          'linter:\n  rules: {}\n',
-          diagnostics: const [],
-        ),
-        throwsFormatException,
-      );
-    });
-  });
-
-  group('missingRules', () {
-    test('reports required rules absent from the options file', () {
-      final missing = missingRules(
-        required: const {'a', 'b', 'c'},
-        listed: const {'a', 'c', 'd'},
-      );
-      expect(missing, const {'b'});
+  group('enabledRuleNames', () {
+    test('returns only the rules set to true', () {
+      expect(enabledRuleNames(_options), {
+        'prefer_single_quotes',
+        'avoid_print',
+      });
     });
   });
 
@@ -93,6 +29,44 @@ linter:
         'prefer_double_quotes',
         'avoid_print',
       });
+    });
+  });
+
+  group('errorsFile', () {
+    test('promotes every name to error, sorted and deduplicated', () {
+      final file = errorsFile(
+        promoted: const ['unused_import', 'avoid_print', 'unused_import'],
+      );
+      expect(
+        file,
+        endsWith('''
+analyzer:
+  errors:
+    avoid_print: error
+    unused_import: error
+'''),
+      );
+      expect(file, startsWith('# Generated'));
+      expect(file, isNot(contains('include:')));
+    });
+
+    test('includes the parent options file when asked', () {
+      final file = errorsFile(
+        promoted: const ['no_default_cases'],
+        include: 'analysis_options.yaml',
+      );
+      expect(file, contains('\ninclude: analysis_options.yaml\n'));
+      expect(file, endsWith('    no_default_cases: error\n'));
+    });
+  });
+
+  group('missingRules', () {
+    test('reports expected rules absent from the options file', () {
+      final missing = missingRules(
+        expected: const {'a', 'b', 'c'},
+        listed: const {'a', 'c', 'd'},
+      );
+      expect(missing, const {'b'});
     });
   });
 }

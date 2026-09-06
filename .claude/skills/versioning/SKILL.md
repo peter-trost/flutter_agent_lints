@@ -6,25 +6,31 @@ disable-model-invocation: true
 
 # Versioning
 
-The version is decided by the effective rule set, because for a consumer any
-change to it is a build break, whatever the diff looks like.
+The version follows what consumers can observe, nothing else. A release
+exists only when the analysis a consumer gets, or the SDK they need, changed.
 
 ## Decide the bump
 
-1. Diff the effective rule set against the last release tag: the `true` and
-   `false` entries in `lib/analysis_options.yaml` and `lib/experimental.yaml`
-   plus the generated `analyzer.errors` blocks.
-2. A rule added, removed, or changed in severity: **major**. A new SDK minor
-   that brings new rules, or a rule the SDK deprecated and we removed, is
-   this case even when the decision was `false`.
-3. Rule set unchanged, but the SDK lower bound, the analyzer pin, or the
-   tooling moved: **minor**.
-4. Only docs, example, or CI: **patch**, or no release.
+Run the script; it is the decision, not a hint:
+
+```bash
+dart run .claude/skills/versioning/scripts/bump.dart
+```
+
+It compares the shipped files under `lib/` and `environment: sdk` in
+`pubspec.yaml` against the last `v*` tag and prints `bump`, `next`, and one
+`reason` line per difference. The rules it applies:
+
+- Any semantic change to a shipped file (parsed YAML, so comment edits do not
+  count): **major**. Consumers' analysis changes, which is a build break.
+- Rule set unchanged, SDK lower bound moved: **minor**.
+- Neither: **none**. Docs, tooling, CI, and the example are invisible to
+  consumers and get no release.
+- No tag yet: **initial**; release the version already in `pubspec.yaml`.
 
 ## Move the SDK bound with a major
 
-`environment: sdk` in `pubspec.yaml` is the SDK whose rule set the files
-enumerate. On a major caused by a new SDK it moves to that SDK's minor
+On a major caused by a new SDK, `environment: sdk` moves to that SDK's minor
 (`^3.14.0`), never to a patch: a patch bound would lock out consumers whose
 Flutter bundles an older patch for no rule change. The `analyzer` dev
 dependency is pinned to the version bundled with that SDK:
@@ -32,12 +38,15 @@ dependency is pinned to the version bundled with that SDK:
 
 ## Write the changelog entry
 
-Add `## <version>` at the top of `CHANGELOG.md`, one line per item: every
-added rule with its decision and reason, every removed rule and why, the new
-SDK lower bound. A minor or patch states in one line what moved.
+Set `version` in `pubspec.yaml` to `next` and add `## <next>` at the top of
+`CHANGELOG.md`, one line per item: every rule added with its decision and
+reason, every rule removed and why, the new SDK lower bound. A minor states in
+one line what moved.
 
 ## Done when
 
-- `version` in `pubspec.yaml` equals the top heading of `CHANGELOG.md`.
+- The script prints `bump: none` against a tag named after the new version,
+  or, before tagging, `version` in `pubspec.yaml` equals its `next` and the
+  top heading of `CHANGELOG.md`.
 - `dart run tool/generate.dart --check` and `dart run tool/check_rules.dart`
   pass.

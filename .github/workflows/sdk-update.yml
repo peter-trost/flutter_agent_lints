@@ -1,7 +1,7 @@
 # Runs on the Renovate PR that bumps the Dart SDK lower bound (label
 # sdk-update). If the new SDK brings rules or diagnostics the option files have
 # not decided on, Claude adds each one with a decision and a reason, moves the
-# analyzer pin, regenerates the errors block, bumps the major version, writes
+# analyzer pin, regenerates the errors files, bumps the major version, writes
 # the changelog entry, and pushes to the PR branch. The push re-triggers CI so
 # the PR shows green checks on its final commit.
 #
@@ -115,7 +115,7 @@ jobs:
                each decision in a table so the reviewer can approve or ask
                for a change.
 
-            Never add `// ignore` comments, never edit the generated block by
+            Never add `// ignore` comments, never edit the generated errors files by
             hand, and never leave a rule undecided.
           claude_args: |
             --model claude-opus-5

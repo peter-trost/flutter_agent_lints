@@ -42,9 +42,11 @@ Future<void> main() async {
     ('bump', bump.name),
     ('current', currentVersion),
     ('next', nextVersion(currentVersion, bump)),
-    for (final path in {...previousShipped.keys, ...currentShipped.keys})
-      if (previousShipped[path] != currentShipped[path])
-        ('reason', '$path differs from $tag'),
+    for (final path in changedShippedPaths(
+      previous: previousShipped,
+      current: currentShipped,
+    ))
+      ('reason', '$path differs from $tag'),
     if (previousSdk != _sdk(currentPubspec))
       ('reason', 'environment.sdk moved from $previousSdk'),
   ]);
@@ -69,8 +71,7 @@ Future<Set<String>> _shippedPathsAt(String tag) async {
 }
 
 Future<Map<String, String>> _shippedAt(String tag, Set<String> paths) async => {
-  for (final path in paths)
-    path: ?await _gitShow(tag, path),
+  for (final path in paths) path: ?await _gitShow(tag, path),
 };
 
 Future<String?> _gitShow(String tag, String path) async {

@@ -53,6 +53,20 @@ void main() {
     });
   });
 
+  group('changedShippedPaths', () {
+    test('lists only files whose parsed content differs', () {
+      final changed = changedShippedPaths(
+        previous: {
+          'a.yaml': 'x: 1 # old',
+          'b.yaml': 'y: 1',
+          'gone.yaml': 'z: 1',
+        },
+        current: {'a.yaml': 'x: 1 # new', 'b.yaml': 'y: 2', 'new.yaml': 'w: 1'},
+      );
+      expect(changed, {'b.yaml', 'gone.yaml', 'new.yaml'});
+    });
+  });
+
   group('nextVersion', () {
     test('applies the bump to a semantic version', () {
       expect(nextVersion('1.2.3', Bump.major), '2.0.0');

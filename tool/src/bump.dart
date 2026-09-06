@@ -20,9 +20,11 @@ Bump decideBump({
   required String previousSdk,
   required String currentSdk,
 }) {
-  final previous = previousShipped.map((k, v) => MapEntry(k, _canonical(v)));
-  final current = currentShipped.map((k, v) => MapEntry(k, _canonical(v)));
-  if (jsonEncode(_sorted(previous)) != jsonEncode(_sorted(current))) {
+  final changed = changedShippedPaths(
+    previous: previousShipped,
+    current: currentShipped,
+  );
+  if (changed.isNotEmpty) {
     return Bump.major;
   }
   if (previousSdk != currentSdk) {
@@ -30,6 +32,19 @@ Bump decideBump({
   }
   return Bump.none;
 }
+
+/// Paths whose parsed YAML differs between [previous] and [current], plus
+/// paths present in only one of them.
+Set<String> changedShippedPaths({
+  required Map<String, String> previous,
+  required Map<String, String> current,
+}) => {
+  for (final path in {...previous.keys, ...current.keys})
+    if (previous[path] == null ||
+        current[path] == null ||
+        _canonical(previous[path]!) != _canonical(current[path]!))
+      path,
+};
 
 /// Applies [bump] to a `major.minor.patch` version string.
 String nextVersion(String version, Bump bump) {
@@ -42,7 +57,3 @@ String nextVersion(String version, Bump bump) {
 }
 
 String _canonical(String yamlText) => jsonEncode(loadYaml(yamlText));
-
-Map<String, String> _sorted(Map<String, String> map) => Map.fromEntries(
-  map.entries.toList()..sort((a, b) => a.key.compareTo(b.key)),
-);

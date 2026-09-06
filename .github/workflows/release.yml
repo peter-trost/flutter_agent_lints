@@ -1,0 +1,75 @@
+# Cuts a release when a merged pull request carries a version that has no tag
+# yet: pushes v<version> and creates the GitHub release from that version's
+# CHANGELOG section. The tag push triggers publish.yml.
+#
+# The tag is pushed with a GitHub App token, not GITHUB_TOKEN, because tags
+# pushed by GITHUB_TOKEN never trigger workflows. Setup, once: create a GitHub
+# App with Contents read and write on this repository, install it here, store
+# its App ID as the RELEASE_APP_ID variable and its private key as the
+# RELEASE_APP_PRIVATE_KEY secret.
+#
+# pub.dev only automates existing packages, so while it has no
+# flutter_agent_lints at all nothing is tagged; the first version is published
+# by hand.
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Is there a version to release?
+        id: version
+        run: |
+          version="$(yq -r '.version' pubspec.yaml)"
+          tag="v$version"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            echo "$tag already exists; nothing to release."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          elif ! curl -fsS -o /dev/null https://pub.dev/api/packages/flutter_agent_lints; then
+            echo "pub.dev has no flutter_agent_lints yet; the first version is published by hand."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Release notes from CHANGELOG.md
+        if: steps.version.outputs.release == 'true'
+        run: |
+          version="${{ steps.version.outputs.tag }}"; version="${version#v}"
+          awk -v v="$version" '/^## /{p = ($2 == v); next} p' CHANGELOG.md > notes.md
+          [ -s notes.md ] || { echo "CHANGELOG.md has no section for $version"; exit 1; }
+          cat notes.md
+
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        if: steps.version.outputs.release == 'true'
+        id: app
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
+      # Creates the tag and the release in one call, with the App token so the
+      # tag push triggers publish.yml.
+      - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        if: steps.version.outputs.release == 'true'
+        with:
+          token: ${{ steps.app.outputs.token }}
+          tag_name: ${{ steps.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ steps.version.outputs.tag }}
+          body_path: notes.md

@@ -43,13 +43,13 @@ jobs:
         run: |
           version="$(yq -r '.environment.sdk' pubspec.yaml | sed 's/[^0-9.]//g')"
           echo "version=$version" >> "$GITHUB_OUTPUT"
-          bundled="$(curl -fsSL "https://raw.githubusercontent.com/dart-lang/sdk/$version/pkg/analyzer/pubspec.yaml" | yq -r '.version' | sed 's/-dev$//')"
-          echo "analyzer=$bundled" >> "$GITHUB_OUTPUT"
 
       - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
         with:
           sdk: ${{ steps.sdk.outputs.version }}
 
+      # The same checks the sdk-update skill ends on. Only if one fails is
+      # there a decision to make, and only then does the agent run.
       - name: Is there anything to decide?
         id: gate
         run: |
@@ -59,7 +59,8 @@ jobs:
           dart analyze --fatal-infos || needs=true
           dart run tool/generate.dart --check || needs=true
           pinned="$(yq -r '.dev_dependencies.analyzer' pubspec.yaml)"
-          [ "$pinned" = "${{ steps.sdk.outputs.analyzer }}" ] || needs=true
+          bundled="$(dart run .claude/skills/sdk-update/scripts/bundled_analyzer_version.dart)"
+          [ "$pinned" = "$bundled" ] || needs=true
           echo "needs_agent=$needs" >> "$GITHUB_OUTPUT"
 
       - name: Add decisions for the new SDK
@@ -77,47 +78,19 @@ jobs:
           anthropic_workspace_id: wrkspc_01YW4WKT8QjcKq3EcfBLboAd
           allowed_bots: renovate[bot]
           prompt: |
-            This repository is the flutter_agent_lints package. Read README.md
-            first; its Principles section is what every decision must follow.
-            Then read .claude/skills/versioning/SKILL.md; it decides the
-            version bump and the changelog entry.
-
             Renovate has bumped the Dart SDK lower bound in pubspec.yaml to
-            ${{ steps.sdk.outputs.version }} on this PR branch. Bring the
-            package up to date with that SDK:
+            ${{ steps.sdk.outputs.version }} on this PR branch, and that SDK
+            is installed. Follow .claude/skills/sdk-update/SKILL.md to bring
+            the package up to date with it, every step through to its check.
 
-            1. Run `dart run tool/check_rules.dart`. For every undecided rule
-               it lists, add a line at the alphabetical position in
-               lib/analysis_options.yaml (stable rules) or
-               lib/experimental.yaml (experimental rules) as `true` or
-               `false` with a one-line reason in the same style as the
-               neighbouring lines. Decide by the README's principles, in
-               order: robustness, one way to write it, token efficiency. A
-               rule is `false` only for a reason of the kinds already in the
-               file: it is the losing side of an incompatible pair, it is
-               redundant with a stricter setting, it demands work that adds
-               no correctness, or the language makes it moot. Read the rule's
-               documentation before deciding.
-            2. Run `dart analyze --fatal-infos`. Remove any rule it reports as
-               deprecated or removed, and resolve any incompatible pair it
-               reports by turning the side that contradicts the file's
-               principles to `false`.
-            3. Set the `analyzer` dev dependency in pubspec.yaml to exactly
-               ${{ steps.sdk.outputs.analyzer }}, the version bundled with the
-               SDK, then run `dart pub get --no-example`.
-            4. Run `dart run tool/generate.dart`, then `dart analyze
-               --fatal-infos`, `dart test`, `dart run tool/check_rules.dart`
-               and `dart run tool/generate.dart --check`. All must pass.
-            5. Bump the version and write the changelog entry exactly as the
-               versioning skill says.
-            6. Commit with a message that explains the decisions, and push to
-               this PR branch. Then post one comment on the PR summarising
-               each decision in a table so the reviewer can approve or ask
-               for a change.
+            Then commit with a message that explains each decision, push to
+            this PR branch, and post one comment on the PR summarising every
+            decision in a table so the reviewer can approve or ask for a
+            change.
 
-            Never add `// ignore` comments, never edit the generated errors files by
-            hand, and never leave a rule undecided.
+            Never add `// ignore` comments, never edit the generated errors
+            files by hand, and never leave a rule undecided.
           claude_args: |
             --model claude-opus-5
             --max-turns 60
-            --allowedTools "Read,Edit,Write,Bash(dart:*),Bash(git:*),Bash(gh pr comment:*),Bash(curl:*),WebFetch"
+            --allowedTools "Read,Edit,Write,Bash(dart:*),Bash(git:*),Bash(gh pr comment:*),WebFetch"

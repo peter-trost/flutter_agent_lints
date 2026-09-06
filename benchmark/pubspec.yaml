@@ -1,0 +1,17 @@
+name: lint_benchmark
+description: >-
+  Measures how many real bug fixes each option set would have flagged.
+  Not published; see README.md in this directory.
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  # The baseline option set. Its include chain is flattened into a
+  # self-contained file so corpus repositories need not depend on it.
+  flutter_lints: ^6.0.0
+  yaml: ^3.1.4
+
+dev_dependencies:
+  test: ^1.32.0

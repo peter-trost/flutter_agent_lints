@@ -62,6 +62,58 @@ and is meant to be read. It has:
 The reason a rule is on or off sits next to the rule in the file. That is the
 single source of truth; nothing here repeats it.
 
+## Does it help?
+
+The claim that fewer allowed forms make agent code more robust is testable
+in part. The `benchmark/` directory mines bug-fix commits from open-source
+Flutter apps and asks, for each option set, whether the lines a human later
+fixed carried a diagnostic before the fix. See
+[benchmark/README.md](benchmark/README.md) for the method and its limits.
+
+Read the per-rule lift rather than the totals. A rule about robustness
+shows a lift well above one because the fix removed what it flagged. A
+rule about form sits near or below one because a fix rarely rewrites a
+line for its style; that half of the package is about consistency, which
+this measurement cannot see.
+
+<!-- benchmark -->
+Corpus: 158 bug-fix commits from localsend, saber, wger. Fixed lines are the lines each fix deleted or replaced; a line is flagged when it carried a diagnostic that the fix made go away. Lift compares that with how often any line of the same files carries a diagnostic.
+
+| Option set | Commits flagged | Fixed lines flagged | Any line flagged | Lift |
+| --- | --- | --- | --- | --- |
+| flutter_lints | 5 of 158 | 9 of 1681 (0.5%) | 0.4% | 1.3x |
+| flutter_agent_lints | 43 of 158 | 70 of 1681 (4.2%) | 7.6% | 0.5x |
+
+Rules of flutter_lints that flagged the most fixed lines:
+
+| Rule | Fixed lines | Commits | Lift |
+| --- | --- | --- | --- |
+| use_build_context_synchronously | 3 | 2 | 18.3x |
+| avoid_print | 2 | 1 | 24.4x |
+| unused_import | 2 | 2 | 61.0x |
+| unused_local_variable | 2 | 1 | 40.7x |
+
+Rules of flutter_agent_lints that flagged the most fixed lines:
+
+| Rule | Fixed lines | Commits | Lift |
+| --- | --- | --- | --- |
+| lines_longer_than_80_chars | 15 | 11 | 0.5x |
+| always_put_control_body_on_new_line | 10 | 6 | 0.5x |
+| omit_local_variable_types | 6 | 5 | 0.5x |
+| avoid_catches_without_on_clauses | 5 | 5 | 2.6x |
+| prefer_expression_function_bodies | 4 | 4 | 0.6x |
+| flutter_style_todos | 3 | 3 | 13.1x |
+| todo | 3 | 3 | 5.4x |
+| use_build_context_synchronously | 3 | 2 | 18.3x |
+| avoid_print | 2 | 1 | 24.4x |
+| discarded_futures | 2 | 2 | 0.4x |
+| document_ignores | 2 | 2 | 1.1x |
+| inference_failure_on_function_invocation | 2 | 2 | 1.1x |
+| unnecessary_lambdas | 2 | 1 | 2.5x |
+| unused_import | 2 | 2 | 61.0x |
+| unused_local_variable | 2 | 1 | 40.7x |
+<!-- /benchmark -->
+
 ## Contributing
 
 To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`,

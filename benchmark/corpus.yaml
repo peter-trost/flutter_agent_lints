@@ -1,0 +1,18 @@
+# Repositories mined for bug-fix commits. A repository qualifies when it is a
+# Flutter app in active development that commits its generated code, because
+# an unresolved `part` file hides most diagnostics in the files that use it.
+# `path` is the package inside the repository, `since` bounds the history so
+# the commits still resolve with the installed Flutter SDK.
+repos:
+  - name: localsend
+    url: https://github.com/localsend/localsend.git
+    path: app
+    since: 2025-09-01
+  - name: wger
+    url: https://github.com/wger-project/flutter.git
+    path: .
+    since: 2025-09-01
+  - name: saber
+    url: https://github.com/saber-notes/saber.git
+    path: .
+    since: 2025-09-01

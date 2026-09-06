@@ -63,12 +63,13 @@ jobs:
           app-id: ${{ vars.RELEASE_APP_ID }}
           private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
 
-      - name: Tag and release
+      # Creates the tag and the release in one call, with the App token so the
+      # tag push triggers publish.yml.
+      - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         if: steps.version.outputs.release == 'true'
-        env:
-          GH_TOKEN: ${{ steps.app.outputs.token }}
-          TAG: ${{ steps.version.outputs.tag }}
-        run: |
-          git tag "$TAG" "$GITHUB_SHA"
-          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "refs/tags/$TAG"
-          gh release create "$TAG" --title "$TAG" --notes-file notes.md --verify-tag
+        with:
+          token: ${{ steps.app.outputs.token }}
+          tag_name: ${{ steps.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ steps.version.outputs.tag }}
+          body_path: notes.md

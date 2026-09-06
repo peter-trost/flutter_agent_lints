@@ -2,7 +2,7 @@ name: flutter_agent_lints
 description: >-
   Strict Dart and Flutter analysis options for agent-implemented codebases.
   Every lint and diagnostic is an error or explicitly disabled with a reason.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/peter-trost/flutter_agent_lints
 issue_tracker: https://github.com/peter-trost/flutter_agent_lints/issues
 topics:

@@ -1,0 +1,61 @@
+# The treatment arm: flutter_lints plus the rules of this package that are
+# about robustness rather than form, promoted to error the way the package
+# promotes them. Names only; the reason for each rule sits next to it in
+# lib/analysis_options.yaml.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    always_declare_return_types: error
+    avoid_catches_without_on_clauses: error
+    avoid_dynamic_calls: error
+    avoid_shadowing_type_parameters: error
+    avoid_slow_async_io: error
+    avoid_type_to_string: error
+    avoid_void_async: error
+    cancel_subscriptions: error
+    close_sinks: error
+    discarded_futures: error
+    literal_only_boolean_expressions: error
+    no_self_assignments: error
+    only_throw_errors: error
+    parameter_assignments: error
+    prefer_asserts_with_message: error
+    prefer_final_locals: error
+    strict_top_level_inference: error
+    test_types_in_equals: error
+    throw_in_finally: error
+    unawaited_futures: error
+    unnecessary_null_checks: error
+    unnecessary_statements: error
+    use_build_context_synchronously: error
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_catches_without_on_clauses
+    - avoid_dynamic_calls
+    - avoid_shadowing_type_parameters
+    - avoid_slow_async_io
+    - avoid_type_to_string
+    - avoid_void_async
+    - cancel_subscriptions
+    - close_sinks
+    - discarded_futures
+    - literal_only_boolean_expressions
+    - no_self_assignments
+    - only_throw_errors
+    - parameter_assignments
+    - prefer_asserts_with_message
+    - prefer_final_locals
+    - strict_top_level_inference
+    - test_types_in_equals
+    - throw_in_finally
+    - unawaited_futures
+    - unnecessary_null_checks
+    - unnecessary_statements
+    - use_build_context_synchronously

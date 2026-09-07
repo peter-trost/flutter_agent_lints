@@ -59,3 +59,37 @@ Flutter SDK, even without its lockfile, is skipped.
   reported rather than a single number.
 - Diagnostics on a fixed line say nothing about the cost of the rule
   elsewhere. That question needs agent runs, not mining.
+
+## Agent runs
+
+`agents/` measures what mining cannot: how an option set changes what an
+agent produces. `bin/agents.dart` gives headless Claude Code (`claude -p`,
+billed to the local login) each task under `agents/tasks` once per option
+set under `agents/options`, `--reps` times, in a fresh copy of `agents/base`
+outside the repository so no project settings or hooks leak in.
+
+Per run it records the turn count, duration and token usage from the CLI's
+result event; the hidden tests of the task (copied in only after the agent
+stopped); the diagnostics left under the run's own options and under the
+full `flutter_agent_lints` options; `ignore` comments added; whether the
+agent edited `analysis_options.yaml`; every rule code in analyzer output
+the agent read (the fix-loop price of the option set); and the solution
+file, from which the report computes the mean pairwise token similarity of
+the solutions to one task as the consistency measure.
+
+```bash
+dart run bin/agents.dart --validate            # references pass their hidden tests
+dart run bin/agents.dart --model opus --reps 5 # 3 tasks × 2 option sets × 5
+dart run bin/agents_report.dart
+```
+
+The option sets are `flutter_lints` and `selected`: `flutter_lints` plus the
+rules of this package that are about robustness, as errors. The full package
+was not used as an arm because its style rules would dominate the fix loop
+and drown the question.
+
+Limits: a task prompt fixes the public API so the hidden tests compile,
+which already narrows the solution space for both arms; the user-level
+`CLAUDE.md` of whoever runs the batch is loaded by the CLI and applies to
+both arms alike; with five runs per cell the numbers describe this batch,
+not the population.

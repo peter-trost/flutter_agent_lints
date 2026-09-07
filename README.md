@@ -114,6 +114,16 @@ Rules of flutter_agent_lints that flagged the most fixed lines:
 | unused_local_variable | 2 | 1 | 40.7x |
 <!-- /benchmark -->
 
+The consistency claim needs agents, not mining. `benchmark/agents` gives
+headless Claude Code the same three tasks under `flutter_lints` and under a
+selected subset of this package's rules, several times each, and measures
+hidden-test results, turns, what the strict options still flag afterwards,
+and how alike the solutions to one task turn out.
+
+<!-- agents -->
+No runs recorded yet.
+<!-- /agents -->
+
 ## Contributing
 
 To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`,

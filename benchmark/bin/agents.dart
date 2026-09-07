@@ -156,7 +156,7 @@ Future<RunRecord> _run(
   String root,
 ) async {
   final id = '$task-$config-$rep-${options.model}';
-  final workdir = await _freshWorkdir(id, task, config);
+  final workdir = await _freshWorkdir(id, task, config, root);
   final optionsText = File('$workdir/analysis_options.yaml').readAsStringSync();
   final prompt = File('agents/tasks/$task/prompt.md').readAsStringSync();
 
@@ -192,6 +192,8 @@ Future<RunRecord> _run(
   final stream = logFile.readAsStringSync();
   final result = parseResult(stream);
 
+  final optionsModified =
+      File('$workdir/analysis_options.yaml').readAsStringSync() != optionsText;
   final tests = await _hiddenTests(task, workdir);
   final analyzeIssues = (await _analyze(workdir, root: null)).length;
   final full = await _analyze(workdir, root: root);
@@ -228,9 +230,7 @@ Future<RunRecord> _run(
     fullIssues: full.length,
     fullByRule: fullByRule,
     ignores: libFiles.fold(0, (n, f) => n + _ignores(f.readAsStringSync())),
-    optionsModified:
-        File('$workdir/analysis_options.yaml').readAsStringSync() !=
-        optionsText,
+    optionsModified: optionsModified,
     ruleMentions: ruleMentions(stream),
     loc: libFiles.fold(0, (n, f) => n + f.readAsLinesSync().length),
     source: File('$workdir/$solution').existsSync()
@@ -241,7 +241,12 @@ Future<RunRecord> _run(
 
 /// A fresh copy of the base app with the option set in place and
 /// dependencies resolved.
-Future<String> _freshWorkdir(String id, String task, String config) async {
+Future<String> _freshWorkdir(
+  String id,
+  String task,
+  String config,
+  String root,
+) async {
   final workdir = Directory('${Directory.systemTemp.path}/lint_benchmark/$id');
   if (workdir.existsSync()) {
     workdir.deleteSync(recursive: true);
@@ -304,7 +309,7 @@ Future<List<Diagnostic>> _analyze(
 }
 
 Future<void> _validate(String task, String root) async {
-  final workdir = await _freshWorkdir('validate-$task', task, 'selected');
+  final workdir = await _freshWorkdir('validate-$task', task, 'selected', root);
   await _copyDir(Directory('agents/tasks/$task/reference'), Directory(workdir));
   final tests = await _hiddenTests(task, workdir);
   final issues = (await _analyze(workdir, root: null)).length;

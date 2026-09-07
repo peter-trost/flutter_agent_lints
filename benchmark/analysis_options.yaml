@@ -1,7 +1,8 @@
 include: ../lib/analysis_options.yaml
 
 # Task files are analyzed inside the workdir of a run, where their
-# dependencies resolve.
+# dependencies resolve; agent outputs are data, not code of this package.
 analyzer:
   exclude:
     - agents/**
+    - results/**

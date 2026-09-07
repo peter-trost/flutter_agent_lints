@@ -121,7 +121,35 @@ hidden-test results, turns, what the strict options still flag afterwards,
 and how alike the solutions to one task turn out.
 
 <!-- agents -->
-No runs recorded yet.
+30 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+
+| Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_lints | 15 | 100.0% | 15 of 15 | 10.1 | 1.8 min | 9.7 | 0 |
+| selected | 15 | 100.0% | 15 of 15 | 11.0 | 2.4 min | 12.9 | 0 |
+
+| Task | Option set | Consistency | Lines | Tests passed |
+| --- | --- | --- | --- | --- |
+| countdown | flutter_lints | 0.77 | 178.8 | 100.0% |
+| countdown | selected | 0.67 | 182.0 | 100.0% |
+| search_model | flutter_lints | 0.75 | 126.2 | 100.0% |
+| search_model | selected | 0.71 | 124.8 | 100.0% |
+| settings_parser | flutter_lints | 0.81 | 199.4 | 100.0% |
+| settings_parser | selected | 0.49 | 236.0 | 100.0% |
+
+Diagnostics the agents ran into most under flutter_lints (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| prefer_initializing_formals | 10 |
+| type_init_formals | 2 |
+
+Diagnostics the agents ran into most under selected (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| prefer_initializing_formals | 11 |
+| only_throw_errors | 1 |
 <!-- /agents -->
 
 ## Contributing

@@ -184,6 +184,8 @@ Future<RunRecord> _run(
     '--strict-mcp-config',
   ], workingDirectory: workdir);
   final timer = Timer(options.timeout, process.kill);
+  // Without a closed stdin the CLI waits three seconds for piped input.
+  await process.stdin.close();
   await Future.wait([process.stdout.pipe(sink), process.stderr.drain<void>()]);
   await process.exitCode;
   timer.cancel();

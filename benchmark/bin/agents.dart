@@ -191,6 +191,11 @@ Future<RunRecord> _run(
   timer.cancel();
   final stream = logFile.readAsStringSync();
   final result = parseResult(stream);
+  if (result.numTurns <= 1 && stream.contains('limit')) {
+    // A subscription limit ends the CLI in one turn; the record would be
+    // an empty run. Stop the batch, it resumes once the limit resets.
+    throw StateError('usage limit hit on $id, stop and rerun later');
+  }
 
   final optionsModified =
       File('$workdir/analysis_options.yaml').readAsStringSync() != optionsText;
@@ -252,9 +257,11 @@ Future<String> _freshWorkdir(
     workdir.deleteSync(recursive: true);
   }
   await _copyDir(Directory('agents/base'), workdir);
-  File(
-    '${workdir.path}/analysis_options.yaml',
-  ).writeAsStringSync(File('agents/options/$config.yaml').readAsStringSync());
+  File('${workdir.path}/analysis_options.yaml').writeAsStringSync(
+    File('agents/options/$config.yaml')
+        .readAsStringSync()
+        .replaceAll('{{root}}', root),
+  );
   final pubGet = await Process.run('flutter', [
     'pub',
     'get',

@@ -1,8 +1,5 @@
 import 'package:lint_benchmark/src/score.dart';
 
-const _start = '<!-- benchmark -->\n';
-const _end = '<!-- /benchmark -->';
-
 /// Renders the summary tables for the README from one [Aggregate] per
 /// option set.
 String renderReport(
@@ -63,11 +60,17 @@ String _percent(double share) => '${(share * 100).toStringAsFixed(1)}%';
 
 /// Replaces the text between the benchmark markers of [text] with
 /// [replacement], keeping the markers.
-String replaceBetweenMarkers(String text, String replacement) {
-  final start = text.indexOf(_start);
-  final end = text.indexOf(_end);
+String replaceBetweenMarkers(
+  String text,
+  String replacement, {
+  String marker = 'benchmark',
+}) {
+  final open = '<!-- $marker -->\n';
+  final close = '<!-- /$marker -->';
+  final start = text.indexOf(open);
+  final end = text.indexOf(close);
   if (start < 0 || end < 0 || end < start) {
-    throw StateError('benchmark markers not found');
+    throw StateError('$marker markers not found');
   }
-  return text.replaceRange(start + _start.length, end, replacement);
+  return text.replaceRange(start + open.length, end, replacement);
 }

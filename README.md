@@ -114,6 +114,63 @@ Rules of flutter_agent_lints that flagged the most fixed lines:
 | unused_local_variable | 2 | 1 | 40.7x |
 <!-- /benchmark -->
 
+The consistency claim needs agents, not mining. `benchmark/agents` gives
+headless Claude Code the same three tasks under `flutter_lints` and under a
+selected subset of this package's rules, several times each, and measures
+hidden-test results, turns, what the strict options still flag afterwards,
+and how alike the solutions to one task turn out.
+
+<!-- agents -->
+45 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+
+| Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_agent_lints | 15 | 99.3% | 14 of 15 | 23.2 | 4.2 min | 0.0 | 0 |
+| flutter_lints | 15 | 100.0% | 15 of 15 | 10.1 | 1.8 min | 9.7 | 0 |
+| selected | 15 | 100.0% | 15 of 15 | 11.0 | 2.4 min | 12.9 | 0 |
+
+| Task | Option set | Consistency | Lines | Tests passed |
+| --- | --- | --- | --- | --- |
+| countdown | flutter_agent_lints | 0.66 | 159.4 | 100.0% |
+| countdown | flutter_lints | 0.77 | 178.8 | 100.0% |
+| countdown | selected | 0.67 | 182.0 | 100.0% |
+| search_model | flutter_agent_lints | 0.68 | 112.8 | 97.5% |
+| search_model | flutter_lints | 0.75 | 126.2 | 100.0% |
+| search_model | selected | 0.71 | 124.8 | 100.0% |
+| settings_parser | flutter_agent_lints | 0.65 | 167.0 | 100.0% |
+| settings_parser | flutter_lints | 0.81 | 199.4 | 100.0% |
+| settings_parser | selected | 0.49 | 236.0 | 100.0% |
+
+Diagnostics the agents ran into most under flutter_agent_lints (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| unnecessary_type_name_in_constructor | 24 |
+| cascade_invocations | 17 |
+| sort_pub_dependencies | 17 |
+| omit_obvious_property_types | 16 |
+| prefer_initializing_formals | 11 |
+| argument_type_not_assignable | 10 |
+| avoid_unused_constructor_parameters | 10 |
+| extra_positional_arguments | 10 |
+| extraneous_modifier | 9 |
+| undefined_identifier | 8 |
+
+Diagnostics the agents ran into most under flutter_lints (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| prefer_initializing_formals | 10 |
+| type_init_formals | 2 |
+
+Diagnostics the agents ran into most under selected (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| prefer_initializing_formals | 11 |
+| only_throw_errors | 1 |
+<!-- /agents -->
+
 ## Contributing
 
 To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`,

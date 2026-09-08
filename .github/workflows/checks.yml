@@ -105,6 +105,7 @@ jobs:
           dart analyze --fatal-infos
           dart test
           dart run bin/report.dart --check
+          dart run bin/agents_report.dart --check
 
   example:
     name: Example app (${{ inputs.flutter }})

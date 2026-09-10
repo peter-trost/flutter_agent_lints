@@ -12,3 +12,4 @@ pubspec.lock
 fixtures/
 benchmark/
 renovate.json
+.coderabbit.yaml

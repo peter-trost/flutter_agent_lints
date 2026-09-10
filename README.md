@@ -30,6 +30,31 @@ removed between SDK releases):
 include: package:flutter_agent_lints/experimental.yaml
 ```
 
+## The agent skill
+
+Because every diagnostic is an error, an agent that writes first and reads
+diagnostics afterwards pays for it in fix-loop iterations. The package ships a
+skill that front-loads the rules those iterations are spent on. Install it into
+the project that depends on this package:
+
+```bash
+dart run skills@ get
+```
+
+That is the [`skills`](https://pub.dev/packages/skills) CLI, which finds skills
+bundled in your dependency tree and installs them for Claude Code, Codex,
+Cursor, Copilot and others. Rerun it after upgrading so the skill matches the
+ruleset you have.
+
+It is a skill rather than a block in `AGENTS.md` on purpose. In a repository
+that is only partly Dart, an always-loaded instruction spends context on every
+session that never touches a `.dart` file; a skill loads only when its
+description matches the work. The Flutter rules sit in their own reference file
+for the same reason, so a pure Dart package never pulls them in.
+
+Measured on the tasks in `benchmark/agents`, the skill cut the diagnostics
+agents had to read and fix by 77%.
+
 ## Principles
 
 In priority order:

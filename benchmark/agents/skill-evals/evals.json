@@ -1,0 +1,45 @@
+{
+  "skill_name": "flutter-agent-lints",
+  "baseline": "flutter_agent_lints ruleset, no skill (15 runs already recorded in results/agents/runs.jsonl)",
+  "evals": [
+    {
+      "id": 0,
+      "name": "settings-parser-strict",
+      "prompt": "benchmark/agents/tasks/settings_parser/prompt.md",
+      "expected_output": "lib/settings.dart passing 12 hidden tests, dart analyze clean under the full ruleset",
+      "assertions": [
+        "dart analyze reports no issues under the full flutter_agent_lints options",
+        "all 12 hidden tests pass",
+        "no ignore comments were added",
+        "analysis_options.yaml was not edited",
+        "the run took fewer turns than the no-skill mean for this task (20.2)"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "search-model-strict",
+      "prompt": "benchmark/agents/tasks/search_model/prompt.md",
+      "expected_output": "lib/search_model.dart passing 8 hidden tests, dart analyze clean under the full ruleset",
+      "assertions": [
+        "dart analyze reports no issues under the full flutter_agent_lints options",
+        "all 8 hidden tests pass",
+        "no ignore comments were added",
+        "analysis_options.yaml was not edited",
+        "the run took fewer turns than the no-skill mean for this task (26.2)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "countdown-strict",
+      "prompt": "benchmark/agents/tasks/countdown/prompt.md",
+      "expected_output": "lib/countdown.dart passing 7 hidden tests, dart analyze clean under the full ruleset",
+      "assertions": [
+        "dart analyze reports no issues under the full flutter_agent_lints options",
+        "all 7 hidden tests pass",
+        "no ignore comments were added",
+        "analysis_options.yaml was not edited",
+        "the run took fewer turns than the no-skill mean for this task (23.2)"
+      ]
+    }
+  ]
+}

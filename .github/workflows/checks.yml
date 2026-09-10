@@ -67,6 +67,9 @@ jobs:
       - name: Every SDK rule is decided
         run: dart run tool/check_rules.dart
 
+      - name: The shipped skill matches the ruleset
+        run: dart run tool/check_skill.dart
+
       # The dry run validates but never fails on size. Plant build output that
       # .pubignore must exclude, then fail if it shows up in the archive or if
       # the archive is far bigger than a lint package should ever be.

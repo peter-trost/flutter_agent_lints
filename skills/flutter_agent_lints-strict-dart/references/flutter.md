@@ -1,7 +1,7 @@
 # Flutter rules
 
-Read [dart.md](dart.md) first; everything there applies to widget code too.
-These rules add to it.
+Everything in the Dart reference applies to widget code too; these rules add
+to it.
 
 ## Widgets
 
@@ -9,14 +9,21 @@ These rules add to it.
   `{super.key}`. Note where it sits: `super.key` is optional, and
   `always_put_required_named_parameters_first` puts required parameters
   ahead of it, so the familiar `{super.key, required this.x}` ordering is an
-  error here. Combined with the declaring-constructor rule from dart.md:
+  error here, combined with the declaring-constructor spelling:
 
   ```dart
   class CountdownTimer extends StatefulWidget {
-    const new({required this.controller, super.key, this.onFinished});
+    const new({required this.controller, super.key});
 
-    final CountdownController controller;
-    final VoidCallback? onFinished;
+    final Listenable controller;
+
+    @override
+    State<CountdownTimer> createState() => _CountdownTimerState();
+  }
+
+  class _CountdownTimerState extends State<CountdownTimer> {
+    @override
+    Widget build(BuildContext context) => const Text('00:00');
   }
   ```
 
@@ -40,21 +47,34 @@ These rules add to it.
   unrelated 'mounted' check":
 
   ```dart
-  // Inside a State, the context is State.context, so guard on the State.
-  await work();
-  if (!mounted) return;
-  Navigator.of(context).pop();
+  class _ExampleState extends State<StatefulWidget> {
+    // The context here is State.context, so the guard is on the State.
+    Future<void> save(Future<void> Function() work) async {
+      await work();
+      if (!mounted) {
+        return;
+      }
+      Navigator.of(context).pop();
+    }
 
-  // A context held as a variable or parameter guards on itself.
-  Future<void> f(BuildContext context) async {
+    @override
+    Widget build(BuildContext context) => const SizedBox.shrink();
+  }
+
+  // A context held as a parameter or variable guards on itself.
+  Future<void> saveWith(
+    BuildContext context,
+    Future<void> Function() work,
+  ) async {
     await work();
-    if (!context.mounted) return;
+    if (!context.mounted) {
+      return;
+    }
     Navigator.of(context).pop();
   }
   ```
-- Equality on a widget's state or controller still needs `@immutable`; where
-  the class is a `ChangeNotifier` it is mutable by definition, so do not
-  define `==` on it.
+- Equality on a widget's state or controller still needs `@immutable`; a
+  `ChangeNotifier` is mutable by definition, so do not define `==` on it.
 
 ## Platform and color
 

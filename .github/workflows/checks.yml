@@ -142,6 +142,11 @@ jobs:
         working-directory: example
         run: dart analyze --fatal-infos
 
+      # Runs in the example job because the Flutter samples need a resolved
+      # Flutter SDK, which the package-only job does not have.
+      - name: Every skill code sample survives the ruleset
+        run: dart run tool/check_samples.dart
+
       - name: Test
         working-directory: example
         run: flutter test

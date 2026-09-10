@@ -1,7 +1,5 @@
 # Dart rules
 
-For widget code, read [flutter.md](flutter.md) as well.
-
 ## Constructors omit the class name
 
 Dart 3.13 declaring constructors: inside a class, the unnamed constructor is
@@ -11,11 +9,12 @@ still works.
 
 ```dart
 class Settings {
-  const new({required this.username, this.fontSize = 14});  // not const Settings({...})
+  // not `const Settings({...})`
+  const new({required this.username, this.fontSize = 14});
 
-  factory fromJson(Map<String, Object?> json) => Settings(   // not factory Settings.fromJson
-    username: json['username']! as String,
-  );
+  // not `factory Settings.fromJson(...)`
+  factory fromJson(Map<String, Object?> json) =>
+      Settings(username: json['username']! as String);
 
   final String username;
   final int fontSize;
@@ -33,7 +32,10 @@ SearchFetcher fetcher}) : _fetcher = fetcher` is an error.
 
 ```dart
 class SearchModel {
-  new({required this._fetcher, this._debounce = const Duration(milliseconds: 300)});
+  new({
+    required this._fetcher,
+    this._debounce = const Duration(milliseconds: 300),
+  });
 
   final Future<List<String>> Function(String) _fetcher;
   final Duration _debounce;
@@ -46,9 +48,17 @@ class SearchModel {
 fires:
 
 ```dart
-final model = SearchModel(fetcher: fetch)
-  ..addListener(onChange)
-  ..onQueryChanged('a');
+class Cart {
+  final _items = <String>[];
+
+  void add(String item) => _items.add(item);
+}
+
+void build() {
+  final cart = Cart()
+    ..add('apple')
+    ..add('pear');
+}
 ```
 
 ## Equality requires @immutable

@@ -93,3 +93,10 @@ which already narrows the solution space for both arms; the user-level
 `CLAUDE.md` of whoever runs the batch is loaded by the CLI and applies to
 both arms alike; with five runs per cell the numbers describe this batch,
 not the population.
+
+The `search_model` prompt is also ambiguous about when `loading` begins: it
+says status is `loading` while a fetch is in flight, without saying what it
+is during the debounce that precedes one. Every hidden-test failure so far,
+in any arm, has been that one reading. Those are a defect in the task rather
+than a difference between option sets, and the prompt is left as it is so
+the recorded runs stay comparable.

@@ -42,6 +42,27 @@ class SearchModel {
 }
 ```
 
+## Tests are analyzed too
+
+Files under `test/` face the same rules, and in measured runs they were the
+single largest source of fix-loop churn. Two rules do most of it:
+
+- `avoid_dynamic_calls` and the strict inference modes reject an untyped
+  fake or callback, so give every test double and closure parameter a type.
+- `cascade_invocations` fires on consecutive calls to one object during
+  setup, which is a common shape in tests.
+
+```dart
+class Recorder {
+  final calls = <String>[];
+
+  Future<List<String>> fetch(String query) async {
+    calls.add(query);
+    return [query];
+  }
+}
+```
+
 ## Consecutive calls on one receiver are a cascade
 
 `cascade_invocations` covers test files too, which is where it usually

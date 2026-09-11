@@ -85,9 +85,13 @@ void build() {
 ## Equality requires @immutable
 
 `avoid_equals_and_hash_code_on_mutable_classes` means a class with `==` and
-`hashCode` must carry `@immutable` from `package:meta/meta.dart`, which in
-turn requires every field to be `final`. If the class cannot be immutable, it
-should not define equality; compare the fields at the call site instead.
+`hashCode` must carry `@immutable`, which in turn requires every field to be
+`final`. Import the annotation from a package the project declares:
+`package:flutter/foundation.dart` in a Flutter app, `package:meta/meta.dart`
+only where `meta` is a listed dependency, because
+`depend_on_referenced_packages` rejects any other import. If the class cannot
+be immutable, it should not define equality; compare the fields at the call
+site instead.
 
 ## Handled by `dart fix --apply`
 

@@ -1,0 +1,50 @@
+# SkillOpt run for the strict-Dart skill. Both roles run through the local
+# `claude -p` login (claude_chat), so no API key is involved. Sizes are the
+# smallest the validation gate can still resolve: a 10-task selection split
+# scores in steps of 10 points, which is about the smallest change worth
+# accepting.
+_base_: ../_base_/default.yaml
+
+model:
+  optimizer: opus
+  target: opus
+  optimizer_backend: claude_chat
+  target_backend: claude_chat
+  reasoning_effort: medium
+
+train:
+  num_epochs: 3
+  batch_size: 10
+  accumulation: 1
+  seed: 42
+
+gradient:
+  minibatch_size: 5
+  merge_batch_size: 5
+  analyst_workers: 2
+  failure_only: false
+
+optimizer:
+  learning_rate: 3
+  min_learning_rate: 2
+  lr_scheduler: cosine
+
+evaluation:
+  use_gate: true
+  gate_metric: mixed
+  gate_mixed_weight: 0.5
+  sel_env_num: 0
+  test_env_num: 0
+  eval_test: true
+
+env:
+  name: strictdart
+  skill_init: skillopt/envs/strictdart/skills/initial.md
+  split_mode: split_dir
+  split_dir: skillopt/envs/strictdart/data
+  workers: 3
+  analyst_workers: 2
+  minibatch_size: 5
+  max_completion_tokens: 8192
+  exec_timeout: 300
+  limit: 0

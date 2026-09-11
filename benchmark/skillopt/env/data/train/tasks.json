@@ -80,8 +80,8 @@
     "id": "tokenizer",
     "task_type": "dart",
     "file": "lib/tokenizer.dart",
-    "prompt": "Implement `lib/tokenizer.dart`: `sealed class Token` with `final class\nNumberToken extends Token` (`final double value`), `final class OperatorToken\nextends Token` (`final String symbol`, one of `+ - * /`), and `final class\nParenToken extends Token` (`final bool isOpen`), each with a `const`\nconstructor taking its field as a positional parameter. `List<Token>\ntokenize(String source)` skips whitespace, parses decimal numbers, and throws\n`FormatException` naming the offending character otherwise.",
-    "usage": "int useTokens() {\n  final tokens = tokenize('(1.5 + 2) * 3');\n  var sum = 0;\n  for (final token in tokens) {\n    sum += switch (token) {\n      NumberToken(:final value) => value.toInt(),\n      OperatorToken(:final symbol) => symbol.length,\n      ParenToken(:final isOpen) => isOpen ? 1 : 0,\n    };\n  }\n  const paren = ParenToken(true);\n  return sum + (paren.isOpen ? 1 : 0);\n}"
+    "prompt": "Implement `lib/tokenizer.dart`: `sealed class Token` with `final class\nNumberToken extends Token` (`final double value`), `final class OperatorToken\nextends Token` (`final String symbol`, one of `+ - * /`), and `final class\nParenToken extends Token` (`final bool isOpen` as a required named parameter,\nsince the ruleset forbids positional booleans); the other two take their field\npositionally, all with `const` constructors. `List<Token>\ntokenize(String source)` skips whitespace, parses decimal numbers, and throws\n`FormatException` naming the offending character otherwise.",
+    "usage": "int useTokens() {\n  final tokens = tokenize('(1.5 + 2) * 3');\n  var sum = 0;\n  for (final token in tokens) {\n    sum += switch (token) {\n      NumberToken(:final value) => value.toInt(),\n      OperatorToken(:final symbol) => symbol.length,\n      ParenToken(:final isOpen) => isOpen ? 1 : 0,\n    };\n  }\n  const paren = ParenToken(isOpen: true);\n  return sum + (paren.isOpen ? 1 : 0);\n}"
   },
   {
     "id": "tree",

@@ -263,10 +263,10 @@ Future<String> _freshWorkdir(
   await _copyDir(Directory('agents/base'), workdir);
   // A config named "<options>+skill" runs those options with the package's
   // skill installed in the workdir, which is how a consumer would get it.
-  final withSkill = config.endsWith(_skillSuffix);
-  final optionsName = withSkill
-      ? config.substring(0, config.length - _skillSuffix.length)
-      : config;
+  // "<options>+skill" or "<options>+skill-<label>": the label only names
+  // the arm, so a retrained skill can be measured next to an earlier one.
+  final withSkill = config.contains(_skillSuffix);
+  final optionsName = config.split('+').first;
   File('${workdir.path}/analysis_options.yaml').writeAsStringSync(
     File('agents/options/$optionsName.yaml')
         .readAsStringSync()

@@ -32,6 +32,23 @@ read-diagnostic-then-edit rounds.
 
 `dart analyze` must print `No issues found!`.
 
+`lines_longer_than_80_chars` is on: no line, including a single-expression
+`=>` body or a chained call, may exceed 80 columns. Break it the way
+`dart format` would:
+
+```dart
+import 'dart:async';
+
+class EventBus {
+  final _controller = StreamController<Object>.broadcast();
+
+  Stream<T> on<T>() =>
+      _controller.stream.where((event) => event is T).cast<T>();
+
+  Future<void> dispose() => _controller.close();
+}
+```
+
 ## Not options
 
 - **Never add `// ignore:` or `// ignore_for_file:`.** If a rule seems wrong

@@ -214,8 +214,9 @@ bool useRange() {
 Implement `lib/tokenizer.dart`: `sealed class Token` with `final class
 NumberToken extends Token` (`final double value`), `final class OperatorToken
 extends Token` (`final String symbol`, one of `+ - * /`), and `final class
-ParenToken extends Token` (`final bool isOpen`), each with a `const`
-constructor taking its field as a positional parameter. `List<Token>
+ParenToken extends Token` (`final bool isOpen` as a required named parameter,
+since the ruleset forbids positional booleans); the other two take their field
+positionally, all with `const` constructors. `List<Token>
 tokenize(String source)` skips whitespace, parses decimal numbers, and throws
 `FormatException` naming the offending character otherwise.
 """, """
@@ -229,7 +230,7 @@ int useTokens() {
       ParenToken(:final isOpen) => isOpen ? 1 : 0,
     };
   }
-  const paren = ParenToken(true);
+  const paren = ParenToken(isOpen: true);
   return sum + (paren.isOpen ? 1 : 0);
 }
 """),

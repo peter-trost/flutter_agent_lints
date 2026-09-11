@@ -21,7 +21,7 @@ def body(path: Path) -> str:
 
 def flatten() -> str:
     # The pointer section only makes sense with separate files.
-    main = re.sub(r"## Read the reference for what you are writing\n.*?(?=\n## )", "", body(SKILL / "SKILL.md"), flags=re.S)
+    main = re.sub(r"## Read the reference for what you are writing\n.*?\n(?=## )", "", body(SKILL / "SKILL.md"), flags=re.S)
     parts = [main.strip()]
     for ref in ("dart", "flutter"):
         text = body(SKILL / "references" / f"{ref}.md")

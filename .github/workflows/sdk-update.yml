@@ -65,7 +65,7 @@ jobs:
 
       - name: Add decisions for the new SDK
         if: steps.gate.outputs.needs_agent == 'true'
-        uses: anthropics/claude-code-action@9c5ddab2e6d17b83ea679153b31f1d5f023cf636 # v1
+        uses: anthropics/claude-code-action@56cf60fde42f7b19c3abfd5c9c48b69a1288461f # v1
         with:
           # Workload identity federation: the job's GitHub OIDC token is
           # exchanged for a short-lived Anthropic token. These are identifiers,

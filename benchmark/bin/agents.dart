@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:lint_benchmark/src/agents/arm.dart';
 import 'package:lint_benchmark/src/agents/record.dart';
 import 'package:lint_benchmark/src/agents/stream.dart';
 import 'package:lint_benchmark/src/diagnostics.dart';
@@ -13,26 +14,32 @@ import 'package:lint_benchmark/src/diagnostics.dart';
 ///
 /// Usage: dart run bin/agents.dart [--model opus] [--reps 5]
 ///   [--tasks a,b] [--configs x,y] [--parallel 2] [--max-turns 60]
-///   [--timeout-min 20] [--validate]
+///   [--timeout-min 20] [--validate] [--change]
 ///
 /// `--validate` runs each task's reference solution through its hidden
 /// tests instead of an agent.
+///
+/// `--change` runs the change tasks under `agents/changes` instead: each
+/// config is `<options>@<seed>`, and rep `n` starts from the `lib/` that
+/// rep `n` of the seed config produced on the base task, with the base
+/// task's hidden tests in place as the project's tests. Records go to
+/// `results/agents/changes.jsonl`.
 Future<void> main(List<String> args) async {
   final options = _Options.parse(args);
   final root = Directory.current.parent.absolute.path;
-  final tasks = options.tasks ?? _names(Directory('agents/tasks'));
+  final tasks = options.tasks ?? _names(Directory(options.tasksDir));
   final configs =
       options.configs ??
       _names(Directory('agents/options')).map((f) => f.replaceAll('.yaml', ''));
 
   if (options.validate) {
     for (final task in tasks) {
-      await _validate(task, root);
+      await _validate(task, root, options);
     }
     return;
   }
 
-  final done = _loadRecords().map((r) => r.id).toSet();
+  final done = _loadRecords(options.recordsPath).map((r) => r.id).toSet();
   final queue = <(String, String, int)>[
     for (var rep = 0; rep < options.reps; rep++)
       for (final task in tasks)
@@ -46,7 +53,7 @@ Future<void> main(List<String> args) async {
     while (queue.isNotEmpty) {
       final (task, config, rep) = queue.removeAt(0);
       final record = await _run(task, config, rep, options, root);
-      File(_recordsPath).writeAsStringSync(
+      File(options.recordsPath).writeAsStringSync(
         '${jsonEncode(record.toJson())}\n',
         mode: FileMode.append,
       );
@@ -61,11 +68,6 @@ Future<void> main(List<String> args) async {
   await Future.wait([for (var i = 0; i < options.parallel; i++) worker()]);
 }
 
-const _recordsPath = 'results/agents/runs.jsonl';
-
-/// A config named `<options>+skill` runs `<options>.yaml` with the package's
-/// skill installed in the workdir.
-const _skillSuffix = '+skill';
 const _allowedTools = 'Read,Edit,Write,Glob,Grep,Bash(dart:*),Bash(flutter:*)';
 
 class _Options {
@@ -78,6 +80,7 @@ class _Options {
     required this.maxTurns,
     required this.timeout,
     required this.validate,
+    required this.change,
   });
 
   factory parse(List<String> args) {
@@ -89,6 +92,7 @@ class _Options {
     var maxTurns = 60;
     var timeoutMin = 20;
     var validate = false;
+    var change = false;
     for (var i = 0; i < args.length; i++) {
       switch (args[i]) {
         case '--model':
@@ -107,6 +111,8 @@ class _Options {
           timeoutMin = int.parse(args[++i]);
         case '--validate':
           validate = true;
+        case '--change':
+          change = true;
         default:
           throw ArgumentError('unknown argument ${args[i]}');
       }
@@ -120,6 +126,7 @@ class _Options {
       maxTurns: maxTurns,
       timeout: Duration(minutes: timeoutMin),
       validate: validate,
+      change: change,
     );
   }
 
@@ -131,10 +138,21 @@ class _Options {
   final int maxTurns;
   final Duration timeout;
   final bool validate;
+
+  /// Whether the tasks are changes to seeded code rather than fresh
+  /// implementations.
+  final bool change;
+
+  String get tasksDir => change ? 'agents/changes' : 'agents/tasks';
+  String get recordsPath =>
+      change ? 'results/agents/changes.jsonl' : 'results/agents/runs.jsonl';
+  String get outputsDir =>
+      change ? 'results/agents/outputs/changes' : 'results/agents/outputs';
+  String get logPrefix => change ? 'change-' : '';
 }
 
-List<RunRecord> _loadRecords() {
-  final file = File(_recordsPath);
+List<RunRecord> _loadRecords(String path) {
+  final file = File(path);
   if (!file.existsSync()) {
     return const [];
   }
@@ -160,11 +178,15 @@ Future<RunRecord> _run(
   String root,
 ) async {
   final id = '$task-$config-$rep-${options.model}';
-  final workdir = await _freshWorkdir(id, task, config, root);
+  final workdir = await _freshWorkdir(id, task, config, root, options, rep);
   final optionsText = File('$workdir/analysis_options.yaml').readAsStringSync();
-  final prompt = File('agents/tasks/$task/prompt.md').readAsStringSync();
+  final prompt = File('${options.tasksDir}/$task/prompt.md').readAsStringSync();
+  final solution = _solutionFile(prompt);
+  final seedSource = File('$workdir/$solution').existsSync()
+      ? File('$workdir/$solution').readAsStringSync()
+      : null;
 
-  final logFile = File('results/agents/logs/$id.jsonl')
+  final logFile = File('results/agents/logs/${options.logPrefix}$id.jsonl')
     ..createSync(recursive: true);
   final sink = logFile.openWrite();
   final process = await Process.start('claude', [
@@ -203,7 +225,7 @@ Future<RunRecord> _run(
 
   final optionsModified =
       File('$workdir/analysis_options.yaml').readAsStringSync() != optionsText;
-  final tests = await _hiddenTests(task, workdir);
+  final tests = await _hiddenTests(task, workdir, options);
   final analyzeIssues = (await _analyze(workdir, root: null)).length;
   final full = await _analyze(workdir, root: root);
   File('$workdir/analysis_options.yaml').writeAsStringSync(optionsText);
@@ -212,15 +234,17 @@ Future<RunRecord> _run(
     fullByRule.update(d.code, (n) => n + 1, ifAbsent: () => 1);
   }
 
-  final solution = _solutionFile(prompt);
   final libFiles = _dartFiles(Directory('$workdir/lib'));
   final outputDir = Directory(
-    'results/agents/outputs/$task/$config/$rep-${options.model}',
+    '${options.outputsDir}/$task/$config/$rep-${options.model}',
   );
   if (outputDir.existsSync()) {
     outputDir.deleteSync(recursive: true);
   }
   await _copyDir(Directory('$workdir/lib'), Directory('${outputDir.path}/lib'));
+  final source = File('$workdir/$solution').existsSync()
+      ? File('$workdir/$solution').readAsStringSync()
+      : '';
 
   return RunRecord(
     task: task,
@@ -242,37 +266,48 @@ Future<RunRecord> _run(
     optionsModified: optionsModified,
     ruleMentions: ruleMentions(stream),
     loc: libFiles.fold(0, (n, f) => n + f.readAsLinesSync().length),
-    source: File('$workdir/$solution').existsSync()
-        ? File('$workdir/$solution').readAsStringSync()
-        : '',
+    source: source,
+    changedLines: seedSource == null ? null : changedLines(seedSource, source),
   );
 }
 
 /// A fresh copy of the base app with the option set in place and
-/// dependencies resolved.
+/// dependencies resolved. For a change task, the `lib/` a recorded run of
+/// the seed config produced replaces the base app's, and the base task's
+/// hidden tests become the project's tests.
 Future<String> _freshWorkdir(
   String id,
   String task,
   String config,
   String root,
+  _Options options,
+  int rep,
 ) async {
   final workdir = Directory('${Directory.systemTemp.path}/lint_benchmark/$id');
   if (workdir.existsSync()) {
     workdir.deleteSync(recursive: true);
   }
   await _copyDir(Directory('agents/base'), workdir);
-  // A config named "<options>+skill" runs those options with the package's
-  // skill installed in the workdir, which is how a consumer would get it.
-  // "<options>+skill" or "<options>+skill-<label>": the label only names
-  // the arm, so a retrained skill can be measured next to an earlier one.
-  final withSkill = config.contains(_skillSuffix);
-  final optionsName = config.split('+').first;
+  final arm = Arm.parse(config);
   File('${workdir.path}/analysis_options.yaml').writeAsStringSync(
-    File('agents/options/$optionsName.yaml')
+    File('agents/options/${arm.options}.yaml')
         .readAsStringSync()
         .replaceAll('{{root}}', root),
   );
-  if (withSkill) {
+  if (options.change) {
+    final seed = Directory(
+      'results/agents/outputs/$task/${arm.seed}/$rep-${options.model}/lib',
+    );
+    if (arm.seed == null || !seed.existsSync()) {
+      throw StateError('no recorded output to seed $id from at ${seed.path}');
+    }
+    await _copyDir(seed, Directory('${workdir.path}/lib'));
+    await _copyDir(
+      Directory('agents/tasks/$task/tests'),
+      Directory('${workdir.path}/test'),
+    );
+  }
+  if (arm.withSkill) {
     // Installed the way `dart run skills@ get` installs it: the skill the
     // package ships under skills/, copied into the project's .claude/skills/.
     const skill = 'flutter_agent_lints-strict-dart';
@@ -296,14 +331,22 @@ Future<String> _freshWorkdir(
   return workdir.path;
 }
 
+/// The base task's hidden tests, plus the change's for a change task.
 Future<({int passed, int total})> _hiddenTests(
   String task,
   String workdir,
+  _Options options,
 ) async {
   await _copyDir(
     Directory('agents/tasks/$task/tests'),
     Directory('$workdir/test/hidden'),
   );
+  if (options.change) {
+    await _copyDir(
+      Directory('agents/changes/$task/tests'),
+      Directory('$workdir/test/hidden'),
+    );
+  }
   final result = await Process.run(
     'flutter',
     ['test', 'test/hidden', '--reporter', 'json'],
@@ -337,10 +380,20 @@ Future<List<Diagnostic>> _analyze(
   return parseAnalyzeJson(out.substring(start), packageRoot: workdir);
 }
 
-Future<void> _validate(String task, String root) async {
-  final workdir = await _freshWorkdir('validate-$task', task, 'selected', root);
-  await _copyDir(Directory('agents/tasks/$task/reference'), Directory(workdir));
-  final tests = await _hiddenTests(task, workdir);
+Future<void> _validate(String task, String root, _Options options) async {
+  final workdir = await _freshWorkdir(
+    'validate-$task',
+    task,
+    options.change ? 'selected@flutter_lints' : 'selected',
+    root,
+    options,
+    0,
+  );
+  await _copyDir(
+    Directory('${options.tasksDir}/$task/reference'),
+    Directory(workdir),
+  );
+  final tests = await _hiddenTests(task, workdir, options);
   final issues = (await _analyze(workdir, root: null)).length;
   stdout.writeln(
     '$task: reference passes ${tests.passed} of ${tests.total} hidden '
@@ -348,7 +401,7 @@ Future<void> _validate(String task, String root) async {
   );
 }
 
-final _solutionPattern = RegExp(r'Implement `(lib/[a-z_]+\.dart)`');
+final _solutionPattern = RegExp(r'(?:Implement|Extend) `(lib/[a-z_]+\.dart)`');
 
 String _solutionFile(String prompt) =>
     _solutionPattern.firstMatch(prompt)!.group(1)!;

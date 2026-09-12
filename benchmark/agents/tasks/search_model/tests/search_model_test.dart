@@ -34,9 +34,9 @@ void main() {
     var notifications = 0;
     final model = SearchModel(fetcher: (q) async => [q]);
     addTearDown(model.dispose);
-    model.addListener(() => notifications++);
-
-    model.onQueryChanged('x');
+    model
+      ..addListener(() => notifications++)
+      ..onQueryChanged('x');
     expect(notifications, 1);
     await tester.pump(const Duration(milliseconds: 300));
     expect(notifications, greaterThanOrEqualTo(2));
@@ -130,14 +130,14 @@ void main() {
     tester,
   ) async {
     var calls = 0;
-    final model = SearchModel(
-      fetcher: (q) async {
-        calls++;
-        return [q];
-      },
-    );
-    model.onQueryChanged('x');
-    model.dispose();
+    SearchModel(
+        fetcher: (q) async {
+          calls++;
+          return [q];
+        },
+      )
+      ..onQueryChanged('x')
+      ..dispose();
     await tester.pump(const Duration(seconds: 1));
     expect(calls, 0);
   });
@@ -149,8 +149,7 @@ void main() {
     final model = SearchModel(
       fetcher: (q) => completer.future,
       debounce: Duration.zero,
-    );
-    model.onQueryChanged('x');
+    )..onQueryChanged('x');
     await tester.pump(const Duration(milliseconds: 1));
     model.dispose();
     completer.complete(['x']);

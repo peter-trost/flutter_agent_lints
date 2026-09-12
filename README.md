@@ -235,6 +235,10 @@ Diagnostics the agents ran into most under selected (occurrences in analyzer out
 | only_throw_errors | 1 |
 <!-- /agents -->
 
+<!-- changes -->
+No runs recorded yet.
+<!-- /changes -->
+
 ## Contributing
 
 To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`,

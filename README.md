@@ -53,8 +53,11 @@ description matches the work. The Flutter rules sit in their own reference file
 for the same reason, so a pure Dart package never pulls them in.
 
 Measured on the tasks in `benchmark/agents`, the skill cuts the diagnostics
-agents read and fix while writing library code by roughly 80%, and leaves
-turn count unchanged. See the agent table below for the full comparison.
+agents read and fix during a task by about 80% and the turns by about 15%,
+and its runs were the first under the full ruleset to pass every hidden
+test. The wording was tuned with Microsoft's SkillOpt against single-shot
+tasks scored by the analyzer; see `benchmark/skillopt`. The agent table
+below has the full comparison, including the hand-written version.
 
 ## Principles
 
@@ -147,12 +150,13 @@ hidden-test results, turns, what the strict options still flag afterwards,
 and how alike the solutions to one task turn out.
 
 <!-- agents -->
-60 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+75 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
 
 | Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | flutter_agent_lints | 15 | 99.3% | 14 of 15 | 23.2 | 4.2 min | 0.0 | 0 |
 | flutter_agent_lints+skill | 15 | 99.3% | 14 of 15 | 22.8 | 4.0 min | 0.0 | 0 |
+| flutter_agent_lints+skill-v2 | 15 | 100.0% | 15 of 15 | 19.8 | 3.6 min | 0.0 | 0 |
 | flutter_lints | 15 | 100.0% | 15 of 15 | 10.1 | 1.8 min | 9.7 | 0 |
 | selected | 15 | 100.0% | 15 of 15 | 11.0 | 2.4 min | 12.9 | 0 |
 
@@ -160,14 +164,17 @@ and how alike the solutions to one task turn out.
 | --- | --- | --- | --- | --- |
 | countdown | flutter_agent_lints | 0.66 | 159.4 | 100.0% |
 | countdown | flutter_agent_lints+skill | 0.68 | 151.4 | 100.0% |
+| countdown | flutter_agent_lints+skill-v2 | 0.71 | 156.4 | 100.0% |
 | countdown | flutter_lints | 0.77 | 178.8 | 100.0% |
 | countdown | selected | 0.67 | 182.0 | 100.0% |
 | search_model | flutter_agent_lints | 0.68 | 112.8 | 97.5% |
 | search_model | flutter_agent_lints+skill | 0.65 | 106.6 | 97.5% |
+| search_model | flutter_agent_lints+skill-v2 | 0.72 | 108.0 | 100.0% |
 | search_model | flutter_lints | 0.75 | 126.2 | 100.0% |
 | search_model | selected | 0.71 | 124.8 | 100.0% |
 | settings_parser | flutter_agent_lints | 0.65 | 167.0 | 100.0% |
 | settings_parser | flutter_agent_lints+skill | 0.68 | 160.6 | 100.0% |
+| settings_parser | flutter_agent_lints+skill-v2 | 0.72 | 155.2 | 100.0% |
 | settings_parser | flutter_lints | 0.81 | 199.4 | 100.0% |
 | settings_parser | selected | 0.49 | 236.0 | 100.0% |
 
@@ -199,6 +206,18 @@ Diagnostics the agents ran into most under flutter_agent_lints+skill (occurrence
 | comment_references | 1 |
 | lines_longer_than_80_chars | 1 |
 | null_argument_to_non_null_type | 1 |
+| unnecessary_type_name_in_constructor | 1 |
+
+Diagnostics the agents ran into most under flutter_agent_lints+skill-v2 (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| cascade_invocations | 17 |
+| omit_obvious_property_types | 4 |
+| avoid_types_on_closure_parameters | 3 |
+| lines_longer_than_80_chars | 2 |
+| prefer_initializing_formals | 2 |
+| unused_local_variable | 2 |
 | unnecessary_type_name_in_constructor | 1 |
 
 Diagnostics the agents ran into most under flutter_lints (occurrences in analyzer output they read):

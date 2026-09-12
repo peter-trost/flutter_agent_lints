@@ -62,6 +62,10 @@ Future<void> main(List<String> args) async {
 }
 
 const _recordsPath = 'results/agents/runs.jsonl';
+
+/// A config named `<options>+skill` runs `<options>.yaml` with the package's
+/// skill installed in the workdir.
+const _skillSuffix = '+skill';
 const _allowedTools = 'Read,Edit,Write,Glob,Grep,Bash(dart:*),Bash(flutter:*)';
 
 class _Options {
@@ -257,11 +261,29 @@ Future<String> _freshWorkdir(
     workdir.deleteSync(recursive: true);
   }
   await _copyDir(Directory('agents/base'), workdir);
+  // A config named "<options>+skill" runs those options with the package's
+  // skill installed in the workdir, which is how a consumer would get it.
+  // "<options>+skill" or "<options>+skill-<label>": the label only names
+  // the arm, so a retrained skill can be measured next to an earlier one.
+  final withSkill = config.contains(_skillSuffix);
+  final optionsName = config.split('+').first;
   File('${workdir.path}/analysis_options.yaml').writeAsStringSync(
-    File('agents/options/$config.yaml')
+    File('agents/options/$optionsName.yaml')
         .readAsStringSync()
         .replaceAll('{{root}}', root),
   );
+  if (withSkill) {
+    // Installed the way `dart run skills@ get` installs it: the skill the
+    // package ships under skills/, copied into the project's .claude/skills/.
+    const skill = 'flutter_agent_lints-strict-dart';
+    final source = Directory('$root/skills/$skill');
+    if (!source.existsSync()) {
+      // Silently running an empty skill arm would look like the skill made
+      // no difference, which is the one result this must never fake.
+      throw StateError('no skill to install at ${source.path}');
+    }
+    await _copyDir(source, Directory('${workdir.path}/.claude/skills/$skill'));
+  }
   final pubGet = await Process.run('flutter', [
     'pub',
     'get',

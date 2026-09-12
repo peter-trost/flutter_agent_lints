@@ -67,6 +67,9 @@ jobs:
       - name: Every SDK rule is decided
         run: dart run tool/check_rules.dart
 
+      - name: The shipped skill matches the ruleset
+        run: dart run tool/check_skill.dart
+
       # The dry run validates but never fails on size. Plant build output that
       # .pubignore must exclude, then fail if it shows up in the archive or if
       # the archive is far bigger than a lint package should ever be.
@@ -138,6 +141,11 @@ jobs:
       - name: Analyze
         working-directory: example
         run: dart analyze --fatal-infos
+
+      # Runs in the example job because the Flutter samples need a resolved
+      # Flutter SDK, which the package-only job does not have.
+      - name: Every skill code sample survives the ruleset
+        run: dart run tool/check_samples.dart
 
       - name: Test
         working-directory: example

@@ -51,4 +51,28 @@ void b() {}
       );
     });
   });
+
+  _placement();
+}
+
+void _placement() {
+  group('Sample.isTest', () {
+    test('is true when the sample imports a test framework', () {
+      const markdown =
+          "```dart\nimport 'package:flutter_test/flutter_test.dart';\n```\n";
+      expect(
+        samplesIn(file: 'dart.md', markdown: markdown).single.isTest,
+        isTrue,
+      );
+    });
+
+    test('is false for a sample that imports nothing test-related', () {
+      const markdown =
+          "```dart\nimport 'package:flutter/material.dart';\n```\n";
+      expect(
+        samplesIn(file: 'dart.md', markdown: markdown).single.isTest,
+        isFalse,
+      );
+    });
+  });
 }

@@ -53,7 +53,7 @@ single largest source of fix-loop churn. Two rules do most of it:
 - `avoid_dynamic_calls` and the strict inference modes reject an untyped
   fake or callback, so give every test double and closure parameter a type.
 - `cascade_invocations` fires on consecutive calls to one object during
-  setup, which is a common shape in tests.
+  setup, blank lines included; the next section shows the shape.
 
 ```dart
 class Recorder {
@@ -66,24 +66,45 @@ class Recorder {
 }
 ```
 
-## Consecutive calls on one receiver are a cascade
+## Arrange and act on one object are one cascade
 
-`cascade_invocations` covers test files too, which is where it usually
-fires:
+`cascade_invocations` fires on consecutive statements with the same
+receiver. A blank line between them does not separate them, and neither
+does the first call already sitting in a cascade on the declaration.
+`dart fix` leaves this one alone. In a test, attach the listener and the
+action to the declaration as one cascade, and put the blank line between
+that and the assertions:
 
 ```dart
-class Cart {
-  final _items = <String>[];
+import 'package:flutter/foundation.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-  void add(String item) => _items.add(item);
+class Counter extends ChangeNotifier {
+  var _ticks = 0;
+
+  int get ticks => _ticks;
+
+  void start() {
+    _ticks++;
+    notifyListeners();
+  }
 }
 
-void build() {
-  final cart = Cart()
-    ..add('apple')
-    ..add('pear');
+void main() {
+  test('start notifies listeners', () {
+    var notifications = 0;
+    final controller = Counter()
+      ..addListener(() => notifications++)
+      ..start();
+
+    expect(controller.ticks, 1);
+    expect(notifications, 1);
+  });
 }
 ```
+
+The same applies to `..start()` on the declaration followed by
+`controller.dispose()` a line later: `..start()..dispose()`.
 
 ## Equality requires @immutable
 

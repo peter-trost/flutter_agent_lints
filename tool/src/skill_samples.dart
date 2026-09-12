@@ -12,7 +12,16 @@ class Sample {
   final String code;
 
   String get name => '${file.replaceAll(RegExp('[^a-z]'), '_')}_$index.dart';
+
+  /// Whether the sample is a test file, which must live under `test/` to
+  /// import a test framework the project lists only as a dev dependency.
+  bool get isTest => _testImport.hasMatch(code);
 }
+
+final _testImport = RegExp(
+  "^import 'package:(flutter_test|test)/",
+  multiLine: true,
+);
 
 final _fence = RegExp(
   r'```dart\n(.*?)^[ \t]*```',

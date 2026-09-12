@@ -7,18 +7,24 @@ import 'src/skill_samples.dart';
 /// skill teaches, so a sample cannot tell an agent to write code the
 /// analyzer would reject.
 ///
-/// Samples are written into a scratch directory inside `example/`, which
-/// already resolves Flutter and includes the package's own options.
+/// Samples are written into scratch directories inside `example/`, which
+/// already resolves Flutter and includes the package's own options. A sample
+/// that imports a test framework goes under `test/`, the rest under `lib/`.
 ///
 /// Diagnostics that only exist because a sample is read in isolation, such
 /// as an illustrative field nothing reads, are not failures: the samples are
 /// fragments by design.
 Future<void> main() async {
-  final scratch = Directory('example/lib/skill_samples');
-  if (scratch.existsSync()) {
-    scratch.deleteSync(recursive: true);
+  final scratch = {
+    for (final dir in ['lib', 'test'])
+      dir: Directory('example/$dir/skill_samples'),
+  };
+  for (final dir in scratch.values) {
+    if (dir.existsSync()) {
+      dir.deleteSync(recursive: true);
+    }
+    dir.createSync(recursive: true);
   }
-  scratch.createSync(recursive: true);
 
   var count = 0;
   for (final file
@@ -33,7 +39,8 @@ Future<void> main() async {
     )) {
       final needsFlutter =
           name.contains('flutter') && !sample.code.contains('import ');
-      File('${scratch.path}/${sample.name}').writeAsStringSync(
+      final dir = scratch[sample.isTest ? 'test' : 'lib']!;
+      File('${dir.path}/${sample.name}').writeAsStringSync(
         needsFlutter
             ? "import 'package:flutter/material.dart';\n\n${sample.code}"
             : sample.code,
@@ -45,10 +52,12 @@ Future<void> main() async {
   final result = await Process.run('dart', [
     'analyze',
     '--format=json',
-    scratch.path,
+    for (final dir in scratch.values) dir.path,
   ]);
   final out = result.stdout as String;
-  scratch.deleteSync(recursive: true);
+  for (final dir in scratch.values) {
+    dir.deleteSync(recursive: true);
+  }
 
   final start = out.indexOf('{');
   if (start < 0) {

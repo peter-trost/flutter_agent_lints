@@ -52,12 +52,16 @@ session that never touches a `.dart` file; a skill loads only when its
 description matches the work. The Flutter rules sit in their own reference file
 for the same reason, so a pure Dart package never pulls them in.
 
-Measured on the tasks in `benchmark/agents`, the skill cuts the diagnostics
-agents read and fix during a task by about 80% and the turns by about 15%,
-and its runs were the first under the full ruleset to pass every hidden
-test. The wording was tuned with Microsoft's SkillOpt against single-shot
-tasks scored by the analyzer; see `benchmark/skillopt`. The agent table
-below has the full comparison, including the hand-written version.
+Measured on the tasks in `benchmark/agents`, with the skill installed the
+way `dart run skills@ get` installs it, an agent changing code written
+under this ruleset reads a handful of diagnostics per fifteen runs instead
+of dozens, spends about two turns more than under `flutter_lints` (the
+skill load and its references), uses 8% more tokens, and produces a diff
+about 30% smaller for the same feature. Every hidden test passes in both.
+The wording was tuned with Microsoft's SkillOpt against single-shot tasks
+scored by the analyzer; see `benchmark/skillopt`. The change table below
+has the comparison; the rows without `registered` in their name were run
+with the skill hidden from the agent, which is why they cost more.
 
 ## Principles
 
@@ -234,6 +238,63 @@ Diagnostics the agents ran into most under selected (occurrences in analyzer out
 | prefer_initializing_formals | 11 |
 | only_throw_errors | 1 |
 <!-- /agents -->
+
+Those runs start from an empty file, so they measure the price of writing
+under a strict set and cannot see the payoff it promises: code that is
+cheaper to change later. For that, `benchmark/agents` also seeds a run with
+the `lib/` an earlier run produced, asks for one feature on top of it under
+the options that code was written with, and hands the agent the base task's
+hidden tests as the project's own. Read the turns and the changed lines
+together: a smaller diff for the same feature is what uniform code should
+buy, and the turns are what producing it costs.
+
+<!-- changes -->
+60 runs of opus over 3 tasks (countdown, search_model, settings_parser). Each run is seeded with the code a recorded run of the arm after the @ produced, and asked for a change to it; changed lines are lines added or removed in the solution file. Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+
+| Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added | Changed lines |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 15 | 100.0% | 15 of 15 | 17.7 | 2.1 min | 0.0 | 0 | 18.5 |
+| flutter_agent_lints+skill-v3-registered@flutter_agent_lints+skill-v2 | 15 | 100.0% | 15 of 15 | 13.7 | 1.7 min | 0.0 | 0 | 17.6 |
+| flutter_agent_lints+skill-v3@flutter_agent_lints+skill-v2 | 15 | 100.0% | 15 of 15 | 17.4 | 2.2 min | 0.0 | 0 | 18.9 |
+| flutter_lints@flutter_lints | 15 | 100.0% | 15 of 15 | 11.3 | 1.2 min | 10.5 | 0 | 25.5 |
+
+| Task | Option set | Consistency | Lines | Tests passed |
+| --- | --- | --- | --- | --- |
+| countdown | flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 0.71 | 170.0 | 100.0% |
+| countdown | flutter_agent_lints+skill-v3-registered@flutter_agent_lints+skill-v2 | 0.69 | 170.2 | 100.0% |
+| countdown | flutter_agent_lints+skill-v3@flutter_agent_lints+skill-v2 | 0.70 | 170.2 | 100.0% |
+| countdown | flutter_lints@flutter_lints | 0.76 | 200.8 | 100.0% |
+| search_model | flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 0.73 | 119.6 | 100.0% |
+| search_model | flutter_agent_lints+skill-v3-registered@flutter_agent_lints+skill-v2 | 0.73 | 118.6 | 100.0% |
+| search_model | flutter_agent_lints+skill-v3@flutter_agent_lints+skill-v2 | 0.71 | 119.8 | 100.0% |
+| search_model | flutter_lints@flutter_lints | 0.73 | 142.0 | 100.0% |
+| settings_parser | flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 0.69 | 177.8 | 100.0% |
+| settings_parser | flutter_agent_lints+skill-v3-registered@flutter_agent_lints+skill-v2 | 0.64 | 176.8 | 100.0% |
+| settings_parser | flutter_agent_lints+skill-v3@flutter_agent_lints+skill-v2 | 0.69 | 177.8 | 100.0% |
+| settings_parser | flutter_lints@flutter_lints | 0.78 | 228.8 | 100.0% |
+
+Diagnostics the agents ran into most under flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| cascade_invocations | 4 |
+| use_raw_strings | 1 |
+
+Diagnostics the agents ran into most under flutter_agent_lints+skill-v3-registered@flutter_agent_lints+skill-v2 (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| cascade_invocations | 4 |
+
+Diagnostics the agents ran into most under flutter_agent_lints+skill-v3@flutter_agent_lints+skill-v2 (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| cascade_invocations | 6 |
+| avoid_types_on_closure_parameters | 5 |
+| lines_longer_than_80_chars | 1 |
+| use_raw_strings | 1 |
+<!-- /changes -->
 
 ## Contributing
 

@@ -21,6 +21,7 @@ class RunRecord {
     required this.ruleMentions,
     required this.loc,
     required this.source,
+    this.changedLines,
   });
 
   factory fromJson(Map<String, Object?> json) => RunRecord(
@@ -46,6 +47,7 @@ class RunRecord {
         .cast<String, int>(),
     loc: json['loc']! as int,
     source: json['source']! as String,
+    changedLines: json['changedLines'] as int?,
   );
 
   final String task;
@@ -88,6 +90,10 @@ class RunRecord {
   /// The task's solution file at the end, for the consistency measure.
   final String source;
 
+  /// Lines added or removed in the solution file, for a run that started
+  /// from another run's output; null for a run that started empty.
+  final int? changedLines;
+
   String get id => '$task/$config/$rep/$model';
 
   Map<String, Object?> toJson() => {
@@ -111,5 +117,6 @@ class RunRecord {
     'ruleMentions': ruleMentions,
     'loc': loc,
     'source': source,
+    'changedLines': changedLines,
   };
 }

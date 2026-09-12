@@ -87,8 +87,9 @@ void main() {
     addTearDown(controller.dispose);
     controller.pause();
     expect(controller.isRunning, isFalse);
-    controller.start();
-    controller.start();
+    controller
+      ..start()
+      ..start();
     await tester.pump(const Duration(seconds: 1));
     expect(controller.remaining, const Duration(seconds: 4));
     controller.pause();
@@ -112,10 +113,8 @@ void main() {
   });
 
   testWidgets('disposing the controller cancels its timer', (tester) async {
-    final controller = CountdownController(
-      duration: const Duration(seconds: 5),
-    );
-    controller.start();
+    final controller = CountdownController(duration: const Duration(seconds: 5))
+      ..start();
     await tester.pump(const Duration(seconds: 1));
     controller.dispose();
     await tester.pump(const Duration(seconds: 5));

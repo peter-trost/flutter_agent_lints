@@ -6,10 +6,13 @@ String renderAgentsReport(List<RunRecord> runs) {
   final configs = runs.map((r) => r.config).toSet().toList()..sort();
   final tasks = runs.map((r) => r.task).toSet().toList()..sort();
   final models = runs.map((r) => r.model).toSet().toList()..sort();
+  final seeded = runs.any((r) => r.changedLines != null);
   final buffer = StringBuffer()
     ..writeln(
       '${runs.length} runs of ${models.join(', ')} over ${tasks.length} '
-      'tasks (${tasks.join(', ')}). Hidden tests are run after the agent '
+      'tasks (${tasks.join(', ')}). '
+      '${seeded ? _seededIntro : ''}'
+      'Hidden tests are run after the agent '
       'stops; strict issues are diagnostics of the result under the full '
       'flutter_agent_lints options, whatever the run used; consistency is '
       'the mean pairwise token similarity of the solutions to one task.',
@@ -17,9 +20,13 @@ String renderAgentsReport(List<RunRecord> runs) {
     ..writeln()
     ..writeln(
       '| Option set | Runs | Hidden tests passed | All tests passed | '
-      'Turns | Time | Strict issues left | Ignores added |',
+      'Turns | Time | Strict issues left | Ignores added |'
+      '${seeded ? ' Changed lines |' : ''}',
     )
-    ..writeln('| --- | --- | --- | --- | --- | --- | --- | --- |');
+    ..writeln(
+      '| --- | --- | --- | --- | --- | --- | --- | --- |'
+      '${seeded ? ' --- |' : ''}',
+    );
   for (final config in configs) {
     final of = runs.where((r) => r.config == config).toList();
     final passed = of.fold(0, (n, r) => n + r.testsPassed);
@@ -30,7 +37,8 @@ String renderAgentsReport(List<RunRecord> runs) {
       '| $config | ${of.length} | ${_percent(passed, total)} | '
       '$allPassed of ${of.length} | ${_mean(of, (r) => r.numTurns)} | '
       '${_mean(of, (r) => r.durationMs / 60000)} min | '
-      '${_mean(of, (r) => r.fullIssues)} | $ignores |',
+      '${_mean(of, (r) => r.fullIssues)} | $ignores |'
+      '${seeded ? ' ${_mean(of, (r) => r.changedLines ?? 0)} |' : ''}',
     );
   }
 
@@ -92,6 +100,11 @@ String renderAgentsReport(List<RunRecord> runs) {
   }
   return buffer.toString();
 }
+
+const _seededIntro =
+    'Each run is seeded with the code a recorded run of the arm after the '
+    '@ produced, and asked for a change to it; changed lines are lines '
+    'added or removed in the solution file. ';
 
 String _percent(int part, int whole) =>
     whole == 0 ? 'n/a' : '${(part / whole * 100).toStringAsFixed(1)}%';

@@ -9,6 +9,7 @@ RunRecord _run(
   int turns = 10,
   int fullIssues = 3,
   String source = 'int a = 1;',
+  int? changedLines,
 }) => RunRecord(
   task: 'countdown',
   config: config,
@@ -30,6 +31,7 @@ RunRecord _run(
   ruleMentions: const {'unawaited_futures': 2},
   loc: 80,
   source: source,
+  changedLines: changedLines,
 );
 
 void main() {
@@ -62,12 +64,45 @@ void main() {
     test('lists the rules the agents ran into most', () {
       expect(report, contains('| unawaited_futures | 4 |'));
     });
+
+    test('has no changed-lines column for runs that started empty', () {
+      expect(report, isNot(contains('Changed lines')));
+    });
+  });
+
+  group('renderAgentsReport for change runs', () {
+    final report = renderAgentsReport([
+      _run('flutter_lints@flutter_lints', 0, changedLines: 20),
+      _run('flutter_lints@flutter_lints', 1, changedLines: 30),
+    ]);
+
+    test('names the seed arm and averages the lines changed', () {
+      expect(report, contains('seeded'));
+      expect(report, contains('| Changed lines |'));
+      expect(
+        report,
+        contains(
+          '| flutter_lints@flutter_lints | 2 | 100.0% | 2 of 2 | 10.0 | '
+          '2.0 min | 3.0 | 0 | 25.0 |',
+        ),
+      );
+    });
   });
 
   group('RunRecord json', () {
     test('round-trips', () {
       final record = _run('selected', 3);
       expect(RunRecord.fromJson(record.toJson()).toJson(), record.toJson());
+    });
+
+    test('keeps the changed-lines count of a seeded run', () {
+      final record = _run('selected@selected', 3, changedLines: 12);
+      expect(RunRecord.fromJson(record.toJson()).changedLines, 12);
+    });
+
+    test('reads an old record without one', () {
+      final json = _run('selected', 3).toJson()..remove('changedLines');
+      expect(RunRecord.fromJson(json).changedLines, isNull);
     });
   });
 }

@@ -88,6 +88,29 @@ rules of this package that are about robustness, as errors. The full package
 was not used as an arm because its style rules would dominate the fix loop
 and drown the question.
 
+`agents/changes` asks the other half of the question: whether code
+written under a strict option set is cheaper for an agent to change later.
+Each change task names a base task and asks for one feature on top of it.
+With `--change`, a config is `<options>@<seed>`, and rep `n` starts from
+the `lib/` that rep `n` of the seed config produced on the base task, with
+the base task's hidden tests in place as the project's own tests. The
+hidden tests are then the base task's plus the change's, and the record
+also carries the lines added or removed in the solution file. Records go
+to `results/agents/changes.jsonl` and render between the README's
+`changes` markers.
+
+```bash
+dart run bin/agents.dart --validate --change   # change references pass
+dart run bin/agents.dart --change --reps 5 \
+  --configs flutter_lints@flutter_lints,flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2
+```
+
+Runs recorded before the `+skill-v3-registered` arm were made with
+`--disable-slash-commands`, which also disables skill registration: the
+agent was never told the skill existed and found it, when it did, by
+listing `.claude/`. Those arms overstate the skill's cost by the search
+and the manual reads.
+
 Limits: a task prompt fixes the public API so the hidden tests compile,
 which already narrows the solution space for both arms; the user-level
 `CLAUDE.md` of whoever runs the batch is loaded by the CLI and applies to

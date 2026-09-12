@@ -235,8 +235,38 @@ Diagnostics the agents ran into most under selected (occurrences in analyzer out
 | only_throw_errors | 1 |
 <!-- /agents -->
 
+Those runs start from an empty file, so they measure the price of writing
+under a strict set and cannot see the payoff it promises: code that is
+cheaper to change later. For that, `benchmark/agents` also seeds a run with
+the `lib/` an earlier run produced, asks for one feature on top of it under
+the options that code was written with, and hands the agent the base task's
+hidden tests as the project's own. Read the turns and the changed lines
+together: a smaller diff for the same feature is what uniform code should
+buy, and the turns are what producing it costs.
+
 <!-- changes -->
-No runs recorded yet.
+30 runs of opus over 3 tasks (countdown, search_model, settings_parser). Each run is seeded with the code a recorded run of the arm after the @ produced, and asked for a change to it; changed lines are lines added or removed in the solution file. Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+
+| Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added | Changed lines |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 15 | 100.0% | 15 of 15 | 17.7 | 2.1 min | 0.0 | 0 | 18.5 |
+| flutter_lints@flutter_lints | 15 | 100.0% | 15 of 15 | 11.3 | 1.2 min | 10.5 | 0 | 25.5 |
+
+| Task | Option set | Consistency | Lines | Tests passed |
+| --- | --- | --- | --- | --- |
+| countdown | flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 0.71 | 170.0 | 100.0% |
+| countdown | flutter_lints@flutter_lints | 0.76 | 200.8 | 100.0% |
+| search_model | flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 0.73 | 119.6 | 100.0% |
+| search_model | flutter_lints@flutter_lints | 0.73 | 142.0 | 100.0% |
+| settings_parser | flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 | 0.69 | 177.8 | 100.0% |
+| settings_parser | flutter_lints@flutter_lints | 0.78 | 228.8 | 100.0% |
+
+Diagnostics the agents ran into most under flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2 (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| cascade_invocations | 4 |
+| use_raw_strings | 1 |
 <!-- /changes -->
 
 ## Contributing

@@ -105,6 +105,12 @@ dart run bin/agents.dart --change --reps 5 \
   --configs flutter_lints@flutter_lints,flutter_agent_lints+skill-v2@flutter_agent_lints+skill-v2
 ```
 
+Runs recorded before the `+skill-v3-registered` arm were made with
+`--disable-slash-commands`, which also disables skill registration: the
+agent was never told the skill existed and found it, when it did, by
+listing `.claude/`. Those arms overstate the skill's cost by the search
+and the manual reads.
+
 Limits: a task prompt fixes the public API so the hidden tests compile,
 which already narrows the solution space for both arms; the user-level
 `CLAUDE.md` of whoever runs the batch is loaded by the CLI and applies to

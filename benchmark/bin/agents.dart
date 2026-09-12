@@ -68,7 +68,8 @@ Future<void> main(List<String> args) async {
   await Future.wait([for (var i = 0; i < options.parallel; i++) worker()]);
 }
 
-const _allowedTools = 'Read,Edit,Write,Glob,Grep,Bash(dart:*),Bash(flutter:*)';
+const _allowedTools =
+    'Read,Edit,Write,Glob,Grep,Skill,Bash(dart:*),Bash(flutter:*)';
 
 class _Options {
   const new({
@@ -206,7 +207,8 @@ Future<RunRecord> _run(
     '--setting-sources',
     'project',
     '--no-session-persistence',
-    '--disable-slash-commands',
+    // Not --disable-slash-commands: it also drops skill registration, so
+    // the agent would only find an installed skill by listing .claude/.
     '--strict-mcp-config',
   ], workingDirectory: workdir);
   final timer = Timer(options.timeout, process.kill);

@@ -58,6 +58,8 @@ under this ruleset reads a handful of diagnostics per fifteen runs instead
 of dozens, spends about two turns more than under `flutter_lints` (the
 skill load and its references), uses 8% more tokens, and produces a diff
 about 30% smaller for the same feature. Every hidden test passes in both.
+Writing from an empty file costs more, 17.5 turns against 10.1, because
+every rule fires once on the way; without the skill it is 23.2.
 The wording was tuned with Microsoft's SkillOpt against single-shot tasks
 scored by the analyzer; see `benchmark/skillopt`. The tables below have
 the comparison.
@@ -104,24 +106,28 @@ turn out. See [benchmark/README.md](benchmark/README.md) for the method
 and its limits.
 
 <!-- agents -->
-45 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+60 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
 
 | Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | flutter_agent_lints | 15 | 99.3% | 14 of 15 | 23.2 | 4.2 min | 0.0 | 0 |
 | flutter_agent_lints+skill-v2 | 15 | 100.0% | 15 of 15 | 19.8 | 3.6 min | 0.0 | 0 |
+| flutter_agent_lints+skill-v3-registered | 15 | 100.0% | 15 of 15 | 17.5 | 3.2 min | 0.0 | 0 |
 | flutter_lints | 15 | 100.0% | 15 of 15 | 10.1 | 1.8 min | 9.7 | 0 |
 
 | Task | Option set | Consistency | Lines | Tests passed |
 | --- | --- | --- | --- | --- |
 | countdown | flutter_agent_lints | 0.66 | 159.4 | 100.0% |
 | countdown | flutter_agent_lints+skill-v2 | 0.71 | 156.4 | 100.0% |
+| countdown | flutter_agent_lints+skill-v3-registered | 0.69 | 152.4 | 100.0% |
 | countdown | flutter_lints | 0.77 | 178.8 | 100.0% |
 | search_model | flutter_agent_lints | 0.68 | 112.8 | 97.5% |
 | search_model | flutter_agent_lints+skill-v2 | 0.72 | 108.0 | 100.0% |
+| search_model | flutter_agent_lints+skill-v3-registered | 0.68 | 108.4 | 100.0% |
 | search_model | flutter_lints | 0.75 | 126.2 | 100.0% |
 | settings_parser | flutter_agent_lints | 0.65 | 167.0 | 100.0% |
 | settings_parser | flutter_agent_lints+skill-v2 | 0.72 | 155.2 | 100.0% |
+| settings_parser | flutter_agent_lints+skill-v3-registered | 0.71 | 160.4 | 100.0% |
 | settings_parser | flutter_lints | 0.81 | 199.4 | 100.0% |
 
 Diagnostics the agents ran into most under flutter_agent_lints (occurrences in analyzer output they read):
@@ -150,6 +156,21 @@ Diagnostics the agents ran into most under flutter_agent_lints+skill-v2 (occurre
 | prefer_initializing_formals | 2 |
 | unused_local_variable | 2 |
 | unnecessary_type_name_in_constructor | 1 |
+
+Diagnostics the agents ran into most under flutter_agent_lints+skill-v3-registered (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| avoid_unused_constructor_parameters | 4 |
+| extraneous_modifier | 4 |
+| field_initializer_outside_constructor | 4 |
+| final_not_initialized | 4 |
+| undefined_identifier | 4 |
+| always_declare_return_types | 3 |
+| assignment_to_final_local | 3 |
+| cascade_invocations | 3 |
+| concrete_class_with_abstract_member | 3 |
+| no_dynamic_casts | 3 |
 
 Diagnostics the agents ran into most under flutter_lints (occurrences in analyzer output they read):
 

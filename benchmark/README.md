@@ -21,7 +21,15 @@ dart run bin/agents.dart --model opus --reps 5 # 3 tasks × 2 option sets × 5
 dart run bin/agents_report.dart
 ```
 
-A config is the name of a file under `agents/options`.
+A config is the name of a file under `agents/options`. `<options>+skill`
+runs those options with the skill the package ships installed in the
+workdir the way `dart run skills@ get` installs it, and `+skill-<label>`
+names the arm so two versions of the skill can be measured side by side.
+The `flutter_agent_lints+skill-v2` greenfield rows were recorded before the
+runner registered the skill with the CLI, so the agent found it by listing
+`.claude/` and read its files by hand; they stay because their outputs
+seed the change runs. Every other skill row was run with the skill
+registered.
 
 `agents/changes` asks the other half of the question: whether code
 written under a strict option set is cheaper for an agent to change later.

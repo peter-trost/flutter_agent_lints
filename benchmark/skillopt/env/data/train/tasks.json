@@ -1,0 +1,163 @@
+[
+  {
+    "id": "money",
+    "task_type": "dart",
+    "file": "lib/money.dart",
+    "prompt": "Implement `lib/money.dart`: an immutable value class `Money` with `final int cents`\nand `final String currency`, a `const` constructor `Money({required int cents,\nrequired String currency})`, `Money.parse(String text)` accepting the form\n`12.34 EUR` (two decimals, a space, three uppercase letters) and throwing\n`FormatException` otherwise, `operator +` that throws `ArgumentError` when\ncurrencies differ, value equality and `hashCode` over both fields, and\n`toString()` producing `12.34 EUR`.",
+    "usage": "bool useMoney() {\n  const a = Money(cents: 100, currency: 'EUR');\n  final b = Money.parse('1.00 EUR');\n  final c = a + b;\n  return a == b && c.cents == 200 && a.hashCode == b.hashCode &&\n      a.toString() == '1.00 EUR';\n}"
+  },
+  {
+    "id": "lru_cache",
+    "task_type": "dart",
+    "file": "lib/lru_cache.dart",
+    "prompt": "Implement `lib/lru_cache.dart`: `class LruCache<K, V>` with\n`LruCache({required int capacity})` (throws `ArgumentError` if capacity < 1),\n`V? get(K key)` (marks the key most recently used), `void put(K key, V value)`\n(evicts the least recently used entry when over capacity), `bool remove(K key)`,\n`int get length`, and `Iterable<K> get keys` from least to most recently used.",
+    "usage": "int useLru() {\n  final cache = LruCache<String, int>(capacity: 2)\n    ..put('a', 1)\n    ..put('b', 2);\n  final hit = cache.get('a');\n  cache.put('c', 3);\n  final removed = cache.remove('c');\n  final keys = cache.keys.toList();\n  return (hit ?? 0) + cache.length + keys.length + (removed ? 1 : 0);\n}"
+  },
+  {
+    "id": "retry",
+    "task_type": "dart",
+    "file": "lib/retry.dart",
+    "prompt": "Implement `lib/retry.dart`: `Future<T> retry<T>(Future<T> Function() action,\n{int attempts = 3, Duration delay = const Duration(milliseconds: 100),\nbool Function(Object error)? retryIf})`. It runs `action`, and on an error\nfor which `retryIf` returns true (or any error when `retryIf` is null) waits\n`delay` and tries again, up to `attempts` total tries; the last error is\nrethrown. `attempts < 1` throws `ArgumentError` before running anything.",
+    "usage": "Future<int> useRetry() async {\n  var calls = 0;\n  final value = await retry<int>(\n    () async {\n      calls++;\n      if (calls < 2) {\n        throw StateError('flaky');\n      }\n      return calls;\n    },\n    attempts: 3,\n    delay: Duration.zero,\n    retryIf: (error) => error is StateError,\n  );\n  return value;\n}"
+  },
+  {
+    "id": "event_bus",
+    "task_type": "dart",
+    "file": "lib/event_bus.dart",
+    "prompt": "Implement `lib/event_bus.dart`: `class EventBus` with `Stream<T> on<T>()`\nreturning a broadcast stream of only the events that are `T`, `void emit(Object\nevent)`, and `Future<void> dispose()` that closes the underlying controller.\nEmitting after dispose throws `StateError`.",
+    "usage": "Future<int> useBus() async {\n  final bus = EventBus();\n  final first = bus.on<int>().first;\n  bus.emit(7);\n  final value = await first;\n  await bus.dispose();\n  return value;\n}"
+  },
+  {
+    "id": "json_user",
+    "task_type": "dart",
+    "file": "lib/user.dart",
+    "prompt": "Implement `lib/user.dart`: an immutable `User` with `final int id`, `final\nString name`, `final String? email`, `final List<String> roles`, a `const`\nconstructor with named parameters (`id` and `name` required, `roles` default\nempty), `factory User.fromJson(Map<String, Object?> json)` that throws\n`FormatException` whose message names the offending key on a missing required\nkey or a value of the wrong type, `Map<String, Object?> toJson()`, and value\nequality and `hashCode` over all fields (compare `roles` element-wise).",
+    "usage": "bool useUser() {\n  final user = User.fromJson(<String, Object?>{\n    'id': 1, 'name': 'ada', 'roles': <Object?>['admin'],\n  });\n  const same = User(id: 1, name: 'ada', roles: ['admin']);\n  final json = user.toJson();\n  return user == same && user.hashCode == same.hashCode &&\n      json['name'] == 'ada' && user.email == null;\n}"
+  },
+  {
+    "id": "csv",
+    "task_type": "dart",
+    "file": "lib/csv.dart",
+    "prompt": "Implement `lib/csv.dart`: `List<List<String>> parseCsv(String text, {String\nseparator = ','})` splitting rows on `\\n` (a trailing newline does not add a\nrow), fields on `separator`, with double-quoted fields that may contain the\nseparator and newlines, and `\"\"` inside quotes meaning a literal quote. A\nquote that is never closed throws `FormatException`.",
+    "usage": "int useCsv() {\n  final rows = parseCsv('a,\"b,c\"\\n\"x \"\"y\"\" z\",d\\n');\n  return rows.length + rows[0].length + rows[1][0].length;\n}"
+  },
+  {
+    "id": "rate_limiter",
+    "task_type": "dart",
+    "file": "lib/rate_limiter.dart",
+    "prompt": "Implement `lib/rate_limiter.dart`: `class RateLimiter` with `RateLimiter({required\nint maxEvents, required Duration window})`, `bool tryAcquire(DateTime now)` that\nreturns true and records the event when fewer than `maxEvents` events happened\nin the `window` ending at `now`, else false, and `void reset()`. Timestamps\nolder than the window are forgotten.",
+    "usage": "int useLimiter() {\n  final limiter = RateLimiter(maxEvents: 2, window: const Duration(seconds: 1));\n  final t0 = DateTime(2026);\n  final a = limiter.tryAcquire(t0);\n  final b = limiter.tryAcquire(t0);\n  final c = limiter.tryAcquire(t0);\n  limiter.reset();\n  return [a, b, c].where((x) => x).length;\n}"
+  },
+  {
+    "id": "traffic_light",
+    "task_type": "dart",
+    "file": "lib/traffic_light.dart",
+    "prompt": "Implement `lib/traffic_light.dart`: `enum Phase { red, green, yellow }` and\n`class TrafficLight` with `Phase get phase` (starts `red`), `void next()`\ncycling red, green, yellow, red, `Stream<Phase> get changes` (a broadcast\nstream that emits after every `next`), and `Future<void> dispose()` closing\nthe stream. `next()` after dispose throws `StateError`.",
+    "usage": "Future<Phase> useLight() async {\n  final light = TrafficLight();\n  final next = light.changes.first;\n  light.next();\n  final phase = await next;\n  await light.dispose();\n  return phase == light.phase ? phase : Phase.red;\n}"
+  },
+  {
+    "id": "ring_buffer",
+    "task_type": "dart",
+    "file": "lib/ring_buffer.dart",
+    "prompt": "Implement `lib/ring_buffer.dart`: `class RingBuffer<T>` with\n`RingBuffer({required int capacity})` (throws `ArgumentError` if < 1), `void\nadd(T value)` overwriting the oldest when full, `List<T> toList()` oldest to\nnewest, `bool get isFull`, `int get length`, and `T? get latest`.",
+    "usage": "int useRing() {\n  final buffer = RingBuffer<int>(capacity: 2)\n    ..add(1)\n    ..add(2)\n    ..add(3);\n  final items = buffer.toList();\n  return items.first + (buffer.latest ?? 0) + buffer.length +\n      (buffer.isFull ? 1 : 0);\n}"
+  },
+  {
+    "id": "debouncer",
+    "task_type": "dart",
+    "file": "lib/debouncer.dart",
+    "prompt": "Implement `lib/debouncer.dart`: `class Debouncer` with `Debouncer({required\nDuration delay})`, `void call(void Function() action)` that schedules `action`\nafter `delay` and replaces any pending action, `void cancel()`, `bool get\nisPending`, and `void dispose()` that cancels. Calling after dispose throws\n`StateError`.",
+    "usage": "bool useDebouncer() {\n  final debouncer = Debouncer(delay: const Duration(milliseconds: 50));\n  var fired = false;\n  debouncer(() => fired = true);\n  final pending = debouncer.isPending;\n  debouncer\n    ..cancel()\n    ..dispose();\n  return pending && !fired;\n}"
+  },
+  {
+    "id": "date_range",
+    "task_type": "dart",
+    "file": "lib/date_range.dart",
+    "prompt": "Implement `lib/date_range.dart`: an immutable `DateRange` with `final DateTime\nstart` and `final DateTime end`, a constructor `DateRange({required DateTime\nstart, required DateTime end})` that throws `ArgumentError` when `end` is before\n`start`, `bool contains(DateTime moment)` (inclusive), `DateRange? intersect(\nDateRange other)` (null when disjoint), `Duration get length`, value equality\nand `hashCode`.",
+    "usage": "bool useRange() {\n  final a = DateRange(start: DateTime(2026), end: DateTime(2026, 2));\n  final b = DateRange(start: DateTime(2026, 1, 15), end: DateTime(2026, 3));\n  final both = a.intersect(b);\n  return a.contains(DateTime(2026, 1, 10)) && both != null &&\n      a.length.inDays > 0 && a == a && a.hashCode == a.hashCode;\n}"
+  },
+  {
+    "id": "tokenizer",
+    "task_type": "dart",
+    "file": "lib/tokenizer.dart",
+    "prompt": "Implement `lib/tokenizer.dart`: `sealed class Token` with `final class\nNumberToken extends Token` (`final double value`), `final class OperatorToken\nextends Token` (`final String symbol`, one of `+ - * /`), and `final class\nParenToken extends Token` (`final bool isOpen` as a required named parameter,\nsince the ruleset forbids positional booleans); the other two take their field\npositionally, all with `const` constructors. `List<Token>\ntokenize(String source)` skips whitespace, parses decimal numbers, and throws\n`FormatException` naming the offending character otherwise.",
+    "usage": "int useTokens() {\n  final tokens = tokenize('(1.5 + 2) * 3');\n  var sum = 0;\n  for (final token in tokens) {\n    sum += switch (token) {\n      NumberToken(:final value) => value.toInt(),\n      OperatorToken(:final symbol) => symbol.length,\n      ParenToken(:final isOpen) => isOpen ? 1 : 0,\n    };\n  }\n  const paren = ParenToken(isOpen: true);\n  return sum + (paren.isOpen ? 1 : 0);\n}"
+  },
+  {
+    "id": "tree",
+    "task_type": "dart",
+    "file": "lib/tree.dart",
+    "prompt": "Implement `lib/tree.dart`: `class Node<T>` with `final T value`, `final\nList<Node<T>> children`, a `const` constructor `Node(T value, {List<Node<T>>\nchildren = const []})`, plus top-level `Iterable<T> depthFirst<T>(Node<T>\nroot)` (a lazy `sync*` pre-order walk) and `int depth<T>(Node<T> root)` (a\nleaf has depth 1).",
+    "usage": "int useTree() {\n  const tree = Node<int>(1, children: [Node(2), Node(3, children: [Node(4)])]);\n  final values = depthFirst(tree).toList();\n  return values.length + depth(tree);\n}"
+  },
+  {
+    "id": "validator",
+    "task_type": "dart",
+    "file": "lib/validator.dart",
+    "prompt": "Implement `lib/validator.dart`: `sealed class ValidationResult`, `final class\nValid extends ValidationResult` (const), `final class Invalid extends\nValidationResult` with `final List<String> errors` (const constructor, positional),\n`ValidationResult validateEmail(String value)` (non-empty, one `@`, a dot after\nit) and `ValidationResult validatePassword(String value)` (at least 8\ncharacters, a digit, an uppercase letter; one error message per failed rule).",
+    "usage": "int useValidation() {\n  final results = [validateEmail('a@b.c'), validatePassword('short')];\n  var errors = 0;\n  for (final result in results) {\n    errors += switch (result) {\n      Valid() => 0,\n      Invalid(:final errors) => errors.length,\n    };\n  }\n  const ok = Valid();\n  return errors + (ok is ValidationResult ? 1 : 0);\n}"
+  },
+  {
+    "id": "async_cache",
+    "task_type": "dart",
+    "file": "lib/async_cache.dart",
+    "prompt": "Implement `lib/async_cache.dart`: `class AsyncCache<K, V>` with `Future<V>\nfetch(K key, Future<V> Function(K key) loader)` that returns a cached value\nwhen present, otherwise runs `loader` once even when called concurrently for\nthe same key (in-flight loads are shared), `void invalidate(K key)`, `void\nclear()`, and `bool contains(K key)`. A failed load is not cached.",
+    "usage": "Future<int> useCache() async {\n  final cache = AsyncCache<String, int>();\n  final a = cache.fetch('k', (key) async => key.length);\n  final b = cache.fetch('k', (key) async => -1);\n  final values = await Future.wait([a, b]);\n  cache.invalidate('k');\n  cache.clear();\n  return values[0] + values[1] + (cache.contains('k') ? 1 : 0);\n}"
+  },
+  {
+    "id": "paginate",
+    "task_type": "dart",
+    "file": "lib/paginate.dart",
+    "prompt": "Implement `lib/paginate.dart`: an immutable `Page<T>` with `final List<T>\nitems` and `final String? nextCursor` (const constructor, named parameters,\n`items` required), and `Stream<T> paginate<T>(Future<Page<T>> Function(String?\ncursor) fetch)`: an `async*` stream that starts with a null cursor, yields\nevery item of each page in order, and stops when a page's `nextCursor` is\nnull. An empty page with a non-null cursor is followed normally.",
+    "usage": "Future<int> usePaginate() async {\n  final items = await paginate<int>((cursor) async {\n    if (cursor == null) {\n      return const Page(items: [1, 2], nextCursor: 'more');\n    }\n    return const Page(items: [3]);\n  }).toList();\n  return items.length;\n}"
+  },
+  {
+    "id": "matrix",
+    "task_type": "dart",
+    "file": "lib/matrix.dart",
+    "prompt": "Implement `lib/matrix.dart`: an immutable `Matrix` over `List<List<double>>`\nwith `Matrix(List<List<double>> rows)` (throws `ArgumentError` for ragged or\nempty input), `factory Matrix.identity(int size)`, `int get rowCount`, `int\nget columnCount`, `double at(int row, int column)`, `Matrix transpose()`,\n`Matrix operator *(Matrix other)` (throws `ArgumentError` on a shape mismatch),\nand value equality with `hashCode`.",
+    "usage": "double useMatrix() {\n  final m = Matrix([\n    [1, 2],\n    [3, 4],\n  ]);\n  final product = m * Matrix.identity(2);\n  return product.at(1, 0) + m.transpose().at(0, 1) + m.rowCount +\n      m.columnCount + (product == m ? 1 : 0);\n}"
+  },
+  {
+    "id": "config",
+    "task_type": "dart",
+    "file": "lib/config.dart",
+    "prompt": "Implement `lib/config.dart`: an immutable `Config` with `final int port`,\n`final bool verbose`, `final Uri baseUrl`, and `factory Config.fromEnvironment(\nMap<String, String> env)` reading `PORT` (default 8080, must parse as an\ninteger in 1..65535), `VERBOSE` (`true`/`false`, default false), and `BASE_URL`\n(required, must parse as an absolute URI). Every violation throws\n`FormatException` whose message names the variable.",
+    "usage": "int useConfig() {\n  final config = Config.fromEnvironment({\n    'PORT': '9000',\n    'BASE_URL': 'https://example.com',\n  });\n  return config.port + (config.verbose ? 1 : 0) + config.baseUrl.host.length;\n}"
+  },
+  {
+    "id": "path_utils",
+    "task_type": "dart",
+    "file": "lib/path_utils.dart",
+    "prompt": "Implement `lib/path_utils.dart` with three top-level functions: `String\njoinPath(List<String> segments)` joining with `/` and collapsing repeated\nslashes without touching a leading one, `String basename(String path)` (the\npart after the last `/`), and `String? extension(String path)` (the text after\nthe last `.` of the basename, or null when there is none or the basename\nstarts with the dot).",
+    "usage": "int usePaths() {\n  final joined = joinPath(['/a/', '/b', 'c.txt']);\n  final ext = extension(joined) ?? '';\n  return joined.length + basename(joined).length + ext.length;\n}"
+  },
+  {
+    "id": "counter_notifier",
+    "task_type": "flutter",
+    "file": "lib/counter_notifier.dart",
+    "prompt": "Implement `lib/counter_notifier.dart` using `package:flutter/foundation.dart`:\n`class CounterNotifier extends ChangeNotifier` with `CounterNotifier({required\nint max})`, `int get value` (starts at 0), `bool get isAtMax`, `void\nincrement()` (no-op at max, otherwise increments and notifies), and `void\nreset()` (sets 0 and notifies only if the value changed).",
+    "usage": "int useCounter() {\n  final counter = CounterNotifier(max: 2)\n    ..increment()\n    ..increment()\n    ..increment();\n  final atMax = counter.isAtMax;\n  counter\n    ..reset()\n    ..dispose();\n  return counter.value + (atMax ? 1 : 0);\n}"
+  },
+  {
+    "id": "toggle_tile",
+    "task_type": "flutter",
+    "file": "lib/toggle_tile.dart",
+    "prompt": "Implement `lib/toggle_tile.dart`: `class ToggleTile extends StatelessWidget`\nwith `final String label`, `final bool value`, `final ValueChanged<bool>\nonChanged`, a `const` constructor with those three as required named\nparameters plus a key, building a `ListTile` whose `title` is the label and\nwhose `trailing` is a `Switch` bound to `value` and `onChanged`.",
+    "usage": "import 'package:flutter/material.dart';\n\nWidget useToggle() => ToggleTile(\n  label: 'Dark mode',\n  value: true,\n  onChanged: (_) {},\n);"
+  },
+  {
+    "id": "async_button",
+    "task_type": "flutter",
+    "file": "lib/async_button.dart",
+    "prompt": "Implement `lib/async_button.dart`: `class AsyncButton extends StatefulWidget`\nwith `final Future<void> Function() onPressed`, `final Widget child`, a `const`\nconstructor with both required and a key. While `onPressed` runs the button is\ndisabled and shows a small `CircularProgressIndicator` instead of `child`;\nafterwards it re-enables, and it must not call `setState` if the widget was\ndisposed while the future was pending. Errors from `onPressed` propagate.",
+    "usage": "import 'package:flutter/material.dart';\n\nWidget useButton() => AsyncButton(\n  onPressed: () async {},\n  child: const Text('Save'),\n);"
+  },
+  {
+    "id": "search_field",
+    "task_type": "flutter",
+    "file": "lib/search_field.dart",
+    "prompt": "Implement `lib/search_field.dart`: `class SearchField extends StatefulWidget`\nwith `final ValueChanged<String> onChanged`, `final Duration debounce`, a\n`const` constructor (`onChanged` required, `debounce` defaulting to 300 ms,\nplus a key). It shows a `TextField` and calls `onChanged` with the latest text\nonly after `debounce` passes without another change; the pending timer and\nthe text controller are disposed with the state.",
+    "usage": "import 'package:flutter/material.dart';\n\nWidget useSearch() => SearchField(\n  onChanged: (_) {},\n  debounce: const Duration(milliseconds: 100),\n);"
+  }
+]

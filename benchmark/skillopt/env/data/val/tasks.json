@@ -1,0 +1,86 @@
+[
+  {
+    "id": "duration_fmt",
+    "task_type": "dart",
+    "file": "lib/duration_fmt.dart",
+    "prompt": "Implement `lib/duration_fmt.dart`: `String formatDuration(Duration d)`\nreturning `h:mm:ss` when at least one hour else `mm:ss` (negative durations\nthrow `ArgumentError`), and `Duration parseDuration(String text)` accepting\nboth forms and throwing `FormatException` on anything else.",
+    "usage": "int useDurations() {\n  final text = formatDuration(const Duration(minutes: 5, seconds: 7));\n  return parseDuration(text).inSeconds + parseDuration('1:00:00').inHours;\n}"
+  },
+  {
+    "id": "priority_queue",
+    "task_type": "dart",
+    "file": "lib/priority_queue.dart",
+    "prompt": "Implement `lib/priority_queue.dart`: `class PriorityQueue<T>` with\n`PriorityQueue(int Function(T a, T b) compare)`, `void add(T value)`, `T\nremoveFirst()` (smallest by `compare`; throws `StateError` when empty), `T?\nget first`, `int get length`, and `bool get isEmpty`. Use a binary heap.",
+    "usage": "int useQueue() {\n  final queue = PriorityQueue<int>((a, b) => a.compareTo(b))\n    ..add(3)\n    ..add(1)\n    ..add(2);\n  final first = queue.removeFirst();\n  return first + queue.length + (queue.first ?? 0) + (queue.isEmpty ? 1 : 0);\n}"
+  },
+  {
+    "id": "preferences",
+    "task_type": "dart",
+    "file": "lib/preferences.dart",
+    "prompt": "Implement `lib/preferences.dart`: `enum AppTheme { system, light, dark }` and an\nimmutable `Preferences` with `final AppTheme theme`, `final double fontScale`,\n`final bool notifications`, a `const` constructor with defaults (`system`,\n`1.0`, `true`), `factory Preferences.fromJson(Map<String, Object?> json)`\nreading `theme` by enum name, `fontScale` as a number within 0.5..3.0, and\n`notifications` as a bool, ignoring unknown keys and throwing `FormatException`\nnaming the key on a wrong type or range, plus `toJson()` and value equality.",
+    "usage": "bool usePreferences() {\n  final prefs = Preferences.fromJson(<String, Object?>{'theme': 'dark', 'x': 1});\n  const other = Preferences(theme: AppTheme.dark);\n  return prefs == other && prefs.toJson()['theme'] == 'dark' &&\n      prefs.fontScale == 1.0 && prefs.notifications;\n}"
+  },
+  {
+    "id": "merge_streams",
+    "task_type": "dart",
+    "file": "lib/merge_streams.dart",
+    "prompt": "Implement `lib/merge_streams.dart`: `Stream<T> merge<T>(List<Stream<T>>\nsources)` returning a single-subscription stream that forwards every event\nfrom every source as it arrives, forwards errors, completes when all sources\nhave completed, and cancels every source subscription when the listener\ncancels. Pausing the result pauses every source.",
+    "usage": "Future<int> useMerge() async {\n  final merged = merge<int>([\n    Stream.fromIterable([1, 2]),\n    Stream.fromIterable([3]),\n  ]);\n  final values = await merged.toList();\n  return values.length;\n}"
+  },
+  {
+    "id": "undo_stack",
+    "task_type": "dart",
+    "file": "lib/undo_stack.dart",
+    "prompt": "Implement `lib/undo_stack.dart`: `class UndoStack<T>` with `void push(T\nstate)` (clears the redo history), `T? undo()` (returns the previous state or\nnull), `T? redo()`, `bool get canUndo`, `bool get canRedo`, `T? get current`,\nand `void clear()`.",
+    "usage": "int useUndo() {\n  final stack = UndoStack<String>()\n    ..push('a')\n    ..push('b');\n  final previous = stack.undo();\n  final again = stack.redo();\n  final flags = (stack.canUndo ? 1 : 0) + (stack.canRedo ? 1 : 0);\n  stack.clear();\n  return (previous?.length ?? 0) + (again?.length ?? 0) + flags +\n      (stack.current?.length ?? 0);\n}"
+  },
+  {
+    "id": "slug",
+    "task_type": "dart",
+    "file": "lib/slug.dart",
+    "prompt": "Implement `lib/slug.dart`: `String slugify(String title)` lowercasing,\nreplacing any run of characters outside `a-z0-9` with a single `-`, and\ntrimming leading and trailing `-`; and `bool isValidSlug(String value)` which\nis true only for non-empty strings of `a-z0-9` and single `-` separators.",
+    "usage": "int useSlug() {\n  final slug = slugify('  Hello, World!  ');\n  return slug.length + (isValidSlug(slug) ? 1 : 0) + (isValidSlug('--') ? 1 : 0);\n}"
+  },
+  {
+    "id": "ticker",
+    "task_type": "flutter",
+    "file": "lib/ticker.dart",
+    "prompt": "Implement `lib/ticker.dart` using `package:flutter/foundation.dart`: `class\nPeriodicTicker extends ChangeNotifier` with `PeriodicTicker({required Duration\ninterval})`, `int get ticks` (starts 0), `bool get isRunning`, `void start()`\n(no-op while running; increments `ticks` and notifies every `interval`),\n`void stop()`, and `dispose()` that stops the timer.",
+    "usage": "int useTicker() {\n  final ticker = PeriodicTicker(interval: const Duration(seconds: 1))..start();\n  final running = ticker.isRunning;\n  ticker\n    ..stop()\n    ..dispose();\n  return ticker.ticks + (running ? 1 : 0);\n}"
+  },
+  {
+    "id": "result",
+    "task_type": "dart",
+    "file": "lib/result.dart",
+    "prompt": "Implement `lib/result.dart`: `sealed class Result<T>` with `final class\nOk<T> extends Result<T>` (`final T value`, const positional constructor) and\n`final class Err<T> extends Result<T>` (`final Object error`, const positional\nconstructor); on `Result<T>`: `T getOrElse(T Function() orElse)` and `Result<R>\nmap<R>(R Function(T value) transform)`; and a top-level `Result<T> guard<T>(T\nFunction() body)` that returns `Err` for a thrown `Exception` and lets an\n`Error` propagate.",
+    "usage": "int useResult() {\n  final result = guard<int>(() => int.parse('12')).map((v) => v * 2);\n  final fallback = guard<int>(() => throw const FormatException()).getOrElse(() => 1);\n  const err = Err<int>('boom');\n  return result.getOrElse(() => 0) + fallback + (err is Result<int> ? 1 : 0);\n}"
+  },
+  {
+    "id": "inventory",
+    "task_type": "flutter",
+    "file": "lib/inventory.dart",
+    "prompt": "Implement `lib/inventory.dart` using `package:flutter/foundation.dart`: `class\nInventory extends ChangeNotifier` with `void add(String sku, int quantity)`\n(quantity must be positive, else `ArgumentError`), `void remove(String sku, int\nquantity)` (throws `StateError` when the stock is insufficient), `int\nquantity(String sku)` (0 when unknown), `int get totalItems`, and `Map<String,\nint> get stock` returning an unmodifiable view. Every change notifies once.",
+    "usage": "int useInventory() {\n  final inventory = Inventory()\n    ..add('a', 3)\n    ..remove('a', 1);\n  final stock = inventory.stock;\n  final total = inventory.totalItems + inventory.quantity('b') + stock.length;\n  inventory.dispose();\n  return total;\n}"
+  },
+  {
+    "id": "semver",
+    "task_type": "dart",
+    "file": "lib/semver.dart",
+    "prompt": "Implement `lib/semver.dart`: an immutable `SemVer` with `final int major`,\n`final int minor`, `final int patch`, a `const` constructor with three\npositional parameters, `factory SemVer.parse(String text)` for `1.2.3` (throws\n`FormatException` otherwise), `implements Comparable<SemVer>`, `operator <`\nand `operator >`, value equality with `hashCode`, and `toString()`.",
+    "usage": "int useSemVer() {\n  const a = SemVer(1, 2, 3);\n  final b = SemVer.parse('1.3.0');\n  return (a < b ? 1 : 0) + (b > a ? 1 : 0) + a.compareTo(b).sign +\n      (a == const SemVer(1, 2, 3) ? 1 : 0) + a.toString().length +\n      a.hashCode.sign;\n}"
+  },
+  {
+    "id": "count_badge",
+    "task_type": "flutter",
+    "file": "lib/count_badge.dart",
+    "prompt": "Implement `lib/count_badge.dart`: `class CountBadge extends StatelessWidget`\nwith `final int count`, `final int max`, a `const` constructor (`count`\nrequired, `max` defaulting to 99, plus a key). It renders nothing (a\n`SizedBox.shrink`) when `count` is 0, otherwise a rounded `DecoratedBox` with\nthe number, or `99+` style text when `count` exceeds `max`.",
+    "usage": "import 'package:flutter/material.dart';\n\nWidget useBadge() => const CountBadge(count: 120, max: 99);"
+  },
+  {
+    "id": "expandable",
+    "task_type": "flutter",
+    "file": "lib/expandable.dart",
+    "prompt": "Implement `lib/expandable.dart`: `class Expandable extends StatefulWidget`\nwith `final String title`, `final Widget child`, `final bool initiallyExpanded`,\na `const` constructor (`title` and `child` required, `initiallyExpanded`\ndefaulting to false, plus a key). A tappable header row shows the title and\nan arrow icon that rotates when expanded; the child is shown below it with an\n`AnimatedSize` transition.",
+    "usage": "import 'package:flutter/material.dart';\n\nWidget useExpandable() => const Expandable(\n  title: 'Details',\n  child: Text('Body'),\n);"
+  }
+]

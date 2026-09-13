@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# CI already enforces what a script can decide: `tool/check_skill.dart` fails
+# when the skill names a rule the option file no longer enables, and
+# `tool/generate.dart --check` keeps the errors files current. CodeRabbit is
+# configured for the part of the same question that needs judgement, which is
+# whether a rule change and the guidance for it agree in substance.
+language: en-US
+
+reviews:
+  auto_review:
+    enabled: true
+  path_instructions:
+    - path: lib/analysis_options.yaml
+      instructions: |
+        This file is the ruleset the package ships. The skill in `skills/`
+        teaches agents how to write code that satisfies it.
+
+        When a rule is added, removed, or flipped here, check whether
+        `skills/flutter_agent_lints-strict-dart/` still tells the truth:
+
+        - A newly enabled rule that changes how code must be written, rather
+          than something `dart fix --apply` resolves silently, belongs in a
+          reference file. Flag it as missing guidance.
+        - A rule that is now disabled must not still be taught as a
+          requirement.
+        - Guidance for a Flutter-only rule belongs in `references/flutter.md`
+          and a rule that applies to any Dart package in `references/dart.md`,
+          so a pure Dart project never loads Flutter guidance.
+
+        Flag the mismatch and say which file needs the change. A CI script
+        catches a rule named in the skill that is no longer enabled, so
+        concentrate on the reverse: an enabled rule the skill does not cover.
+
+    - path: skills/**
+      instructions: |
+        This skill ships to consumers and is loaded into an agent's context.
+
+        - Every code sample must be valid under the ruleset in
+          `lib/analysis_options.yaml`. Constructors use the Dart 3.13
+          declaring form (`const new({...})`), fields are initialized by
+          `this.x` formals, and a class with `==` carries `@immutable`.
+          Flag any sample that would fail analysis.
+        - Keep it terse. Anthropic's skill authoring guidance is to add only
+          what the model does not already know; flag framing prose,
+          motivation, and restated rationale.
+        - Flutter-specific guidance belongs in `references/flutter.md`, not
+          in `references/dart.md` or `SKILL.md`.
+        - References are one level deep from SKILL.md. Flag a reference that
+          links to another reference.
+
+    - path: benchmark/**
+      instructions: |
+        This measures option sets and the skill against each other by running
+        headless agents. Results in `results/` are recorded data: flag any
+        change that edits a recorded run rather than adding new ones, since
+        that would silently rewrite a published measurement.

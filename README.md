@@ -62,6 +62,78 @@ and is meant to be read. It has:
 The reason a rule is on or off sits next to the rule in the file. That is the
 single source of truth; nothing here repeats it.
 
+## Does it help?
+
+The claim is testable. `benchmark/agents` gives headless Claude Code the
+same three tasks under `flutter_lints` and under this package, several
+times each, and measures hidden-test results, turns, what the strict
+options still flag afterwards, and how alike the solutions to one task
+turn out. See [benchmark/README.md](benchmark/README.md) for the method
+and its limits.
+
+<!-- agents -->
+30 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+
+| Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_agent_lints | 15 | 99.3% | 14 of 15 | 23.2 | 4.2 min | 0.0 | 0 |
+| flutter_lints | 15 | 100.0% | 15 of 15 | 10.1 | 1.8 min | 9.7 | 0 |
+
+| Task | Option set | Consistency | Lines | Tests passed |
+| --- | --- | --- | --- | --- |
+| countdown | flutter_agent_lints | 0.66 | 159.4 | 100.0% |
+| countdown | flutter_lints | 0.77 | 178.8 | 100.0% |
+| search_model | flutter_agent_lints | 0.68 | 112.8 | 97.5% |
+| search_model | flutter_lints | 0.75 | 126.2 | 100.0% |
+| settings_parser | flutter_agent_lints | 0.65 | 167.0 | 100.0% |
+| settings_parser | flutter_lints | 0.81 | 199.4 | 100.0% |
+
+Diagnostics the agents ran into most under flutter_agent_lints (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| unnecessary_type_name_in_constructor | 24 |
+| cascade_invocations | 17 |
+| sort_pub_dependencies | 17 |
+| omit_obvious_property_types | 16 |
+| prefer_initializing_formals | 11 |
+| argument_type_not_assignable | 10 |
+| avoid_unused_constructor_parameters | 10 |
+| extra_positional_arguments | 10 |
+| extraneous_modifier | 9 |
+| undefined_identifier | 8 |
+
+Diagnostics the agents ran into most under flutter_lints (occurrences in analyzer output they read):
+
+| Rule | Occurrences |
+| --- | --- |
+| prefer_initializing_formals | 10 |
+| type_init_formals | 2 |
+<!-- /agents -->
+
+Those runs start from an empty file, so they measure the price of writing
+under a strict set and cannot see the payoff it promises: code that is
+cheaper to change later. For that, `benchmark/agents` also seeds a run with
+the `lib/` an earlier run produced, asks for one feature on top of it under
+the options that code was written with, and hands the agent the base task's
+hidden tests as the project's own. Read the turns and the changed lines
+together: a smaller diff for the same feature is what uniform code should
+buy, and the turns are what producing it costs.
+
+<!-- changes -->
+15 runs of opus over 3 tasks (countdown, search_model, settings_parser). Each run is seeded with the code a recorded run of the arm after the @ produced, and asked for a change to it; changed lines are lines added or removed in the solution file. Hidden tests are run after the agent stops; strict issues are diagnostics of the result under the full flutter_agent_lints options, whatever the run used; consistency is the mean pairwise token similarity of the solutions to one task.
+
+| Option set | Runs | Hidden tests passed | All tests passed | Turns | Time | Strict issues left | Ignores added | Changed lines |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_lints@flutter_lints | 15 | 100.0% | 15 of 15 | 11.3 | 1.2 min | 10.5 | 0 | 25.5 |
+
+| Task | Option set | Consistency | Lines | Tests passed |
+| --- | --- | --- | --- | --- |
+| countdown | flutter_lints@flutter_lints | 0.76 | 200.8 | 100.0% |
+| search_model | flutter_lints@flutter_lints | 0.73 | 142.0 | 100.0% |
+| settings_parser | flutter_lints@flutter_lints | 0.78 | 228.8 | 100.0% |
+<!-- /changes -->
+
 ## Contributing
 
 To propose a rule change, edit the rule's line in `lib/analysis_options.yaml`,

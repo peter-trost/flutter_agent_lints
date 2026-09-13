@@ -1,0 +1,3 @@
+# The full package, as a consumer would include it. The runner fills in the
+# repository path, because the run happens outside it.
+include: {{root}}/lib/analysis_options.yaml

@@ -10,4 +10,6 @@ pubspec.lock
 
 # Not part of the published package.
 fixtures/
+benchmark/
+.coderabbit.yaml
 renovate.json

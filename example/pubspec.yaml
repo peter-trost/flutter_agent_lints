@@ -5,7 +5,7 @@ publish_to: none
 environment:
   sdk: ^3.13.0
   # Exact pin, read by CI to install the matching Flutter. Renovate bumps it.
-  flutter: 3.47.2
+  flutter: 3.47.4
 
 dependencies:
   flutter:

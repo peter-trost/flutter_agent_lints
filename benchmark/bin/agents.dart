@@ -300,6 +300,8 @@ Future<String> _freshWorkdir(
     if (arm.seed == null || !seed.existsSync()) {
       throw StateError('no recorded output to seed $id from at ${seed.path}');
     }
+    // The seed replaces the base app's lib/ rather than layering on it.
+    Directory('${workdir.path}/lib').deleteSync(recursive: true);
     await _copyDir(seed, Directory('${workdir.path}/lib'));
     await _copyDir(
       Directory('agents/tasks/$task/tests'),
@@ -352,7 +354,18 @@ Future<({int passed, int total})> _hiddenTests(
     workingDirectory: workdir,
     stdoutEncoding: utf8,
   );
-  return countTests(result.stdout as String);
+  final tests = countTests(result.stdout as String);
+  if (tests.total == 0) {
+    // The hidden tests did not even load, usually because the agent broke
+    // the public API they compile against. Recorded as 0 of 0, which the
+    // report counts as a failure; the reason goes to the console.
+    final out = '${result.stdout}\n${result.stderr}'.trim().split('\n');
+    stderr.writeln(
+      '$task: hidden tests did not run in $workdir:\n'
+      '${out.skip(out.length > 15 ? out.length - 15 : 0).join('\n')}',
+    );
+  }
+  return tests;
 }
 
 Future<void> _validate(String task, String root, _Options options) async {

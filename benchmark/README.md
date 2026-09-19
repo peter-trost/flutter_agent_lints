@@ -32,8 +32,9 @@ dart run bin/agents_report.dart                # tables into the README
 ```
 
 Runs already recorded in `results/agents/*.jsonl` are skipped, so an
-interrupted batch resumes; delete a line to rerun it. CI checks the README
-tables against the records.
+interrupted batch resumes. Records are append-only: to measure again, run
+with another `--model`, or move the results files aside and start over.
+CI checks the README tables against the records.
 
 ## Limits
 

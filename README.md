@@ -41,9 +41,10 @@ dart run skills@ get
 ```
 
 That is the [`skills`](https://pub.dev/packages/skills) CLI, which finds
-skills bundled in your dependency tree and installs them for Claude Code,
-Codex, Cursor, Copilot and others. Rerun it after upgrading so the skill
-matches the ruleset you have. It is a skill rather than a block in
+skills bundled in your dependency tree and installs them for every agent
+it detects in the project: Claude Code, Codex, Cursor, Cline and others.
+GitHub Copilot is not detected; pass `--agent copilot`. Rerun it after
+upgrading so the skill matches the ruleset you have. It is a skill rather than a block in
 `AGENTS.md` so a repository that is only partly Dart does not pay for it in
 sessions that never touch a `.dart` file; the Flutter rules sit in their
 own reference file for the same reason.
@@ -126,7 +127,8 @@ tax with no return. With the skill, writing from an empty file still
 costs 1.7x the turns of `flutter_lints`, because every rule fires once on
 the way; changing existing code costs about two turns more, which is the
 skill load, and the diff comes out about 30% smaller on code about 20%
-shorter. Correctness is the same in every arm. See
+shorter. Every arm passes its hidden tests, except one run of the package
+alone that failed one test on the ambiguous `search_model` reading. See
 [benchmark/README.md](benchmark/README.md) for what the harness does and
 does not control for.
 

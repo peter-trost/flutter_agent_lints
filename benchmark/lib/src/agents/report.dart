@@ -35,7 +35,11 @@ String renderAgentsReport(List<RunRecord> runs) {
     );
   for (final config in configs) {
     final of = runs.where((r) => r.config == config).toList();
-    final allPassed = of.where((r) => r.testsPassed == r.testsTotal).length;
+    // No visible test at all means the hidden tests did not run, which is
+    // what a broken public API looks like: a failure, not a pass.
+    final allPassed = of
+        .where((r) => r.testsTotal > 0 && r.testsPassed == r.testsTotal)
+        .length;
     buffer.writeln(
       '| $config | ${of.length} | $allPassed of ${of.length} | '
       '${_mean(of, (r) => r.numTurns)} | '

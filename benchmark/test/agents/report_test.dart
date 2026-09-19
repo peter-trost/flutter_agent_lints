@@ -6,6 +6,7 @@ RunRecord _run(
   String config,
   int rep, {
   int passed = 8,
+  int total = 8,
   int turns = 10,
   int ignores = 0,
   int? changedLines,
@@ -18,7 +19,7 @@ RunRecord _run(
   numTurns: turns,
   tokens: 100000,
   testsPassed: passed,
-  testsTotal: 8,
+  testsTotal: total,
   ignores: ignores,
   ruleMentions: const {'unawaited_futures': 2},
   loc: 80,
@@ -59,6 +60,13 @@ void main() {
       ]);
       expect(seeded, contains('| Changed lines |'));
       expect(seeded, contains('| 80 | 2.0 | 25.0 |'));
+    });
+
+    test('a run whose hidden tests did not run is not a pass', () {
+      final broken = renderAgentsReport([
+        _run('flutter_lints', 0, passed: 0, total: 0),
+      ]);
+      expect(broken, contains('| flutter_lints | 1 | 0 of 1 |'));
     });
 
     test('adds an ignores column when any run added one', () {

@@ -76,17 +76,21 @@ action to the declaration as one cascade, and put the blank line between
 that and the assertions:
 
 ```dart
-import 'package:flutter/foundation.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
-class Counter extends ChangeNotifier {
+class Counter {
+  final _listeners = <void Function()>[];
   var _ticks = 0;
 
   int get ticks => _ticks;
 
+  void addListener(void Function() listener) => _listeners.add(listener);
+
   void start() {
     _ticks++;
-    notifyListeners();
+    for (final listener in _listeners) {
+      listener();
+    }
   }
 }
 
@@ -115,15 +119,16 @@ The same applies to `..start()` on the declaration followed by
 only where `meta` is a listed dependency, because
 `depend_on_referenced_packages` rejects any other import. If the class cannot
 be immutable, it should not define equality; compare the fields at the call
-site instead. That same import carries the comparison helpers, and a thrown
+site instead. A list field needs `listEquals` from
+`package:flutter/foundation.dart` (or `package:collection`), and a thrown
 exception with constant arguments is `const` (`prefer_const_constructors`):
 
 ```dart
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 class User {
-  const new({required this.name, this.roles = const []});
+  const new({required this.name, this.age = 0});
 
   factory fromJson(Map<String, Object?> json) {
     final name = json['name'];
@@ -134,14 +139,14 @@ class User {
   }
 
   final String name;
-  final List<String> roles;
+  final int age;
 
   @override
   bool operator ==(Object other) =>
-      other is User && other.name == name && listEquals(other.roles, roles);
+      other is User && other.name == name && other.age == age;
 
   @override
-  int get hashCode => Object.hash(name, Object.hashAll(roles));
+  int get hashCode => Object.hash(name, age);
 }
 ```
 

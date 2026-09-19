@@ -10,12 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  meta: ^1.19.0
 
 dev_dependencies:
   flutter_agent_lints:
     path: ../
   flutter_test:
     sdk: flutter
+  test: ^1.31.1
 
 flutter:
   uses-material-design: true

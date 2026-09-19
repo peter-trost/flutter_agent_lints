@@ -5,9 +5,6 @@ description: Read before editing Dart code.
 
 # Strict Dart
 
-Every lint and analyzer diagnostic is an error here, so code that would
-merely warn elsewhere does not build for review.
-
 ## Read the reference for what you are writing
 
 - **[references/dart.md](references/dart.md)** — always. Constructors,

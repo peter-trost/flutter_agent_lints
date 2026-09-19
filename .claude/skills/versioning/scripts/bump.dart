@@ -73,7 +73,7 @@ Map<String, String> _skillNow() {
   }
   return {
     for (final file in dir.listSync(recursive: true).whereType<File>())
-      if (file.path.endsWith('.md')) file.path: file.readAsStringSync(),
+      if (file.path.endsWith('.md')) _gitPath(file): file.readAsStringSync(),
   };
 }
 
@@ -93,8 +93,12 @@ Future<Set<String>> _skillPathsAt(String tag) async {
 
 Map<String, String> _shippedNow() => {
   for (final file in Directory('lib').listSync().whereType<File>())
-    if (file.path.endsWith('.yaml')) file.path: file.readAsStringSync(),
+    if (file.path.endsWith('.yaml')) _gitPath(file): file.readAsStringSync(),
 };
+
+/// The path git uses for [file], so it matches `git ls-tree` output on
+/// every platform.
+String _gitPath(File file) => file.path.replaceAll(Platform.pathSeparator, '/');
 
 Future<Set<String>> _shippedPathsAt(String tag) async {
   final result = await Process.run('git', [
@@ -118,13 +122,17 @@ Future<String?> _gitShow(String tag, String path) async {
   return result.exitCode == 0 ? result.stdout as String : null;
 }
 
+/// The last stable release tag reachable from HEAD: `v1.2.3`, never a
+/// prerelease such as `v1.2.3-rc.1`, whose version no bump can be applied to.
 Future<String?> _lastReleaseTag() async {
   final result = await Process.run('git', [
     'describe',
     '--tags',
     '--abbrev=0',
     '--match',
-    'v*',
+    'v[0-9]*',
+    '--exclude',
+    'v*-*',
   ]);
   return result.exitCode == 0 ? (result.stdout as String).trim() : null;
 }

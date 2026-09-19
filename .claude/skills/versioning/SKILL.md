@@ -18,8 +18,9 @@ dart run .claude/skills/versioning/scripts/bump.dart
 ```
 
 It compares the shipped files under `lib/`, the skill files under
-`skills/`, and `environment: sdk` in `pubspec.yaml` against the last `v*`
-tag and prints `bump`, `next`, and one `reason` line per difference. The rules it applies:
+`skills/`, and `environment: sdk` in `pubspec.yaml` against the last stable
+`v*` tag (prereleases such as `v1.2.0-rc.1` are skipped) and prints `bump`,
+`next`, and one `reason` line per difference. The rules it applies:
 
 - Any semantic change to a shipped file (parsed YAML, so comment edits do not
   count): **major**. Consumers' analysis changes, which is a build break.

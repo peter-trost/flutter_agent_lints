@@ -30,6 +30,25 @@ removed between SDK releases):
 include: package:flutter_agent_lints/experimental.yaml
 ```
 
+## The agent skill
+
+The package ships a skill that front-loads the rules agents otherwise
+learn from the analyzer one fix loop at a time. Install it into the
+project that depends on this package:
+
+```bash
+dart run skills@ get
+```
+
+That is the [`skills`](https://pub.dev/packages/skills) CLI, which finds
+skills bundled in your dependency tree and installs them for every agent
+it detects in the project: Claude Code, Codex, Cursor, Cline and others.
+GitHub Copilot is not detected; pass `--agent copilot`. Rerun it after
+upgrading so the skill matches the ruleset you have. It is a skill rather than a block in
+`AGENTS.md` so a repository that is only partly Dart does not pay for it in
+sessions that never touch a `.dart` file; the Flutter rules sit in their
+own reference file for the same reason.
+
 ## Principles
 
 In priority order:
@@ -61,6 +80,57 @@ and is meant to be read. It has:
 
 The reason a rule is on or off sits next to the rule in the file. That is the
 single source of truth; nothing here repeats it.
+
+## Does it help?
+
+Measured, not assumed. `benchmark/` gives headless Claude Code three
+tasks with hidden tests under three arms: the Flutter default
+`flutter_lints`, this package alone, and this package with its skill.
+Then it starts from what each arm wrote and asks for one more feature,
+which is where a stricter, more uniform codebase should pay back what it
+cost to write. Every number below comes from those runs, and anyone with
+a Flutter SDK and a Claude Code login can regenerate them:
+
+```bash
+cd benchmark && dart pub get
+dart run bin/agents.dart            # 3 tasks x 3 arms x 5 runs, from an empty file
+dart run bin/agents.dart --change   # 3 tasks x 2 arms x 5 runs, one feature on top
+dart run bin/agents_report.dart     # rewrites the two tables below
+```
+
+How to read them: **All tests passed** is correctness. **Turns** and
+**Tokens** are what the run cost. **Lines** is how much code came out.
+**Diagnostics read** is how often the analyzer sent the agent back.
+**Changed lines** is the size of the diff for the same feature.
+
+<!-- agents -->
+45 runs of opus over 3 tasks (countdown, search_model, settings_parser). Hidden tests run after the agent stops; diagnostics read are analyzer diagnostics in output the agent saw during the run.
+
+| Option set | Runs | All tests passed | Turns | Tokens | Lines | Diagnostics read |
+| --- | --- | --- | --- | --- | --- | --- |
+| flutter_lints | 15 | 15 of 15 | 10.1 | 421k | 168 | 0.8 |
+| flutter_agent_lints | 15 | 14 of 15 | 23.2 | 1094k | 146 | 10.8 |
+| flutter_agent_lints+skill | 15 | 15 of 15 | 17.5 | 712k | 140 | 3.9 |
+<!-- /agents -->
+
+<!-- changes -->
+30 runs of opus over 3 tasks (countdown, search_model, settings_parser). Each run starts from the code a recorded run of the arm after the @ produced and asks for one feature on top of it; changed lines are lines added or removed in the solution file. Hidden tests run after the agent stops; diagnostics read are analyzer diagnostics in output the agent saw during the run.
+
+| Option set | Runs | All tests passed | Turns | Tokens | Lines | Diagnostics read | Changed lines |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| flutter_lints@flutter_lints | 15 | 15 of 15 | 11.3 | 440k | 191 | 0.0 | 25.5 |
+| flutter_agent_lints+skill@flutter_agent_lints+skill | 15 | 15 of 15 | 13.7 | 478k | 155 | 0.3 | 17.6 |
+<!-- /changes -->
+
+What the runs say, at five per cell: the package without the skill is a
+tax with no return. With the skill, writing from an empty file still
+costs 1.7x the turns of `flutter_lints`, because every rule fires once on
+the way; changing existing code costs about two turns more, which is the
+skill load, and the diff comes out about 30% smaller on code about 20%
+shorter. Every arm passes its hidden tests, except one run of the package
+alone that failed one test on the ambiguous `search_model` reading. See
+[benchmark/README.md](benchmark/README.md) for what the harness does and
+does not control for.
 
 ## Contributing
 

@@ -12,13 +12,18 @@ enum Bump { none, minor, major }
 /// are compared as parsed YAML, so comment-only edits do not count. Any
 /// semantic difference, including a file appearing or disappearing, changes
 /// what the analyzer enforces for every consumer and is therefore [Bump.major].
-/// A moved SDK lower bound with an unchanged rule set is [Bump.minor].
-/// Anything else is invisible to consumers: [Bump.none].
+/// A moved SDK lower bound with an unchanged rule set is [Bump.minor], and
+/// so is any change to a skill file under `skills/` ([previousSkill] and
+/// [currentSkill], compared as text): consumers install it, but their
+/// analysis does not change. Anything else is invisible to consumers:
+/// [Bump.none].
 Bump decideBump({
   required Map<String, String> previousShipped,
   required Map<String, String> currentShipped,
   required String previousSdk,
   required String currentSdk,
+  Map<String, String> previousSkill = const {},
+  Map<String, String> currentSkill = const {},
 }) {
   final changed = changedShippedPaths(
     previous: previousShipped,
@@ -27,11 +32,25 @@ Bump decideBump({
   if (changed.isNotEmpty) {
     return Bump.major;
   }
-  if (previousSdk != currentSdk) {
+  if (previousSdk != currentSdk ||
+      changedSkillPaths(
+        previous: previousSkill,
+        current: currentSkill,
+      ).isNotEmpty) {
     return Bump.minor;
   }
   return Bump.none;
 }
+
+/// Skill files whose text differs between [previous] and [current], plus
+/// paths present in only one of them.
+Set<String> changedSkillPaths({
+  required Map<String, String> previous,
+  required Map<String, String> current,
+}) => {
+  for (final path in {...previous.keys, ...current.keys})
+    if (previous[path] != current[path]) path,
+};
 
 /// Paths whose parsed YAML differs between [previous] and [current], plus
 /// paths present in only one of them.

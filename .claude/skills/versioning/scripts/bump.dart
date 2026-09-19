@@ -31,17 +31,26 @@ Future<void> main() async {
     ...await _shippedPathsAt(tag),
   });
   final previousSdk = _sdk(_pubspec(await _gitShow(tag, 'pubspec.yaml') ?? ''));
+  final currentSkill = _skillNow();
+  final previousSkill = await _shippedAt(tag, {
+    ...currentSkill.keys,
+    ...await _skillPathsAt(tag),
+  });
   final bump = decideBump(
     previousShipped: previousShipped,
     currentShipped: currentShipped,
     previousSdk: previousSdk,
     currentSdk: _sdk(currentPubspec),
+    previousSkill: previousSkill,
+    currentSkill: currentSkill,
   );
   _print([
     ('previous', tag),
     ('bump', bump.name),
     ('current', currentVersion),
-    ('next', nextVersion(currentVersion, bump)),
+    // From the released version, not the pubspec: once the pubspec is
+    // bumped, `next` still names the version this change should carry.
+    ('next', nextVersion(tag.substring(1), bump)),
     for (final path in changedShippedPaths(
       previous: previousShipped,
       current: currentShipped,
@@ -49,13 +58,47 @@ Future<void> main() async {
       ('reason', '$path differs from $tag'),
     if (previousSdk != _sdk(currentPubspec))
       ('reason', 'environment.sdk moved from $previousSdk'),
+    for (final path in changedSkillPaths(
+      previous: previousSkill,
+      current: currentSkill,
+    ))
+      ('reason', '$path differs from $tag'),
   ]);
+}
+
+Map<String, String> _skillNow() {
+  final dir = Directory('skills');
+  if (!dir.existsSync()) {
+    return const {};
+  }
+  return {
+    for (final file in dir.listSync(recursive: true).whereType<File>())
+      if (file.path.endsWith('.md')) _gitPath(file): file.readAsStringSync(),
+  };
+}
+
+Future<Set<String>> _skillPathsAt(String tag) async {
+  final result = await Process.run('git', [
+    'ls-tree',
+    '-r',
+    '--name-only',
+    tag,
+    'skills/',
+  ]);
+  return {
+    for (final line in (result.stdout as String).split('\n'))
+      if (line.endsWith('.md')) line,
+  };
 }
 
 Map<String, String> _shippedNow() => {
   for (final file in Directory('lib').listSync().whereType<File>())
-    if (file.path.endsWith('.yaml')) file.path: file.readAsStringSync(),
+    if (file.path.endsWith('.yaml')) _gitPath(file): file.readAsStringSync(),
 };
+
+/// The path git uses for [file], so it matches `git ls-tree` output on
+/// every platform.
+String _gitPath(File file) => file.path.replaceAll(Platform.pathSeparator, '/');
 
 Future<Set<String>> _shippedPathsAt(String tag) async {
   final result = await Process.run('git', [
@@ -79,13 +122,17 @@ Future<String?> _gitShow(String tag, String path) async {
   return result.exitCode == 0 ? result.stdout as String : null;
 }
 
+/// The last stable release tag reachable from HEAD: `v1.2.3`, never a
+/// prerelease such as `v1.2.3-rc.1`, whose version no bump can be applied to.
 Future<String?> _lastReleaseTag() async {
   final result = await Process.run('git', [
     'describe',
     '--tags',
     '--abbrev=0',
     '--match',
-    'v*',
+    'v[0-9]*',
+    '--exclude',
+    'v*-*',
   ]);
   return result.exitCode == 0 ? (result.stdout as String).trim() : null;
 }

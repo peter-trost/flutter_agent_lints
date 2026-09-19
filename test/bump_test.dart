@@ -42,6 +42,42 @@ void main() {
       expect(bump, Bump.major);
     });
 
+    test('is minor when a shipped skill file changed or appeared', () {
+      const rules = {'a.yaml': 'linter:\n  rules:\n    x: true\n'};
+      expect(
+        decideBump(
+          previousShipped: rules,
+          currentShipped: rules,
+          previousSdk: _sdk,
+          currentSdk: _sdk,
+          currentSkill: const {'skills/s/SKILL.md': '# Strict Dart\n'},
+        ),
+        Bump.minor,
+      );
+      expect(
+        decideBump(
+          previousShipped: rules,
+          currentShipped: rules,
+          previousSdk: _sdk,
+          currentSdk: _sdk,
+          previousSkill: const {'skills/s/SKILL.md': '# Strict Dart\n'},
+          currentSkill: const {'skills/s/SKILL.md': '# Strict Dart\n\nMore.\n'},
+        ),
+        Bump.minor,
+      );
+    });
+
+    test('a rule change stays major even when the skill changed too', () {
+      final bump = decideBump(
+        previousShipped: {'a.yaml': 'linter:\n  rules:\n    x: true\n'},
+        currentShipped: {'a.yaml': 'linter:\n  rules:\n    x: false\n'},
+        previousSdk: _sdk,
+        currentSdk: _sdk,
+        currentSkill: const {'skills/s/SKILL.md': '# Strict Dart\n'},
+      );
+      expect(bump, Bump.major);
+    });
+
     test('is minor when only the SDK bound moved', () {
       final bump = decideBump(
         previousShipped: {'a.yaml': 'linter:\n  rules:\n    x: true\n'},

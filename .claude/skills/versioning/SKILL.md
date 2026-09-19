@@ -17,13 +17,16 @@ Run the script; it is the decision, not a hint:
 dart run .claude/skills/versioning/scripts/bump.dart
 ```
 
-It compares the shipped files under `lib/` and `environment: sdk` in
-`pubspec.yaml` against the last `v*` tag and prints `bump`, `next`, and one
-`reason` line per difference. The rules it applies:
+It compares the shipped files under `lib/`, the skill files under
+`skills/`, and `environment: sdk` in `pubspec.yaml` against the last `v*`
+tag and prints `bump`, `next`, and one `reason` line per difference. The rules it applies:
 
 - Any semantic change to a shipped file (parsed YAML, so comment edits do not
   count): **major**. Consumers' analysis changes, which is a build break.
 - Rule set unchanged, SDK lower bound moved: **minor**.
+- Rule set unchanged, a skill file under `skills/` added, removed or
+  edited: **minor**. Consumers install it with `dart run skills@ get`;
+  their analysis does not change.
 - Neither: **none**. Docs, tooling, CI, and the example are invisible to
   consumers and get no release.
 - Exception the script cannot see: a packaging-only fix that changes what

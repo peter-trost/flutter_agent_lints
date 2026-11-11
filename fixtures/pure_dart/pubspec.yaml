@@ -3,7 +3,7 @@ description: Pure Dart fixture proving the experimental variant loads without Fl
 publish_to: none
 
 environment:
-  sdk: ^3.13.0
+  sdk: 3.14.0
 
 dev_dependencies:
   flutter_agent_lints:

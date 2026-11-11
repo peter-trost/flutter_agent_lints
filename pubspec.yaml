@@ -13,7 +13,7 @@ topics:
   - static-analysis
 
 environment:
-  sdk: ^3.13.0
+  sdk: 3.14.0
 
 dev_dependencies:
   # Pinned to the analyzer version bundled with the SDK in environment.sdk
